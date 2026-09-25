@@ -1,0 +1,19 @@
+<view class="page">
+  
+  <image class="top-bg" src="https://www.lianzhenkj.com/img/fJSWmDtPb.jpeg" mode="widthFix"/>
+
+  
+  <view class="bottom-section">
+    <button class="order-btn" bind:tap="goToHome">立即使用去下单</button>
+
+    
+    <view class="info-box">
+      <view class="info-text" style="margin-top: 16rpx;">
+        同样的福利，您可分享给朋友免费领取（由平台发放，非个人转赠），直接可用，下单后您将额外获得50元现金奖励。
+      </view>
+    </view>
+
+    
+    <button class="red-envelope-btn" open-type="share">发红包给朋友</button>
+  </view>
+</view>

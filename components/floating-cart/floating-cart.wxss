@@ -1,0 +1,258 @@
+.floating-cart-container {  
+  position: fixed;  
+  bottom: 0;  
+  left: 0;  
+  width: 100%;  
+  z-index: 999;  
+  pointer-events: none;  
+}  
+
+/* 购物车面板 */  
+.cart-panel {  
+  position: absolute;  
+  bottom: 30rpx;  
+  left: 30rpx;  
+  right: 30rpx;  
+  border-radius: 16rpx;  
+  overflow: hidden;  
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.15);  
+  pointer-events: auto;  
+  transition: all 0.3s ease;  
+}  
+
+.cart-panel-open {  
+  bottom: 30rpx;  
+}  
+/* 购物车底部栏 */
+.cart-bar {
+  display: flex;
+  height: 110rpx;
+  background-color: #e4393c; /* 红色背景，与添加按钮一致 */
+  color: white;
+  align-items: center;
+  padding: 0 25rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cart-icon-container {
+  position: relative;
+  width: 80rpx;
+}
+
+.cart-icon {
+  position: relative;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.cart-icon image {
+  width: 100%;
+  height: 100%;
+}
+
+.badge {
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  background-color: #fff; /* 白色背景 */
+  color: #e4393c; /* 红色文字 */
+  border-radius: 50%;
+  width: 36rpx;
+  height: 36rpx;
+  text-align: center;
+  line-height: 36rpx;
+  font-size: 20rpx;
+  font-weight: bold;
+}
+
+.total-price {
+  flex: 1;
+  font-size: 36rpx;
+  font-weight: bold; /* 加粗字体 */
+  padding-left: 20rpx;
+  color: #ffffff; /* 白色 */
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+}
+
+.discount-text {
+  font-size: 22rpx;
+  color: #ffd700; /* 金色，突出优惠信息 */
+  margin-left: 15rpx;
+  font-weight: lighter;
+  letter-spacing: 0.5px;
+}
+
+.order-btn {
+  background-color: #fff; /* 白色按钮 */
+  color: #e4393c; /* 红色文字 */
+  padding: 16rpx 40rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.order-text {
+  font-size: 22rpx;
+  margin-left: 8rpx;
+  opacity: 0.9;
+}
+    
+/* 购物车详情 */  
+.cart-detail {  
+  background-color: #FFFFFF;  
+  width: 100%;  
+  max-height: 60vh;  
+  display: flex;  
+  flex-direction: column;  
+}  
+
+.cart-header {  
+  display: flex;  
+  justify-content: space-between;  
+  padding: 30rpx 25rpx;  
+  border-bottom: 1rpx solid #f6f6f6; /* 浅灰色边框 */  
+}  
+
+.cart-title {  
+  font-size: 30rpx;  
+  font-weight: 500;  
+  color: #333; /* 深灰色 */  
+  letter-spacing: 1px;  
+}  
+
+.cart-clear {  
+  font-size: 26rpx;  
+  color: #999; /* 中灰色 */  
+}  
+
+.cart-items {  
+  max-height: 40vh;  
+  overflow-y: auto;  
+}  
+
+.cart-item {  
+  display: flex;  
+  align-items: center;  
+  padding: 25rpx 20rpx;  
+  border-bottom: 1rpx solid #f6f6f6; /* 浅灰色边框 */  
+}  
+
+.item-image {  
+  width: 110rpx;  
+  height: 110rpx;  
+  border-radius: 8rpx;  
+  overflow: hidden;  
+}  
+
+.item-info {  
+  flex: 1;  
+  padding: 0 25rpx;  
+}  
+
+.item-name {  
+  font-size: 26rpx;  
+  margin-bottom: 12rpx;  
+  color: #333; /* 深灰色 */  
+  font-weight: normal;  
+}  
+
+.item-price-container {  
+  display: flex;  
+  align-items: center;  
+}  
+
+.item-price {  
+  color: #e4393c; /* 红色价格 */  
+  font-weight: normal;  
+  margin-right: 10rpx;  
+  display: flex;  
+  align-items: baseline;  
+}  
+
+.price-symbol {  
+  font-size: 24rpx;  
+  font-weight: normal;  
+  vertical-align: middle;  
+  position: relative;  
+  top: -2rpx;  
+  color: #e4393c; /* 红色符号 */  
+}  
+
+.price-integer {  
+  font-size: 34rpx;  
+  font-weight: 500;  
+  color: #e4393c; /* 红色整数部分 */  
+}  
+
+.price-decimal {  
+  font-size: 26rpx;  
+  color: #e4393c; /* 红色小数部分 */  
+}  
+
+.original-price-symbol {  
+  font-size: 20rpx;  
+  color: #999; /* 浅灰色 */  
+}  
+
+.item-original-price {  
+  font-size: 24rpx;  
+  color: #999; /* 浅灰色 */  
+  text-decoration: line-through;  
+  display: flex;  
+  align-items: baseline;  
+}  
+
+.item-control {  
+  display: flex;  
+  align-items: center;  
+}  
+
+.decrease-btn,  
+.increase-btn {  
+  width: 50rpx;  
+  height: 50rpx;  
+  border-radius: 8rpx;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  font-size: 36rpx;  
+  font-weight: bold;  
+}  
+
+.decrease-btn {  
+  background-color: #f6f6f6; /* 浅灰色 */  
+  color: #999; /* 中灰色 */  
+  border: none;  
+}  
+
+.increase-btn {  
+  background-color: #e4393c; /* 红色 */  
+  color: white;  
+  border: none;  
+  box-shadow: 0 2rpx 8rpx rgba(228, 57, 60, 0.3);  
+}  
+
+.item-count {  
+  width: 55rpx;  
+  text-align: center;  
+  font-size: 26rpx;  
+  color: #333; /* 深灰色 */  
+}  
+
+/* 遮罩层 */  
+.mask {  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  width: 100%;  
+  height: 100%;  
+  background-color: rgba(0, 0, 0, 0.5); /* 黑色遮罩 */  
+  z-index: -1;  
+  pointer-events: auto;  
+  backdrop-filter: blur(3px);  
+}

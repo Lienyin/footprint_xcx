@@ -1,0 +1,90 @@
+<view class="container">
+  <view class="restaurant-info">
+    <view class="restaurant-title">
+      <text class="name">{{currentShop.storeName}}</text>
+      <view class="arrow-down">
+      </view>
+    </view>
+    <view class="restaurant-address" bindtap="navigateToStore">
+      <text>{{currentShop.address}}</text>
+    </view>
+
+  </view>
+
+
+  
+  <view class="menu-container">
+    
+    <view class="menu-categories-container">
+      <scroll-view class="menu-categories" scroll-y="true">
+        <view class="category-item {{currentCategory === index ? 'active' : ''}}" wx:for="{{categories}}" wx:key="index" bindtap="switchCategory" data-index="{{index}}">
+          <view class="category-tag" wx:if="{{item.tag}}">{{item.tag}}</view>
+          <text>{{item.categoryName}}</text>
+        </view>
+      </scroll-view>
+    </view>
+
+    
+    <view class="menu-products-container">
+      <scroll-view class="menu-products" scroll-y="true" scroll-with-animation="true">
+        <view class="category-title">
+          <text>{{categories[currentCategory].categoryName}}</text>
+          <text wx:if="{{categories[currentCategory].description}}" class="category-desc">
+            {{categories[currentCategory].description}}
+          </text>
+        </view>
+
+        
+        <view bind:tap="toPackageDetail" class="product-item" wx:for="{{currentProducts}}" wx:key="id" data-package_id="{{item.packageId}}">
+          <image class="product-image" src="{{item.coverImg}}" mode="aspectFill"></image>
+          <view class="product-detail">
+            <view class="product-name">{{item.packageName}}</view>
+            <view class="product-desc" wx:if="{{item.description}}">{{item.description}}</view>
+            <view class="product-price-container">
+              <view class="price-wrapper">
+                <view class="product-price">
+                  <text class="price-symbol">¥</text>
+                  <text class="price-integer">{{item.priceInteger}}</text>
+                  <text class="price-decimal" wx:if="{{item.priceDecimal}}">.{{item.priceDecimal}}</text>
+                </view>
+                <view class="discount-wrapper" wx:if="{{item.originalPrice || item.discount}}">
+                  <view class="original-price" wx:if="{{item.originalPrice}}">
+                    <text class="price-symbol">¥</text>
+                    <text>{{item.originalPrice}}</text>
+                  </view>
+                  <view class="discount" wx:if="{{item.discount}}">{{item.discount}}</view>
+                </view>
+              </view>
+
+              <view catchtap="doNothing" class="button-safe-area">
+                <view wx:if="{{item.num > 0}}" class="num-group">
+                  <view catch:tap="cartMinus" data-index="{{index}}" class="minus-btn">-</view>
+                  
+                  <view class="num-text" catch:tap="showNumEditor" data-index="{{index}}" data-num="{{item.num}}">{{item.num}}</view>
+                  <view catch:tap="cartAdd" data-index="{{index}}" class="add-btn">+</view>
+                </view>
+                <view wx:else catch:tap="cartAdd" data-index="{{index}}" class="add-btn">+</view>
+              </view>
+
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+      <floating-cart bind:customEvent="handleCart" bind:clearCart="clearCart" id="floatingCart"></floating-cart>
+    </view>
+  </view>
+</view>
+<view class="num-editor-mask" wx:if="{{showNumEditor}}" catchtap="hideNumEditor">
+  <view class="num-editor-container" catchtap="stopPropagation">
+    <view class="num-editor-title">修改数量</view>
+    <view class="num-editor-input-container">
+      <view class="num-adjust-btn" catchtap="decreaseEditorNum">-</view>
+      <input class="num-editor-input" type="number" value="{{editingNum}}" bindinput="onNumInput" focus="{{showNumEditor}}" />
+      <view class="num-adjust-btn" catchtap="increaseEditorNum">+</view>
+    </view>
+    <view class="num-editor-actions">
+      <view class="num-editor-btn cancel" catchtap="hideNumEditor">取消</view>
+      <view class="num-editor-btn confirm" catchtap="confirmNumEdit">确定</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,156 @@
+
+<view class="container">
+  
+  <view class="store-info">
+  <image src="{{selectedTechnician.storeImg}}" class="store-image" mode="aspectFill" />
+  <view class="store-details">
+    <text class="store-name">{{selectedTechnician.storeName}}</text>
+    <view class="store-address-container">
+      <image src="/images/positioning.png" class="location-icon-image" mode="aspectFit"></image>
+      <text class="store-address">{{selectedTechnician.address}}</text>
+    </view>
+  </view>
+</view>
+  <view class="section">
+  <view class="section-title-row">
+    <view class="section-title">选择{{title}}</view>
+  </view>
+
+  <view class="scroll-container" bindtouchstart="showArrows" bindtouchmove="showArrows">
+    
+    <view class="scroll-arrow scroll-arrow-left {{arrowsVisible ? 'arrows-visible' : 'arrows-hidden'}}" bindtap="scrollLeft">
+      <view class="custom-arrow custom-arrow-left"></view>
+    </view>
+    
+    <scroll-view 
+      class="technician-scroll" 
+      scroll-x="true" 
+      enhanced="true" 
+      show-scrollbar="false"
+      scroll-left="{{scrollPosition}}"
+      id="technicianScroll"
+      bindscroll="showArrows"
+    >
+    <view class="technician-item {{selectedTechnician.userId === item.userId ? 'selected' : ''}}" wx:for="{{technicians}}" wx:key="userId" bindtap="onSelectTechnician" data-technician="{{item}}">
+  <image src="{{item.avatar?item.avatar:item.photoVO.headUrl}}" class="technician-avatar" mode="aspectFill" />
+  <text class="technician-name">{{item.technicianName}}</text>
+  <view class="technician-rating">
+    <view class="star-icon"></view>
+    <text>{{item.rating||4.9}}</text>
+  </view>
+</view>
+    </scroll-view>
+    
+    
+    <view class="scroll-arrow scroll-arrow-right {{arrowsVisible ? 'arrows-visible' : 'arrows-hidden'}}" bindtap="scrollRight">
+      <view class="custom-arrow custom-arrow-right"></view>
+    </view>
+  </view>
+</view>
+  <view class="technician-detail" wx:if="{{selectedTechnician.userId}}">
+    <view class="detail-header">
+      <view class="technician-extra-info" wx:if="{{selectedTechnician.workExperience}}">
+        <text class="work-years">工作{{selectedTechnician.workExperience}}年</text>
+      </view>
+    </view>
+    <text class="detail-speciality" wx:if="{{selectedTechnician.introduction}}">{{selectedTechnician.introduction}}</text>
+    
+    <view class="speciality-tags">
+      <text class="tag" wx:for="{{selectedTechnician.serviceTypes}}" wx:key="*this">{{item}}</text>
+    </view>
+    <view class="photos-container" wx:if="{{selectedTechnician.photos.length>0}}">
+      <view class="photos-header">
+        <text class="photos-title">{{title}}照片</text>
+        <text class="photos-count">{{selectedTechnician.photos.length}}张</text>
+      </view>
+
+      <view class="photos-grid">
+        <view class="photo-item" wx:for="{{selectedTechnician.photos}}" wx:key="index">
+          <image src="{{item}}" mode="aspectFill" bindtap="onPhotoPreview" data-photos="{{selectedTechnician.photos}}" data-index="{{index}}" />
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <button class="booking-btn" bindtap="onConfirmBooking">
+    立即预约
+  </button>
+</view>
+
+
+<view class="image-modal" wx:if="{{showImageModal}}" bindtap="onCloseImageModal">
+  <swiper class="modal-swiper" current="{{currentImageIndex}}" bindchange="onImageChange">
+    <swiper-item wx:for="{{previewPhotos}}" wx:key="index">
+      <image src="{{item}}" class="modal-image" mode="aspectFit" />
+    </swiper-item>
+  </swiper>
+  <view class="modal-close" bindtap="onCloseImageModal">×</view>
+  <view class="image-counter">{{currentImageIndex + 1}}/{{previewPhotos.length}}</view>
+</view>
+
+<view class="booking-popup" wx:if="{{showBookingPopup}}">
+  <view class="popup-container" catch:touchmove="preventTouchMove">
+    <view class="popup-title">预约详情</view>
+
+    
+    
+    <view class="time-select">
+      <text class="select-label">选择到店时间</text>
+      <wxs module="timeUtils">
+        function getNextTimeSlot(timeStr) {
+          var parts = timeStr.split(':');
+          var hours = parseInt(parts[0]);
+          var minutes = parseInt(parts[1]);
+          var newMinutes = minutes + 30;
+          var newHours = hours;
+          if (newMinutes >= 60) {
+            newHours += Math.floor(newMinutes / 60);
+            newMinutes %= 60;
+          }
+          newHours %= 24;
+          return (newHours < 10 ? '0' + newHours : newHours) + ':' +
+            (newMinutes < 10 ? '0' + newMinutes : newMinutes);
+        }
+
+        module.exports.getNextTimeSlot = getNextTimeSlot;
+      </wxs>
+
+      <view class="time-options">
+        <view wx:for="{{availableTimes}}" wx:key="*this" class="time-btn {{ availableTimesStatus[item] ? 'active' : '' }}" bindtap="onSelectTime" data-time="{{item}}">
+          {{item}}~{{timeUtils.getNextTimeSlot(item)}}
+          <text wx:if="{{availableTimesStatus[item]}}" class="time-tag {{ selectedTimes[0] === item ? 'primary' : 'backup' }}">{{ selectedTimes[0] === item ? '首选' : '备选' }}
+          </text>
+        </view>
+      </view>
+    </view>
+
+    
+    <button class="confirm-booking-btn" bindtap="onConfirmBookingDetail" disabled="{{!selectedPeople || selectedTimes.length<1}}">
+      立即预约
+    </button>
+
+    
+    <view class="popup-close" bindtap="onCloseBookingPopup">×</view>
+  </view>
+</view>
+
+<view class="phone-modal {{showPhoneModal ? 'show' : ''}}" catchtouchmove="true">
+  <view class="modal-mask" bindtap="closePhoneModal"></view>
+  <view class="modal-content">
+    <view class="modal-header">
+      <text class="modal-title">手机号授权说明</text>
+      <view class="modal-close" bindtap="closePhoneModal">×</view>
+    </view>
+
+    <view class="modal-body">
+      <view class="auth-tip">为更好地核实预约信息，需要获取您的手机号。您的信息仅用于店内预约核实服务，请放心授权。</view>
+
+      <button class="auth-btn {{phoneAuthLoading ? 'loading' : ''}}" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber" disabled="{{phoneAuthLoading}}">
+        <text wx:if="{{!phoneAuthLoading}}">一键授权手机号</text>
+        <text wx:else>授权中...</text>
+      </button>
+
+      <view class="cancel-btn" bindtap="closePhoneModal">取消预约</view>
+    </view>
+  </view>
+</view>

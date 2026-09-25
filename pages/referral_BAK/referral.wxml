@@ -1,0 +1,253 @@
+
+<view class="activity-container">
+  
+  <view class="activity-banner">
+    <image class="banner-image" src="{{activityBanner || 'https://www.lianzhenkj.com/img/reservation_banner.png'}}" mode="widthFix"></image>
+  </view>
+
+  
+  <view class="my-invite-card">
+    
+    <view class="card-header">
+      <text class="card-title">当月拉新</text>
+      <view class="rules-btn" bindtap="showReferralRules">活动规则></view>
+    </view>
+    
+    <view class="invite-stats">
+      <view class="stat-item" bindtap="goToReferralLog" data-type="newUser">
+        
+        <view class="stat-value-container">
+          <text class="stat-value">{{statistics.newUserCount || 0}}</text>
+          <view class="info-icon" catchtap="showNewUserInfo" hover-class="info-icon-hover">?</view>
+        </view>
+        <view class="stat-label">拉新人数</view>
+      </view>
+      <view class="stat-item" bindtap="goToReferralLog" data-type="ordered">
+        <view class="stat-value-container">
+          <text class="stat-value">{{statistics.orderedCount || 0}}</text>
+          <view class="info-icon" catchtap="showOrderedInfo">?</view>
+        </view>
+        <view class="stat-label">有效人数</view>
+      </view>
+    </view>
+    
+    <view class="tier-earnings-section">
+      
+      <view class="tier-card">
+        <view class="tier-info">
+          <text class="tier-label">当前等级</text>
+          <view class="tier-badge">{{currentTierText || '青铜新秀'}}</view>
+        </view>
+        <text class="tier-reward">{{currentTierDescription}}</text>
+        <text class="tier-next" wx:if="{{nextTierThreshold > 0 && nextTierText}}">
+          再邀请{{nextTierThreshold - statistics.orderedCount}}人升级至{{nextTierText}}
+        </text>
+      </view>
+      
+      <view class="earnings-card">
+        <view class="earnings-item" bindtap="goToReferralLog" data-type="settled">
+          <view class="earnings-label-wrapper">
+            <text class="earnings-label">已结算</text>
+            <view class="info-icon small" catchtap="showSettledInfo">?</view>
+          </view>
+          <text class="earnings-value">¥{{statistics.availableBalance || '0.00'}}</text>
+        </view>
+        <view class="earnings-divider"></view>
+        <view class="earnings-item" bindtap="goToReferralLog" data-type="pending">
+          <view class="earnings-label-wrapper">
+            <text class="earnings-label">待结算</text>
+            <view class="info-icon small" catchtap="showPendingInfo">?</view>
+          </view>
+          <text class="earnings-value accent">¥{{statistics.pendingSettlement || '0.00'}}</text>
+        </view>
+      </view>
+    </view>
+
+    
+    <view class="milestone-section">
+      <view class="milestone-header">
+        <text class="milestone-title">累计奖励</text>
+        <view class="milestone-count-container">
+          <text class="milestone-count">累计人数: {{statistics.totalAllTimeCount || 0}}人</text>
+          <view class="info-icon" bindtap="showMilestoneInfo">?</view>
+        </view>
+      </view>
+      <view class="milestone-progress-container">
+        <view class="milestone-track">
+          <view class="milestone-progress" style="width:{{milestoneProgressWidth}}"></view>
+
+          
+          <block wx:for="{{milestones}}" wx:key="milestoneLevel">
+            <view class="milestone-point {{statistics.totalAllTimeCount >= item.requiredCount ? 'achieved' : ''}}" style="left: {{item.positionPercent}}%">
+              <view class="point-marker"></view>
+              <text class="point-label">{{item.requiredCount}}人</text>
+              <text class="reward-label">奖{{item.rewardAmount}}元</text>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class="milestone-next">
+        <view class="next-milestone-info">
+          <block wx:if="{{nextMilestone}}">
+            <text>距离{{nextMilestone.requiredCount}}人里程碑还差{{nextMilestone.requiredCount - statistics.totalAllTimeCount}}人，多奖励{{nextMilestone.rewardAmount}}元奖励</text>
+          </block>
+          <block wx:else>
+            <text>恭喜您已达成所有里程碑！</text>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <view class="invite-actions">
+      <button class="btn-get-code" bindtap="getQrCode">获取我的推广码</button>
+    </view>
+  </view>
+  <view class="leaderboard-section">
+  <view class="leaderboard-header">
+    <text class="leaderboard-title">排行榜TOP3</text>
+  </view>
+  <view class="leaderboard-list">
+    
+    <view class="loading-placeholder" wx:if="{{leaderboard.length === 0}}">
+      <text>加载排行榜数据中...</text>
+    </view>
+    
+    <block wx:for="{{leaderboard}}" wx:key="rank">
+      <view class="leaderboard-item {{item.rank <= 3 ? 'top-rank' : ''}}">
+        <text class="rank-number">
+          <block wx:if="{{item.rank == 1}}">🥇</block>
+          <block wx:elif="{{item.rank == 2}}">🥈</block>
+          <block wx:elif="{{item.rank == 3}}">🥉</block>
+          <block wx:else>{{item.rank}}</block>
+        </text>
+        <text class="leaderboard-name">{{item.name}}</text>
+        <text class="leaderboard-score">¥{{item.orderedCount}}</text>
+      </view>
+    </block>
+  </view>
+</view>
+  
+  <view class="disclaimer" wx:if="{{disclaimer}}">
+    {{disclaimer}}
+  </view>
+
+  
+  <view class="popup-mask" wx:if="{{showPendingInfo}}" bindtap="hidePendingInfo">
+    <view class="popup-content" catchtap="stopPropagation">
+      <view class="popup-header">
+        <text class="popup-title">预估说明</text>
+        <view class="close-icon" bindtap="hidePendingInfo">×</view>
+      </view>
+      <view class="popup-body">
+        <text>预估待结算金额根据当前符合条件但未结算的拉新记录计算。</text>
+        <text>实际结算时，根据月度累计拉新人数，按阶梯计算：</text>
+        <block wx:for="{{monthlyRewardTiers}}" wx:key="tierLevel">
+          <text>• {{item.minCount}}{{item.maxCount ? '-'+item.maxCount : '人以上'}}：{{item.rewardAmount}}元/人</text>
+        </block>
+        <text class="popup-notice">最终结算金额可能与预估金额有所不同。</text>
+      </view>
+    </view>
+  </view>
+
+  
+  <view class="popup-mask" wx:if="{{showQrCode}}" bindtap="hideQrCode">
+    <view class="popup-content qrcode-popup" catchtap="stopPropagation">
+      <view class="popup-header">
+        <text class="popup-title">我的推广码</text>
+        <view class="close-icon" bindtap="hideQrCode">×</view>
+      </view>
+      <view class="popup-body qrcode-body">
+        <image class="qrcode-image" src="{{qrCodeUrl}}" mode="aspectFit" show-menu-by-longpress="true"></image>
+        <text class="qrcode-tip">长按保存图片</text>
+        <text class="qrcode-desc">分享给好友，邀请注册下单</text>
+        <button class="btn-share-code" open-type="share">分享给好友</button>
+      </view>
+    </view>
+  </view>
+
+  
+  <view class="popup-mask" wx:if="{{showRules}}" bindtap="hideReferralRules">
+    <view class="popup-content rules-popup" catchtap="stopPropagation">
+      <view class="popup-header">
+        <text class="popup-title">拉新奖励规则</text>
+        <view class="close-icon" bindtap="hideReferralRules">×</view>
+      </view>
+      <view class="popup-body rules-body">
+        <view class="rules-content">
+          
+          <view class="rule-item">
+            <view class="rule-title">奖励规则与条件</view>
+            <view class="rule-text">
+              
+              <block wx:for="{{rules}}" wx:key="index">
+                <block wx:if="{{item.title === '奖励规则与条件'}}">
+                  <block wx:for="{{item.content}}" wx:for-item="line" wx:key="*this">
+                    <text>{{line}}</text>
+                  </block>
+                </block>
+              </block>
+
+              
+              <view class="rule-section-title">月度阶梯奖励（每月重置）</view>
+              <view class="rules-table">
+                <view class="rules-table-header">
+                  <view class="rules-table-cell">推广人数</view>
+                  <view class="rules-table-cell">奖励金额</view>
+                  <view class="rules-table-cell">等级</view>
+                </view>
+                <block wx:for="{{monthlyRewardTiers}}" wx:key="tierLevel">
+                  <view class="rules-table-row">
+                    <view class="rules-table-cell">
+                      {{item.minCount}}{{item.maxCount ? '-'+item.maxCount : '人以上'}}
+                    </view>
+                    <view class="rules-table-cell">
+                      {{item.rewardAmount}}元/人
+                    </view>
+                    <view class="rules-table-cell">
+                      {{item.description}}
+                    </view>
+                  </view>
+                </block>
+              </view>
+
+              
+              <view class="rule-section-title">总累计里程碑奖励（不重置）</view>
+              <view class="rules-table">
+                <view class="rules-table-header">
+                  <view class="rules-table-cell">累计人数</view>
+                  <view class="rules-table-cell">一次性奖励</view>
+                </view>
+                <block wx:for="{{milestones}}" wx:key="milestoneLevel">
+                  <view class="rules-table-row">
+                    <view class="rules-table-cell">
+                      {{item.requiredCount}}人
+                    </view>
+                    <view class="rules-table-cell">
+                      {{item.rewardAmount}}元
+                    </view>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </view>
+
+          
+          <block wx:for="{{rules}}" wx:key="index" wx:if="{{item.title !== '奖励规则与条件'}}">
+            <view class="rule-item">
+              <view class="rule-title">{{item.title}}</view>
+              <view class="rule-text">
+                <block wx:for="{{item.content}}" wx:for-item="line" wx:key="*this">
+                  <text>{{line}}</text>
+                </block>
+              </view>
+            </view>
+          </block>
+          
+          <view class="rule-notice" wx:if="{{disclaimer}}">
+            {{disclaimer}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

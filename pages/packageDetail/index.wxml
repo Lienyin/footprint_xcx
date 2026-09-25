@@ -1,0 +1,64 @@
+<view class="data-v-16734b23">  
+  <view class="detail data-v-16734b23">  
+    <view class="swiper data-v-16734b23">  
+      
+        <swiper class="swiper-container" circular="true" indicator-dots="false">
+        <swiper-item wx:for="{{galleryImages}}" wx:key="index">
+          <image src="{{item.imageUrl}}" mode="aspectFill" lazy-load="true" class="swiper-image"></image>
+        </swiper-item>
+      </swiper>  
+    </view>  
+    <view class="shopTitle data-v-16734b23">  
+      <view class="title data-v-16734b23">{{''+package.packageName+''}}  
+      </view>  
+      <view class="pay flex flex_row data-v-16734b23">  
+        <view class="now data-v-16734b23">￥<text class="money data-v-16734b23">{{package.price}}</text>  
+        </view>  
+        <text class="before data-v-16734b23">{{'￥'+package.originalPrice}}</text>  
+      </view>  
+      <view class="monthSale flex flex_row data-v-16734b23">  
+        <view class="quan data-v-16734b23" wx:if="{{savePrice&&savePrice>0}}">  
+          <view class="sheng flex flex_row data-v-16734b23">  
+            <view class="data-v-16734b23">预估省</view>  
+            <view class="data-v-16734b23">  
+              <view class="shake data-v-16734b23"></view>  
+              <view class="xiexian data-v-16734b23"></view>{{savePrice+'元'}}  
+            </view>  
+          </view>  
+        </view>  
+        <view class="sales data-v-16734b23" wx:if="{{package.salesVolume>0}}">{{'月销'+package.salesVolume}}</view>  
+      </view>  
+      <view class="decBox data-v-16734b23" wx:if="{{package.description}}">{{package.description}}</view>  
+    </view>  
+    
+      
+    <view class="product-detail-section data-v-16734b23">  
+      <view class="product-detail-title data-v-16734b23">  
+        <text class="data-v-16734b23">详情</text>  
+      </view>  
+      <view class="product-detail-content data-v-16734b23">  
+        <rich-text nodes="{{package.richTextDetail}}" class="data-v-16734b23"></rich-text>  
+      </view>  
+    </view>  
+  </view>  
+  
+<view class="bottom-placeholder data-v-16734b23"></view>  
+  
+    
+  <view class="bar flex flex_row data-v-16734b23">  
+    <view class="action-buttons data-v-16734b23">  
+      <button open-type='share' class="action-btn share-btn data-v-16734b23">  
+        <view class="icon-wrapper data-v-16734b23">  
+          <image class="btn-icon data-v-16734b23" src="/images/share_w.png"></image>  
+        </view>  
+        <text class="btn-text data-v-16734b23">分享</text>  
+      </button>  
+      <button class="action-btn cart-btn data-v-16734b23" bindtap='addCart'>  
+        <view class="icon-wrapper data-v-16734b23">  
+          <image class="btn-icon data-v-16734b23" src="/images/cart_w.png"></image>  
+        </view>  
+        <text class="btn-text data-v-16734b23">加购</text>  
+      </button>  
+    </view>  
+  </view>  
+</view>

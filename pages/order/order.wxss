@@ -1,0 +1,630 @@
+.orderBox .successText.data-v-a4015d10 {
+  color: #24cc82;
+}
+
+.orderBox .errorText.data-v-a4015d10 {
+  color: #e4393c; /* 改为主色调 */
+}
+
+.orderBox .infoText.data-v-a4015d10 {
+  color: #999;
+}
+
+.orderBox .head.data-v-a4015d10 {
+  background-color: #f2f2f2;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+}
+
+.orderBox .head .nav.data-v-a4015d10 {
+  background: linear-gradient(90deg, #ff9a9e, #e4393c); /* 主色调渐变 */
+  height: 88rpx;
+}
+
+.orderBox .head .nav .navCenter.data-v-a4015d10,
+.orderBox .head .nav.data-v-a4015d10 {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.orderBox .head .nav .navCenter.data-v-a4015d10 {
+  background-color: rgba(228, 57, 60, 0.2); /* 主色调半透明 */
+  border-radius: 40rpx;
+  height: 60rpx;
+  width: fit-content;
+}
+
+.orderBox .head .nav .navCenter>view.data-v-a4015d10 {
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+  height: 100%;
+  line-height: 60rpx;
+  padding: 0 24rpx;
+}
+
+.orderBox .head .nav .navCenter>view.active.data-v-a4015d10 {
+  background-color: #fff;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.orderBox .head .teamInfoBox.data-v-a4015d10 {
+  align-items: center;
+  display: flex;
+  height: 78rpx;
+  justify-content: space-between;
+  margin: 0 16rpx;
+}
+
+.orderBox .head .teamInfoBox .optionBtn.data-v-a4015d10 {
+  flex: none;
+  font-size: 28rpx;
+  width: 32.3%;
+}
+
+.orderBox .head .teamInfoBox .flex.data-v-a4015d10 {
+  align-items: center;
+}
+
+.orderBox .head .teamInfoBox view.data-v-a4015d10 {
+  font-size: 24rpx;
+}
+
+.orderBox .head .teamInfoBox view text.data-v-a4015d10 {
+  color: #e4393c; /* 改为主色调 */
+  padding: 0 10rpx;
+}
+
+.orderBox .head .tdInfo.data-v-a4015d10 {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 24rpx;
+  height: 72rpx;
+  justify-content: center;
+  padding: 20rpx 0 10rpx;
+}
+
+.orderBox .head .tdInfo view.data-v-a4015d10:first-child {
+  margin-right: 40rpx;
+}
+
+.orderBox .head .tdInfo text.data-v-a4015d10 {
+  color: #e4393c; /* 改为主色调 */
+  padding: 0 8rpx;
+}
+
+.orderBox .head .searchBox.data-v-a4015d10 {
+  align-items: center;
+  box-sizing: border-box;
+  height: 78rpx;
+  justify-content: space-between;
+  padding: 0 16rpx;
+}
+
+.orderBox .head .optionBtn.data-v-a4015d10 {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 30rpx;
+  display: flex;
+  flex: 1;
+  font-size: 28rpx;
+  height: 54rpx;
+  justify-content: center;
+  margin-right: 12rpx;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.orderBox .head .optionBtn.data-v-a4015d10 .icon-arrow {
+  margin-left: 8rpx;
+}
+
+.orderBox .head .optionBtn.data-v-a4015d10:last-child {
+  margin-right: 0;
+}
+
+.orderBox .head .queryBtn.data-v-a4015d10 {
+  background-color: #fff;
+  border-radius: 50%;
+  justify-content: center;
+  width: 54rpx;
+}
+
+.orderBox .head .queryBtn.data-v-a4015d10,
+.orderBox .head .queryIpt.data-v-a4015d10 {
+  align-items: center;
+  display: flex;
+  height: 54rpx;
+}
+
+.orderBox .head .queryIpt.data-v-a4015d10 {
+  width: 100%;
+}
+
+.orderBox .head .queryIpt .ipt.data-v-a4015d10 {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 54rpx;
+  display: flex;
+  height: 100%;
+  padding: 0 10rpx;
+  width: calc(100% - 90rpx);
+}
+
+.orderBox .head .queryIpt input.data-v-a4015d10 {
+  font-size: 24rpx;
+  height: 100%;
+  padding-left: 10rpx;
+  width: calc(100% - 90rpx);
+}
+
+.orderBox .head .queryIpt>text.data-v-a4015d10 {
+  box-sizing: border-box;
+  color: #666;
+  font-size: 24rpx;
+  height: 100%;
+  line-height: 54rpx;
+  padding: 0 10rpx;
+  text-align: center;
+  width: 90rpx;
+}
+
+.orderBox .ul.data-v-a4015d10 {
+  padding: 166rpx 16rpx 0;
+}
+
+.orderBox .ul.no_team.data-v-a4015d10 {
+  padding: 90rpx 16rpx 0;
+}
+
+.orderBox .ul .li.data-v-a4015d10 {
+  background-color: #fff;
+  border-radius: 20rpx;
+  margin-bottom: 12rpx;
+}
+
+.orderBox .ul .li .li-top.data-v-a4015d10 {
+  align-items: center;
+  border-bottom: 1rpx solid #e8e8e8;
+  display: flex;
+  height: 60rpx;
+  justify-content: space-between;
+  padding: 0 20rpx;
+}
+
+.orderBox .ul .li .li-top .l.data-v-a4015d10 {
+  align-items: center;
+  color: #666;
+  display: flex;
+  font-size: 26rpx;
+  line-height: 32rpx;
+}
+
+.orderBox .ul .li .li-top .l image.data-v-a4015d10 {
+  height: 24rpx;
+  margin-left: 18rpx;
+  width: 24rpx;
+}
+
+.orderBox .ul .li .li-top .r.data-v-a4015d10 {
+  font-size: 28rpx;
+}
+
+.orderBox .ul .li .li-bom.data-v-a4015d10 {
+  display: flex;
+  padding: 20rpx;
+}
+
+.orderBox .ul .li .li-bom .l.data-v-a4015d10 {
+  height: 140rpx;
+  position: relative;
+  width: 140rpx;
+}
+
+.orderBox .ul .li .li-bom .l .picImg.data-v-a4015d10 {
+  border-radius: 8rpx;
+  height: 100%;
+  width: 100%;
+}
+
+.orderBox .ul .li .li-bom .l .fx_tag.data-v-a4015d10 {
+  border-radius: 0 8rpx 0 0;
+  height: 28rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60rpx;
+}
+
+.orderBox .ul .li .li-bom .r.data-v-a4015d10 {
+  box-sizing: border-box;
+  padding-left: 16rpx;
+  width: calc(100% - 140rpx);
+}
+
+.orderBox .ul .li .li-bom .r .r1.data-v-a4015d10 {
+  align-items: center;
+  display: flex;
+}
+
+.orderBox .ul .li .li-bom .r .r1>view.data-v-a4015d10 {
+  font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100% - 36rpx);
+}
+
+.orderBox .ul .li .li-bom .r .r2.data-v-a4015d10 {
+  color: #999;
+  font-size: 24rpx;
+  padding: 0 0 14rpx 0;
+}
+
+.orderBox .ul .li .li-bom .r .r2_.data-v-a4015d10 {
+  color: #999;
+  font-size: 24rpx;
+}
+
+/* 预约订单时间突出显示 */
+.orderBox .ul .li .li-bom .r .r2_.reservation-time {
+  color: #e4393c; /* 改为主色调 */
+  font-weight: 500;
+}
+
+.orderBox .ul .li .li-bom .r .r3.data-v-a4015d10 {
+  margin: 0;
+}
+
+.orderBox .ul .li .li-bom .r .r3 .price.data-v-a4015d10 {
+  color: #e4393c; /* 改为主色调 */
+  font-size: 24rpx;
+  font-weight: 500;
+  margin-right: 24rpx;
+}
+
+.orderBox .ul .li .li-bom .r .r3 .price text.data-v-a4015d10 {
+  font-size: 36rpx;
+}
+
+.orderBox .ul3.data-v-a4015d10 {
+  padding: 238rpx 16rpx 0;
+}
+
+.orderBox .ul3 .li.data-v-a4015d10 {
+  background-color: #fff;
+  border-radius: 20rpx;
+  margin-bottom: 12rpx;
+}
+
+.orderBox .ul3 .li .li-top.data-v-a4015d10 {
+  align-items: center;
+  border-bottom: 1rpx solid #e8e8e8;
+  display: flex;
+  height: 60rpx;
+  justify-content: space-between;
+  padding: 0 20rpx;
+}
+
+.orderBox .ul3 .li .li-top .l.data-v-a4015d10 {
+  align-items: center;
+  color: #666;
+  display: flex;
+  font-size: 26rpx;
+}
+
+.orderBox .ul3 .li .li-top .r.data-v-a4015d10 {
+  font-size: 28rpx;
+}
+
+.orderBox .ul3 .li .li-bom.data-v-a4015d10 {
+  padding: 24rpx 20rpx;
+}
+
+.orderBox .ul3 .li .li-bom .b1.data-v-a4015d10 {
+  align-items: center;
+  display: flex;
+  font-size: 26rpx;
+}
+
+.orderBox .ul3 .li .li-bom .b1 text.data-v-a4015d10 {
+  align-items: center;
+  background: linear-gradient(90deg, #ff9a9e, #e4393c); /* 主色调渐变 */
+  border-radius: 6rpx;
+  display: block;
+  display: flex;
+  font-size: 20rpx;
+  height: 28rpx;
+  margin-left: 8rpx;
+  padding: 0 4rpx;
+}
+
+.orderBox .ul3 .li .li-bom .b2.data-v-a4015d10 {
+  align-items: center;
+  display: flex;
+  font-size: 26rpx;
+  justify-content: space-between;
+  margin-top: 24rpx;
+}
+
+.orderBox .ul3 .li .li-bom .b2 text.data-v-a4015d10:nth-child(1) {
+  color: #999;
+}
+
+.orderBox .ul3 .li .li-bom .b2 text.data-v-a4015d10:nth-child(2) {
+  color: #e4393c; /* 改为主色调 */
+}
+
+/* 手动加载更多样式 */
+.loadmore.data-v-a4015d10 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx 0;
+  margin-bottom: 70rpx;
+}
+
+.loadmore-line {
+  flex: 1;
+  height: 1rpx;
+  background-color: #f2f2f2;
+}
+
+.loadmore-text {
+  color: #999;
+  font-size: 24rpx;
+  padding: 0 20rpx;
+}
+
+.unbind_wxid.data-v-a4015d10 {
+  background-color: transparent;
+  background: #f5f7f9;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  max-width: 750rpx;
+  padding-bottom: env(safe-area-inset-bottom);
+  position: fixed;
+  right: 0;
+  z-index: 971;
+}
+
+.unbind_wxid>view.data-v-a4015d10 {
+  align-items: center;
+  color: #222;
+  font-size: 28rpx;
+  font-weight: 400;
+  height: 80rpx;
+  justify-content: space-between;
+  padding: 0 24rpx;
+}
+
+.unbind_wxid .toBind.data-v-a4015d10 {
+  align-items: center;
+  color: #e4393c; /* 改为主色调 */
+  text-decoration: underline;
+}
+
+.tips.data-v-a4015d10 {
+  background-color: #fff4f5;
+  display: flex;
+  margin-bottom: 10rpx;
+  padding: 15rpx 24rpx;
+}
+
+.tips .le.data-v-a4015d10 {
+  padding-top: 4rpx;
+}
+
+.tips .rig.data-v-a4015d10 {
+  color: #e4393c; /* 改为主色调 */
+  font-size: 28rpx;
+  line-height: 40rpx;
+  margin-left: 12rpx;
+}
+
+/* 滑动删除样式 */
+.li-wrapper {
+  position: relative;
+  margin-bottom: 2rpx;
+}
+
+.li-content {
+  width: 100%;
+  background-color: #fff;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.delete-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 160rpx;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  z-index: 1;
+  background-color: #e4393c; /* 改为主色调 */
+}
+
+.touch-move-active {
+  transform: translateX(-160rpx) !important;
+}
+
+/* 保持原有样式不变 */
+.li {
+  width: 100%;
+  background-color: #fff;
+}
+
+/* 清除订单按钮样式 */
+.clearBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 54rpx; /* 调整高度与筛选按钮一致 */
+  padding: 0 20rpx;
+  margin-left: 12rpx;
+  border-radius: 30rpx;
+  background: linear-gradient(to right, #ff9a9e, #e4393c); /* 主色调渐变 */
+  color: #fff;
+  font-size: 24rpx;
+  box-shadow: 0 4rpx 10rpx rgba(228, 57, 60, 0.3); /* 主色调阴影 */
+  transition: all 0.3s ease;
+}
+
+.clearBtn text {
+  margin-left: 4rpx; /* 文字和图标之间的间距 */
+}
+
+.clearBtn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2rpx 5rpx rgba(228, 57, 60, 0.2);
+}
+
+/* 确保按钮在一行内显示 */
+.searchBox {
+  flex-wrap: wrap;
+}
+
+/* 调整原有按钮样式，确保整体协调 */
+.optionBtn {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 30rpx;
+  display: flex;
+  flex: 1;
+  font-size: 28rpx;
+  height: 54rpx;
+  justify-content: center;
+  margin-right: 12rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  box-shadow: 0 2rpx 4rpx rgba(0,0,0,0.1); /* 添加轻阴影，提升美观 */
+}
+
+.optionBtn .picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10rpx;
+}
+
+.optionBtn text {
+  flex: 1;
+}
+
+.picker-icon {
+  width: 20rpx;
+  height: 20rpx;
+  margin-left: 8rpx;
+}
+
+/* 订单类型标签样式 */
+.order-type-tag {
+  display: inline-block;
+  font-size: 20rpx;
+  padding: 2rpx 10rpx;
+  border-radius: 10rpx;
+  margin-right: 10rpx;
+}
+
+.order-type-tag.reservation {
+  background-color: #ffe8e8; /* 浅红色背景 */
+  color: #e4393c; /* 主色调文字 */
+  border: 1px solid #ffbaba;
+}
+
+.order-type-tag.regular {
+  background-color: #f6ffed;
+  color: #52c41a;
+  border: 1px solid #b7eb8f;
+}
+
+/* 预约订单信息突出显示 */
+.orderBox .ul .li .li-bom .r .r2_.reservation-time {
+  color: #e4393c; /* 改为主色调 */
+  font-weight: 500;
+}
+
+/* 自定义选择器样式 */
+.picker-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.picker-container {
+  width: 100%;
+  background: #fff;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.picker-title {
+  text-align: center;
+  font-size: 32rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.picker-list {
+  max-height: 400rpx;
+  overflow-y: auto;
+}
+
+.picker-item {
+  padding: 30rpx 20rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.picker-buttons {
+  display: flex;
+  margin-top: 20rpx;
+}
+
+.picker-button {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 28rpx;
+}
+
+.picker-button.cancel {
+  color: #999;
+  border-right: 1rpx solid #eee;
+}
+
+.picker-button.confirm {
+  color: #e4393c; /* 主色调 */
+}
+
+.icon-close {
+  width: 20rpx;
+  height: 20rpx;
+  margin-left: 8rpx;
+}

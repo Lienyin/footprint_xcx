@@ -1,0 +1,104 @@
+<view class="container">
+  
+  <view class="banner-container">
+    <swiper class="banner-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="4000" duration="500" circular="{{true}}" indicator-color="rgba(255,255,255,.3)" indicator-active-color="#fff">
+      <swiper-item wx:for="{{bannerList}}" wx:key="bannerId">
+        <view class="banner-item">
+          <image src="{{item.imageUrl}}" class="banner-image" mode="aspectFill" bindtap="onBannerTap" data-index="{{index}}" />
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  
+  <view class="technician-booking-section" bindtap="onTechnicianTap" wx:if="{{technicians.length >1}}">
+    <view class="section-title-row">
+      <text class="section-title-main">{{modalConfig.sectionTitle||'服务专员预约'}}</text>
+      <view class="section-guide">
+        <text>点击预约</text>
+        <view class="arrow-icon"></view>
+      </view>
+    </view>
+
+    <view class="technician-carousel">
+      <scroll-view scroll-x="true" class="technician-scroll" enhanced show-scrollbar="{{false}}">
+        <view class="technician-list">
+          <block wx:for="{{technicians}}" wx:key="userId" wx:if="{{index < 4}}">
+            <view class="technician-item" catchtap="onTechnicianClick" data-technician="{{item}}">
+              <image src="{{item.avatar?item.avatar:item.photoVO.headUrl}}" class="technician-avatar" mode="aspectFill" />
+              <view class="technician-name">{{item.technicianName || '技师'}}</view>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  
+  <view class="booking-notices" wx:if="{{modalConfig.bookingNotices && modalConfig.bookingNotices.length > 0}}">
+    <view class="notice-icon">🔔</view>
+    <swiper class="notice-swiper" vertical="{{true}}" autoplay="{{true}}" circular="{{true}}" interval="3000" duration="500">
+      <swiper-item wx:for="{{modalConfig.bookingNotices}}" wx:key="index">
+        <view class="notice-item">
+          <text>{{item.time}}前，用户{{item.user}}预约了{{item.technician}}</text>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+  
+  <view class="section-title">
+    <text class="title-text">推荐门店</text>
+  </view>
+
+  
+  <view class="store-list">
+    <view class="store-item" wx:for="{{shopList}}" wx:key="storeId" bindtap="goToShopDetail" data-id="{{item.storeId}}" data-store="{{item}}">
+      
+      <view class="store-header">
+        <view class="store-image-container">
+          <image src="{{item.storeImg}}" class="store-image" mode="aspectFill" />
+        </view>
+
+        <view class="store-info">
+          <text class="store-name">{{item.storeName}}</text>
+
+          <view class="store-rating">
+            <view class="stars">
+              <view class="star" wx:for="{{[1,2,3,4,5]}}" wx:key="id"></view>
+            </view>
+            <text class="rating-text">{{item.rating}}</text>
+          </view>
+
+          <view class="store-location">
+            <image class="location-icon" src="/images/positioning.png" data-id="{{item.storeId}}" catchtap="openLocation" mode="aspectFit"></image>
+            <text class="address">{{item.address}}</text>
+            <text class="distance">{{item.distance}}</text>
+          </view>
+        </view>
+      </view>
+
+      
+      <view class="store-tags">
+        <text class="tag" wx:for="{{item.intro}}" wx:key="id" wx:if="{{index < 3}}">{{item.text}}</text>
+      </view>
+
+      
+      <view class="services" wx:if="{{item.packageList.length > 0}}">
+        <view class="service-item" wx:for="{{item.packageList}}" wx:key="id" wx:for-item="service" wx:if="{{index < 2}}">
+          <view class="service-price">
+            <text class="current-price">¥{{service.price}}</text>
+            <text class="discount-badge" wx:if="{{service.discount}}">{{service.discount}}</text>
+            <text class="original-price" wx:if="{{service.originalPrice > 0}}">¥{{service.originalPrice}}</text>
+          </view>
+          <text class="service-name">{{service.packageName}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="floating-btn-container">
+    <view class="floating-btn" bindtap="handleRecommendAction">
+      <image class="coupon-image" src="/images/coupon.png" mode="aspectFit"></image>
+      <view class="floating-btn-text">推荐赚50元</view>
+    </view>
+  </view>
+  <test_activity src="/images/hb.png" scale="{{ 0.55 }}" animate="{{ true }}" imageNavUrl="/pages/referral/referral" closeOnMask="{{ true }}" visible="{{ showActivityModal }}" bind:close="handleModalClose" bind:imageTap="handleRecommendAction" />
+</view>

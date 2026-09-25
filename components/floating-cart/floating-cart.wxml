@@ -1,0 +1,54 @@
+<view class="floating-cart-container">
+  
+  <view class="mask" wx:if="{{isCartOpen}}" bindtap="toggleCart"></view>
+
+  
+  <view class="cart-panel {{isCartOpen ? 'cart-panel-open' : ''}}">
+    
+    <view class="cart-detail" wx:if="{{isCartOpen}}">
+      <view class="cart-header">
+        <view class="cart-title">购物车</view>
+        <view class="cart-clear" bindtap="clearCart">清空购物车</view>
+      </view>
+
+      <scroll-view scroll-y class="cart-items">
+        <block wx:for="{{cartItems}}" wx:key="id">
+          <view class="cart-item">
+            <image class="item-image" src="{{item.coverImg}}" mode="aspectFill"></image>
+            <view class="item-info">
+              <view class="item-name">{{item.packageName}}</view>
+              <view class="item-price-container">
+                <view class="item-price">
+                  <text class="price-symbol">¥</text><text class="price-integer">{{item.priceInteger}}</text><text class="price-decimal">.{{item.priceDecimal}}</text>
+                </view>
+                <view class="item-original-price" wx:if="{{item.originalPrice && item.originalPrice > item.price}}">
+                  <text class="original-price-symbol">¥</text>{{item.originalPrice}}
+                </view>
+              </view>
+            </view>
+            <view class="item-control">
+              <view class="decrease-btn" catchtap="decreaseItem" data-id="{{item.cartId}}">-</view>
+              <view class="item-count">{{item.num}}</view>
+              <view class="increase-btn" catchtap="increaseItem" data-id="{{item.cartId}}">+</view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+
+    
+    <view class="cart-bar">
+  <view class="cart-icon-container" bindtap="toggleCart">
+    <view class="cart-icon">
+      <image src="/images/cart_w.png" mode="aspectFit"></image>
+      <view class="badge" wx:if="{{totalCount > 0}}">{{totalCount}}</view>
+    </view>
+  </view>
+  <view class="total-price" bindtap="{{!isCartOpen? 'toggleCart' : ''}}">
+    ¥{{totalPrice}}<text class="discount-text" wx:if="{{totalDiscount > 0}}">优惠¥{{totalDiscount}}</text>
+  </view>
+  <view class="order-btn" catchtap="goToOrder">结算</view>
+</view>
+    
+  </view>
+</view>

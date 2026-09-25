@@ -1,0 +1,25 @@
+<view class="withd">
+    <view class="cont">
+        <view class="tit">提现金额</view>
+        <view class="iptBox flex">
+    <view class="fuhao">￥</view>
+    <view class="group_input">
+        <input class="initInput" type="digit" model:value="{{moneyVal}}" bindinput="inputChange" placeholder="0.00"></input>
+    </view>
+    <view bind:tap="allTx" class="todo">全部提现</view>
+</view>
+        <view class="tip">{{'可提现金额 ' + (accountDetail.balance||0) + ' 元'}}</view>
+        <view class="tips" wx:if="{{bigMoney>0}}">
+            <view class="tips-text">
+                {{'每天最多可提现金额为 ' + (bigMoney||0) + ' 元，超过请分次提现'}}
+            </view>
+        </view>
+        <view bind:tap="goWithd" class="{{['btn', isDisabel?'disabled':'']}}" hover-class="btn-hover">
+            确认提现
+        </view>
+        
+        <view bind:tap="goToWithdLog" class="logbtn">
+            提现记录 <text class="arrow">></text>
+        </view>
+    </view>
+</view>

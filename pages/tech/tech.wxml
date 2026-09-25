@@ -1,0 +1,55 @@
+<view class="container">
+
+<view class="content">
+  <view class="form-group">
+    <text class="label">技师昵称</text>
+    <input class="input" placeholder="请输入昵称" value="{{technicianName}}" bindinput="bindNameInput" />
+  </view>
+
+  <view class="form-group">
+    <text class="label">技师编号</text>
+    <input class="input" placeholder="请输入技师编号" value="{{technicianCode}}" bindinput="bindCodeInput" />
+  </view>
+  <view class="form-group">
+    <text class="label">工作年限（年）</text>
+    <input class="input" type="number" placeholder="请输入工作年限" value="{{workExperience}}" bindinput="bindWorkExperienceInput" />
+  </view>
+  <view class="form-group">
+    <text class="label">选择特长标签</text>
+    <view class="tags">
+      <block wx:for="{{serviceTypes}}" wx:key="code">
+        <view class="tag {{item.selected ? 'active' : ''}}" bindtap="selectTag" data-tag="{{item.description}}" data-code="{{item.code}}">
+          {{item.description}}
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="form-group">
+    <text class="label">技师照片（最多5张）</text>
+    <view class="image-upload-group">
+      <view class="upload-box" bindtap="uploadImage" data-type="headUrl">
+        <text>头部照</text>
+        <image wx:if="{{headUrl}}" src="{{headUrl}}" mode="aspectFill" class="uploaded-preview"></image>
+      </view>
+      <view class="upload-box" bindtap="uploadImage" data-type="upperBodyUrl">
+        <text>上半身照</text>
+        <image wx:if="{{upperBodyUrl}}" src="{{upperBodyUrl}}" mode="aspectFill" class="uploaded-preview"></image>
+      </view>
+      <view class="upload-box" bindtap="uploadImage" data-type="wholeBodyUrl">
+        <text>全身照</text>
+        <image wx:if="{{wholeBodyUrl}}" src="{{wholeBodyUrl}}" mode="aspectFill" class="uploaded-preview"></image>
+      </view>
+      <view class="upload-box" bindtap="uploadImage" data-type="lifeUrl">
+        <text>生活照</text>
+        <image wx:if="{{lifeUrl}}" src="{{lifeUrl}}" mode="aspectFill" class="uploaded-preview"></image>
+      </view>
+      <view class="upload-box" bindtap="uploadImage" data-type="professionUrl">
+        <text>职业照</text>
+        <image wx:if="{{professionUrl}}" src="{{professionUrl}}" mode="aspectFill" class="uploaded-preview"></image>
+      </view>
+    </view>
+  </view>
+
+  <button class="submit-btn" bindtap="submitForm">提交信息</button>
+</view>
+</view>

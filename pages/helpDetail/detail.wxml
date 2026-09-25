@@ -1,0 +1,81 @@
+<view class="detail-container">
+  <!-- 加载状态 -->
+  <view class="loading-wrapper" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 文章内容 -->
+  <view class="article-content" wx:elif="{{article}}">
+    <!-- 文章标题 -->
+    <view class="article-header">
+      <text class="article-title">{{article.title}}</text>
+      <view class="article-meta">
+        <text class="meta-item" wx:if="{{article.viewCount}}">👁 {{article.viewCount}} 次阅读</text>
+        <text class="meta-item" wx:if="{{article.helpfulCount !== undefined}}">👍 {{article.helpfulCount}} 人认为有帮助</text>
+      </view>
+    </view>
+
+    <!-- 分割线 -->
+    <view class="divider"></view>
+
+    <!-- 文章内容 -->
+    <view class="article-body">
+      <rich-text nodes="{{article.content}}"></rich-text>
+    </view>
+
+    <!-- 评价区域 -->
+    <view class="feedback-section">
+      <text class="feedback-title">这篇文章对您有帮助吗？</text>
+      <view class="feedback-buttons">
+        <view
+          class="feedback-btn {{selectedFeedback === 1 ? 'btn-helpful' : ''}}"
+          hover-class="feedback-btn-hover"
+          data-type="{{1}}"
+          bindtap="selectFeedback"
+        >
+          <text class="btn-icon">👍</text>
+          <text class="btn-text">有帮助</text>
+        </view>
+        <view
+          class="feedback-btn {{selectedFeedback === 0 ? 'btn-not-helpful' : ''}}"
+          hover-class="feedback-btn-hover"
+          data-type="{{0}}"
+          bindtap="selectFeedback"
+        >
+          <text class="btn-icon">👎</text>
+          <text class="btn-text">无帮助</text>
+        </view>
+      </view>
+
+      <!-- 备注输入框 -->
+      <view class="remark-input">
+        <textarea
+          class="remark-textarea"
+          value="{{feedbackRemark}}"
+          placeholder="欢迎留下您的宝贵意见（选填）"
+          maxlength="200"
+          bindinput="onRemarkInput"
+        ></textarea>
+      </view>
+
+      <!-- 提交反馈按钮 -->
+      <view class="submit-feedback-btn" hover-class="submit-feedback-btn-hover" bindtap="submitFeedback">
+        <text class="submit-btn-text">提交反馈</text>
+      </view>
+
+      <text class="feedback-hint" wx:if="{{userFeedback !== null}}">
+        {{userFeedback === 1 ? '感谢您的认可！' : '我们会继续改进！'}}
+      </text>
+    </view>
+  </view>
+
+  <!-- 无数据 -->
+  <view class="empty-wrapper" wx:else>
+    <image class="empty-icon" src="/images/no-data.png" mode="aspectFit"></image>
+    <text class="empty-text">文章不存在或已被删除</text>
+    <view class="back-btn" bindtap="goBack">
+      <text class="back-btn-text">返回上一页</text>
+    </view>
+  </view>
+</view>

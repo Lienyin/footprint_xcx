@@ -1,0 +1,314 @@
+/* 页面整体样式 */  
+.coupon-detail-page {  
+  background-color: #f5f7fa;  
+  min-height: 100vh;  
+  padding: 30rpx 30rpx 160rpx;  
+}  
+
+/* 优惠券卡片 */  
+.coupon-card {  
+  background: #fff;  
+  border-radius: 16rpx;  
+  position: relative;  
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.08);  
+  overflow: hidden;  
+  margin-bottom: 30rpx;  
+}  
+
+/* 优惠券类型标签 */  
+.coupon-tag {  
+  position: absolute;  
+  top: 0;  
+  left: 0;  
+  background: #ff6b00;  
+  color: #fff;  
+  font-size: 22rpx;  
+  padding: 8rpx 16rpx;  
+  border-radius: 0 0 16rpx 0;  
+  z-index: 1;  
+}  
+
+.coupon-tag.discount {  
+  background: #ff9500;  
+}  
+
+.coupon-tag.free {  
+  background: #3889ff;  
+}  
+
+.coupon-tag.inflate {  
+  background: #ee00ff;  
+}  
+
+/* 优惠券内容 */  
+.coupon-content {  
+  padding: 60rpx 30rpx 40rpx;  
+  text-align: center;  
+}  
+
+/* 金额部分 */  
+.amount-section {  
+  margin: 30rpx 0 40rpx;  
+}  
+
+.currency {  
+  font-size: 40rpx;  
+  color: #ff6b00;  
+  font-weight: bold;  
+  vertical-align: baseline;  
+}  
+
+.amount {  
+  font-size: 80rpx;  
+  color: #ff6b00;  
+  font-weight: bold;  
+  line-height: 1;  
+}  
+
+.discount-unit {  
+  font-size: 40rpx;  
+  color: #ff6b00;  
+  font-weight: bold;  
+  margin-left: 8rpx;  
+}  
+
+/* 优惠券名称 */  
+.coupon-name {  
+  font-size: 36rpx;  
+  font-weight: bold;  
+  color: #333;  
+  margin-bottom: 30rpx;  
+}  
+
+/* 优惠券信息行 */  
+.condition-row, .time-row, .scope-row, .desc-row {  
+  display: flex;  
+  align-items: flex-start;  
+  margin-bottom: 20rpx;  
+  text-align: left;  
+}  
+
+.condition-label, .time-label, .scope-label, .desc-label {  
+  width: 150rpx;  
+  color: #666;  
+  font-size: 26rpx;  
+  flex-shrink: 0;  
+}  
+
+.condition-value, .time-value, .scope-value {  
+  flex: 1;  
+  color: #333;  
+  font-size: 26rpx;  
+}  
+
+/* 描述展开收起功能 */  
+.desc-container {  
+  position: relative;  
+  flex: 1;  
+}  
+
+.desc-value {  
+  font-size: 26rpx;  
+  color: #333;  
+  overflow: hidden;  
+  text-overflow: ellipsis;  
+  display: -webkit-box;  
+  -webkit-line-clamp: 2;  
+  -webkit-box-orient: vertical;  
+  max-width: 100%;  
+  transition: all 0.3s ease;  
+}  
+
+.desc-value.expanded {  
+  -webkit-line-clamp: unset;  
+  max-height: 300rpx;  
+  overflow-y: auto;  
+}  
+
+.expand-btn {  
+  position: absolute;  
+  right: 0;  
+  bottom: 0;  
+  font-size: 24rpx;  
+  color: #ff6b00;  
+  background: linear-gradient(to left, #fff 70%, rgba(255,255,255,0.5) 100%);  
+  padding-left: 30rpx;  
+  width: 40rpx;  
+  text-align: center;  
+  height: 40rpx;  
+  line-height: 40rpx;  
+}  
+
+/* 领取按钮 */  
+.claim-btn {  
+  margin-top: 40rpx;  
+  background: linear-gradient(135deg, #ff9500, #ff6b00);  
+  color: #fff;  
+  font-size: 32rpx;  
+  font-weight: bold;  
+  height: 88rpx;  
+  line-height: 88rpx;  
+  border-radius: 44rpx;  
+  width: 90%;  
+  box-shadow: 0 8rpx 16rpx rgba(255, 107, 0, 0.3);  
+  transition: all 0.3s;  
+}  
+
+.claim-btn:active {  
+  transform: scale(0.98);  
+  box-shadow: 0 4rpx 8rpx rgba(255, 107, 0, 0.3);  
+}  
+
+.claimed-btn {  
+  margin-top: 40rpx;  
+  background: #e0e0e0;  
+  color: #999;  
+  font-size: 32rpx;  
+  font-weight: bold;  
+  height: 88rpx;  
+  line-height: 88rpx;  
+  border-radius: 44rpx;  
+  width: 90%;  
+}  
+
+/* 使用须知 */  
+.usage-notes {  
+  background: #fff;  
+  border-radius: 16rpx;  
+  padding: 30rpx;  
+  margin-bottom: 30rpx;  
+}  
+
+.section-title {  
+  font-size: 32rpx;  
+  font-weight: bold;  
+  color: #333;  
+  margin-bottom: 20rpx;  
+  position: relative;  
+  padding-left: 20rpx;  
+}  
+
+.section-title:before {  
+  content: '';  
+  position: absolute;  
+  left: 0;  
+  top: 50%;  
+  transform: translateY(-50%);  
+  width: 8rpx;  
+  height: 30rpx;  
+  background: #ff6b00;  
+  border-radius: 4rpx;  
+}  
+
+.notes-content {  
+  color: #666;  
+  font-size: 26rpx;  
+  line-height: 1.8;  
+}  
+
+.note-item text {  
+  display: block;  
+  margin-bottom: 10rpx;  
+}  
+
+/* 底部操作栏 */  
+.bottom-actions {  
+  position: fixed;  
+  bottom: 0;  
+  left: 0;  
+  right: 0;  
+  display: flex;  
+  background: #fff;  
+  padding: 20rpx 30rpx;  
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.05);  
+  z-index: 10;  
+}  
+
+.safe-bottom {  
+  padding-bottom: calc(20rpx + constant(safe-area-inset-bottom));  
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));  
+}  
+
+.share-btn {  
+  flex: 1;  
+  padding: 0;  
+  height: 88rpx;  
+  line-height: 88rpx;  
+  border-radius: 44rpx;  
+  color: #ff6b00;  
+  font-size: 28rpx;  
+  background: #fff;  
+  border: 2rpx solid #ff6b00;  
+  font-weight: normal;  
+}  
+
+.use-now-btn {  
+  flex: 2;  
+  background: linear-gradient(135deg, #ff9500, #ff6b00);  
+  color: #fff;  
+  font-size: 32rpx;  
+  font-weight: bold;  
+  height: 88rpx;  
+  line-height: 88rpx;  
+  border-radius: 44rpx;  
+  margin-left: 20rpx;  
+  box-shadow: 0 8rpx 16rpx rgba(255, 107, 0, 0.3);  
+}  
+
+/* 领取成功弹窗 */  
+.success-popup {  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  right: 0;  
+  bottom: 0;  
+  background: rgba(0, 0, 0, 0.5);  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  z-index: 100;  
+}  
+
+.popup-content {  
+  background: #fff;  
+  width: 560rpx;  
+  border-radius: 16rpx;  
+  padding: 50rpx 30rpx;  
+  text-align: center;  
+}  
+
+.success-icon {  
+  width: 120rpx;  
+  height: 120rpx;  
+  line-height: 120rpx;  
+  border-radius: 60rpx;  
+  background: #ff6b00;  
+  color: #fff;  
+  font-size: 60rpx;  
+  margin: 0 auto;  
+  font-weight: bold;  
+}  
+
+.popup-title {  
+  font-size: 36rpx;  
+  color: #333;  
+  font-weight: bold;  
+  margin: 30rpx 0 20rpx;  
+}  
+
+.popup-desc {  
+  font-size: 28rpx;  
+  color: #666;  
+  margin-bottom: 40rpx;  
+}  
+
+.popup-btn {  
+  background: linear-gradient(135deg, #ff9500, #ff6b00);  
+  color: #fff;  
+  font-size: 30rpx;  
+  font-weight: bold;  
+  height: 80rpx;  
+  line-height: 80rpx;  
+  border-radius: 40rpx;  
+  width: 80%;  
+}

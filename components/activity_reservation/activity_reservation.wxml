@@ -1,0 +1,70 @@
+
+<view class="booking-modal" wx:if="{{visible}}" catchtouchmove="preventMove">
+  
+  <view class="modal-mask" bindtap="closeModal"></view>
+  
+  
+  <view class="modal-content">
+    
+    <view class="close-btn" bindtap="closeModal">
+      <text class="close-icon">×</text>
+    </view>
+    
+    
+    <view class="modal-header-section">
+      
+      <view class="header-content">
+        <view class="icon-wrapper">
+          <text class="header-icon">👑</text>
+        </view>
+        <view class="title-group">
+          <text class="main-title">{{title || '预约顶级技师'}}</text>
+          <text class="sub-title">{{subtitle || '享受专属服务'}}</text>
+        </view>
+      </view>
+      
+      
+      <view class="feature-tags">
+        <view class="tag-item" wx:for="{{featureTags}}" wx:key="text">
+          <text class="tag-icon">{{item.icon}}</text>
+          <text class="tag-text">{{item.text}}</text>
+        </view>
+        <view class="tag-item highlight" wx:if="{{promotionTag}}">
+          <text class="tag-icon">{{promotionTag.icon}}</text>
+          <text class="tag-text">{{promotionTag.text}}</text>
+        </view>
+      </view>
+    </view>
+    
+    
+    <view class="modal-body-section">
+      
+      
+      <view class="technician-section" wx:if="{{technicians.length > 0}}">
+        <view class="section-title">
+          <text class="title-text">{{techSectionTitle || '热门技师'}}</text>
+          <text class="title-badge">{{techSectionBadge || '实时推荐'}}</text>
+        </view>
+        <view class="technician-grid">
+          <view class="tech-card" wx:for="{{technicians}}" wx:key="id" wx:if="{{index < 3}}">
+            <image src="{{item.avatar?item.avatar:item.photoVO.headUrl}}" class="tech-avatar"  mode="aspectFill"></image>
+            <text class="tech-name">{{item.technicianName}}</text>
+            <view class="tech-rating">
+    <view class="star-icon"></view>
+              <text class="rating-score">{{item.rating}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      
+      <view class="action-section">
+        <button class="booking-button" bindtap="confirmBooking">
+          <text class="button-text">{{buttonText || '立即预约·抢占名额'}}</text>
+        </button>
+        
+        <text class="guarantee-text">{{guaranteeText || '🔒 平台保障·售后无忧'}}</text>
+      </view>
+    </view>
+  </view>
+</view>

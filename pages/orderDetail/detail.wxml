@@ -1,0 +1,403 @@
+<view class="container">
+  <view class='order-container'>
+    
+    <view wx:if="{{orderType == 1}}" class="order-type-badge {{orderType == 1 ? 'reservation' : 'regular'}}">
+      {{orderType == 1 ? '预约订单' : '消费订单'}}
+    </view>
+    
+    <view class="order-flow-container" wx:if="{{orderType != 1 &&(pack.orderStatus == 1 || pack.orderStatus == 2)}}">
+      <view class="flow-step completed">
+        <view class="step-icon">
+          <view class="step-dot"></view>
+          <view class="step-check" wx:if="{{true}}">✓</view>
+        </view>
+        <view class="step-line"></view>
+        <view class="step-text">支付完成</view>
+      </view>
+
+      <view class="flow-step {{pack.orderStatus >= 2 ? 'completed' : 'current'}}">
+        <view class="step-icon">
+          <view class="step-dot"></view>
+          <view class="step-check" wx:if="{{pack.orderStatus >= 2}}">✓</view>
+        </view>
+        <view class="step-line"></view>
+        <view class="step-text">商家确认</view>
+      </view>
+
+      <view class="flow-step {{pack.orderStatus >= 2 ? 'completed' : ''}}">
+        <view class="step-icon">
+          <view class="step-dot"></view>
+          <view class="step-check" wx:if="{{pack.orderStatus >= 2}}">✓</view>
+        </view>
+        <view class="step-line"></view>
+        <view class="step-text">完成离店</view>
+      </view>
+    </view>
+
+    <view class="status-indicator" wx:if="{{(orderType != 1 && pack.orderStatus == 0)||orderType==1}}">
+      <view class="status-dot"></view>
+      <view class="status-text">{{pack.orderStatusName}}</view>
+    </view>
+    
+    <view class="info-card" wx:if="{{orderType != 1}}">
+      <view class="card-header">
+        <view class="section-title">商品信息</view>
+      </view>
+      <view class="product-item">
+        <image src="{{pack.coverImg}}" class="product-image"></image>
+        <view class="product-info">
+          <view class="product-name">{{pack.packageName}}</view>
+        </view>
+      </view>
+    </view>
+
+    
+    <view class="info-card" wx:if="{{orderType == 1}}">
+      <view class="card-header">
+        <view class="section-title">预约信息</view>
+      </view>
+      <view class="reservation-info">
+        <view class="reservation-item">
+          <view class="reservation-details">
+            <view class="reservation-label">预约时间</view>
+            <view class="reservation-value">{{pack.finalReservationTime}}</view>
+          </view>
+        </view>
+
+        <view class="reservation-item" wx:if="{{pack.backupReservationTime&&pack.orderStatus == 0}}">
+          <view class="reservation-details">
+            <view class="reservation-label">备选时间</view>
+            <view class="reservation-value">{{pack.backupReservationTime}}</view>
+          </view>
+        </view>
+
+        <view class="reservation-item">
+          <view class="reservation-details">
+            <view class="reservation-label">预约人数</view>
+            <view class="reservation-value">{{pack.peopleCount}}人</view>
+          </view>
+        </view>
+
+        <view class="reservation-item">
+          <view class="reservation-details">
+            <view class="reservation-label">预约技师</view>
+            <view class="reservation-value">
+              <block wx:if="{{identityFlag == 0}}">
+                {{pack.technicianName}}
+              </block>
+              <block wx:else>
+                {{pack.technicianName}}({{pack.technicianCode}})
+              </block>
+            </view>
+          </view>
+        </view>
+
+        <view class="reservation-item" wx:if="{{pack.room}}">
+          <view class="reservation-details">
+            <view class="reservation-label">分配房间</view>
+            <view class="reservation-value">{{pack.room}}</view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+
+    
+    <view class="info-card">
+      <view class="card-header">
+        <view class="section-title">订单详情</view>
+      </view>
+      <view class="detail-list">
+        <view class="detail-item">
+          <view class="detail-label">订单编号</view>
+          <view class="detail-value">{{pack.orderNo}}</view>
+        </view>
+
+        
+        <block wx:if="{{orderType != 1}}">
+          <view class="detail-item">
+            <view class="detail-label">订单原价</view>
+            <view class="detail-value">¥{{pack.totalAmount}}</view>
+          </view>
+
+          
+          <view class="detail-item discount-item" wx:if="{{pack.couponDiscountDetails && pack.couponDiscountDetails.length > 0}}">
+            <view class="detail-label">总优惠金额</view>
+            <view class="detail-value-container">
+              <view class="discount-value">-¥{{savePrice}}</view>
+              <view class="coupon-toggle" bindtap="toggleCouponDetails">
+                <view class="toggle-icon {{showCouponDetails ? 'up' : 'down'}}"></view>
+              </view>
+            </view>
+          </view>
+
+          
+          <view class="coupon-details" wx:if="{{showCouponDetails && pack.couponDiscountDetails && pack.couponDiscountDetails.length > 0}}">
+            <view class="coupon-list">
+              <view class="coupon-item" wx:for="{{pack.couponDiscountDetails}}" wx:key="couponUserId" wx:for-item="coupon">
+                <view class="coupon-name">{{coupon.couponName}}</view>
+                <view class="coupon-discount">-¥{{coupon.discountAmount}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+
+        
+        <view class="detail-item highlight">
+          <view class="detail-label">{{orderType == 1 ? '预约订金' : '实付金额'}}</view>
+          <view class="detail-value price">¥{{pack.payAmount}}</view>
+        </view>
+        <view class="detail-item">
+          <view class="detail-label">{{identityFlag == 0 ? '门店电话' : '付款手机'}}</view>
+          <view class="detail-value">
+            
+            <block wx:if="{{identityFlag != 0}}">
+              {{pack.phoneNumber == null ? '' : pack.phoneNumber}}
+              <view wx:if="{{orderType == 1 && pack.phoneNumber}}" class="phone-icon" catchtap="makePhoneCall" data-phone="{{pack.phoneNumber}}">
+                <image src="/images/phone.png" mode="aspectFit" class="icon-phone"></image>
+              </view>
+            </block>
+
+            
+            <block wx:else>
+              {{pack.storePhoneNumber == null ? '' : pack.storePhoneNumber}}
+              <view wx:if="{{pack.storePhoneNumber}}" class="phone-icon" catchtap="makePhoneCall" data-phone="{{pack.storePhoneNumber}}">
+                <image src="/images/phone.png" mode="aspectFit" class="icon-phone"></image>
+              </view>
+            </block>
+          </view>
+        </view>
+        <view class="detail-item" wx:if="{{orderType != 1}}">
+          <view class="detail-label">技师编号</view>
+          <view class="detail-value">{{pack.remark}}</view>
+        </view>
+
+        <view class="detail-item" wx:if="{{orderType != 1}}">
+          <view class="detail-label">房间号</view>
+          <view class="detail-value">{{pack.room}}</view>
+        </view>
+
+        <view class="detail-item">
+          <view class="detail-label">门店</view>
+          <view class="detail-value">{{pack.storeName}}</view>
+        </view>
+
+        
+        <view class="detail-item" wx:if="{{pack.payTime}}">
+          <view class="detail-label">支付时间</view>
+          <view class="detail-value">{{pack.payTime}}</view>
+        </view>
+        <view class="detail-item" wx:if="{{pack.remark}}">
+          <view class="detail-label">备注</view>
+          <view class="detail-value">{{pack.remark}}</view>
+        </view>
+
+        <view class="detail-item">
+          <view class="detail-label">创建时间</view>
+          <view class="detail-value">{{pack.createTime}}</view>
+        </view>
+      </view>
+
+      
+      <view class="cancel-order-container" wx:if="{{pack.orderStatus == 0 || (orderType == 1 && pack.orderStatus < 3)}}">
+        <view class="cancel-order-text" bindtap="cancelOrder">取消{{orderType == 1 ? '预约' : '订单'}}</view>
+      </view>
+    </view>
+  </view>
+
+  
+  <view class="action-bar" >
+    <view class="action-buttons-container">
+      <button class="action-button reject-button" bindtap='confirm' wx:if="{{orderType!=1&&(identityFlag==1||identityFlag==3)&&pack.orderStatus==1}}">
+        <view class="button-content">
+          <image src="/images/confirm_b.png" class="button-icon-slot" mode="aspectFit"></image>
+          <text class="button-text">确认订单</text>
+        </view>
+      </button>
+      <button class="action-button refund-button" bindtap='refund' wx:if="{{orderType!=1&&identityFlag==3&&pack.orderStatus==2}}">
+        <view class="button-content">
+          <image src="/images/refund.png" class="button-icon-slot" mode="aspectFit"></image>
+          <text class="button-text">退款</text>
+        </view>
+      </button>
+
+      <button class="action-button confirm-button" bindtap='reminder' wx:if="{{orderType!=1&&identityFlag==0&&pack.orderStatus==1}}">
+        <view class="button-content">
+          <image src="/images/reminder.png" class="button-icon-slot" mode="aspectFit"></image>
+          <text class="button-text">催单</text>
+        </view>
+      </button>
+
+      
+      <view class="text-cancel-link" bindtap='showCancelConfirm' wx:if="{{orderType==1&&identityFlag==0&&pack.orderStatus==1&&pack.payAmount<=0}}">
+        取消预约
+      </view>
+      <button class="action-button reject-button" bindtap='pay' wx:if="{{orderType==1&&identityFlag==0&&pack.orderStatus==1&&pack.payAmount<=0}}">
+        <view class="button-content">
+          <image src="/images/confirm_b.png" class="button-icon-slot" mode="aspectFit"></image>
+          <text class="button-text">确认预约</text>
+        </view>
+      </button>
+      <button open-type='share' class="action-button share-button" wx:if="{{orderType!=1&&flag==0&&pack.orderStatus==0}}">
+        <view class="button-content">
+          <image src="/images/share_w.png" class="button-icon-slot" mode="aspectFit"></image>
+          <text class="button-text">分享给好友</text>
+        </view>
+      </button>
+
+      <button class="action-button pay-button" bindtap='pay' wx:if="{{(orderType!=1&&pack.orderStatus==0)||(orderType==1&&pack.orderStatus==1&&pack.payAmount>0)}}">
+        <view class="button-content">
+          <image src="/images/pay_b.png" class="button-icon-slot" mode="aspectFit"></image>
+          <text class="button-text">立即付款</text>
+        </view>
+      </button>
+
+      <button class="action-button confirm-button" bindtap='showRejectOptions' wx:if="{{orderType==1&&(identityFlag==1||identityFlag==3)&&pack.orderStatus==0}}">
+        <view class="button-content">
+          <image src="/images/replace.png" class="button-icon-slot" mode="aspectFit"></image>
+          <text class="button-text">调整预约时间</text>
+        </view>
+      </button>
+
+      <button class="action-button reject-button" bindtap='confirmReservation' wx:if="{{orderType==1&&(identityFlag==1||identityFlag==3)&&pack.orderStatus==0}}">
+        <view class="button-content">
+          <image src="/images/confirm.png" class="button-icon-slot" mode="aspectFit"></image>
+          <text class="button-text">确认预约订单</text>
+        </view>
+      </button>
+    </view>
+  </view>
+
+  
+  <view class="phone-modal {{showPhoneModal ? 'show' : ''}}" catchtouchmove="true">
+    <view class="modal-mask" bindtap="closePhoneModal"></view>
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">手机号授权说明</text>
+        <view class="modal-close" bindtap="closePhoneModal">×</view>
+      </view>
+
+      <view class="modal-body">
+        <view class="auth-tip">为更好地核实订单，需要获取您的手机号。您的信息仅用于店内订单核实服务，请放心授权。</view>
+
+        <button class="auth-btn {{phoneAuthLoading ? 'loading' : ''}}" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber" disabled="{{phoneAuthLoading}}">
+          <text wx:if="{{!phoneAuthLoading}}">一键授权手机号</text>
+          <text wx:else>授权中...</text>
+        </button>
+
+        <view class="cancel-btn" bindtap="closePhoneModal">取消支付</view>
+      </view>
+    </view>
+  </view>
+
+</view>
+<view class="time-selection-modal {{showTimeSelectionModal ? 'show' : ''}}" catchtouchmove="true">
+  <view class="modal-mask" bindtap="closeTimeSelectionModal"></view>
+  <view class="modal-content">
+    <view class="modal-header">
+      <text class="modal-title">{{hasBackupTime ? '选择确认的预约时间' : '确认预约信息'}}</text>
+      <view class="modal-close" bindtap="closeTimeSelectionModal">×</view>
+    </view>
+
+    <view class="modal-body">
+      
+      <block wx:if="{{hasBackupTime}}">
+        <view class="time-selection-tip">请选择要确认的预约时间</view>
+
+        <view class="time-options">
+          <view class="time-option {{selectedTimeOption === 1 ? 'selected' : ''}}" bindtap="handleTimeSelection" data-option="1">
+            <view class="time-option-radio">
+              <view class="radio-inner" wx:if="{{selectedTimeOption === 1}}"></view>
+            </view>
+            <view class="time-option-content">
+              <view class="time-label">首选时间</view>
+              <view class="time-value">{{pack.finalReservationTime}}</view>
+            </view>
+          </view>
+
+          <view class="time-option {{selectedTimeOption === 2 ? 'selected' : ''}}" bindtap="handleTimeSelection" data-option="2">
+            <view class="time-option-radio">
+              <view class="radio-inner" wx:if="{{selectedTimeOption === 2}}"></view>
+            </view>
+            <view class="time-option-content">
+              <view class="time-label">备选时间</view>
+              <view class="time-value">{{pack.backupReservationTime}}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+
+      
+      <block wx:else>
+        <view class="confirmation-info">
+          <view class="confirmation-item">
+            <view class="confirmation-label">预约时间</view>
+            <view class="confirmation-value">{{pack.finalReservationTime}}</view>
+          </view>
+        </view>
+      </block>
+
+      
+      <view class="room-input-container">
+        <text class="room-label">房间号<text class="required-mark">*</text></text>
+        <input class="room-input" type="text" bindinput="onRoomInput" value="{{roomNumber}}" maxlength="10" />
+      </view>
+
+      <button class="confirm-time-btn" bindtap="confirmTimeSelection" disabled="{{!roomNumber}}">
+        确认预约
+      </button>
+    </view>
+  </view>
+</view>
+<view class="rejection-modal {{showRejectModal ? 'show' : ''}}" catchtouchmove="true">
+  <view class="modal-mask" bindtap="closeRejectModal"></view>
+  <view class="modal-content">
+    <view class="modal-header">
+      <text class="modal-title">处理预约申请</text>
+      <view class="modal-close" bindtap="closeRejectModal">×</view>
+    </view>
+
+    <view class="modal-body">
+      
+
+      
+      <view class="room-input-container">
+        <text class="room-label">房间号<text class="required-mark">*</text></text>
+        <input class="room-input" type="text" bindinput="onRoomInput" value="{{roomNumber}}" maxlength="10" />
+      </view>
+
+      <view class="alternative-time-container" wx:if="{{rejectOption === 'reschedule'}}">
+        <text class="alternative-time-label">建议时间</text>
+
+        <view class="rejection-time-options">
+          <view wx:for="{{availableTimes}}" wx:key="*this" class="rejection-time-btn {{ availableTimesStatus[item] ? 'active' : '' }}" bindtap="onSelectAlternativeTime" data-time="{{item}}">
+            {{item}}~{{timeUtils.getNextTimeSlot(item)}}
+          </view>
+        </view>
+      </view>
+
+      <button class="confirm-reject-btn" bindtap="submitRejection" disabled="{{!rejectReason || !roomNumber}}">
+        {{rejectOption === 'direct' ? '确认拒绝' : '发送调整建议'}}
+      </button>
+    </view>
+  </view>
+</view>
+
+<wxs module="timeUtils">
+  function getNextTimeSlot(timeStr) {
+    var parts = timeStr.split(':');
+    var hours = parseInt(parts[0]);
+    var minutes = parseInt(parts[1]);
+    var newMinutes = minutes + 30;
+    var newHours = hours;
+    if (newMinutes >= 60) {
+      newHours += Math.floor(newMinutes / 60);
+      newMinutes %= 60;
+    }
+    newHours %= 24;
+    return (newHours < 10 ? '0' + newHours : newHours) + ':' +
+      (newMinutes < 10 ? '0' + newMinutes : newMinutes);
+  }
+
+  module.exports.getNextTimeSlot = getNextTimeSlot;
+</wxs>

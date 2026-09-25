@@ -1,0 +1,667 @@
+/* 个人中心样式 */
+.container {
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  padding: 30rpx;
+}
+
+/* 用户信息卡片 - 关键修复 */
+.user-card {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 40rpx 30rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4rpx 16rpx rgba(228, 57, 60, 0.08);
+  position: relative;
+  overflow: visible; /* ✅ 修复：从 hidden 改为 visible，避免右侧被裁剪 */
+  z-index: 1; /* ✅ 确保卡片在正确的堆叠层 */
+}
+
+.user-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 160rpx;
+  height: 160rpx;
+  background: linear-gradient(135deg, transparent 50%, rgba(228, 57, 60, 0.05) 50%);
+  border-radius: 0 0 0 100%;
+  pointer-events: none; /* ✅ 修复：伪元素不响应点击 */
+  z-index: 0; /* ✅ 伪元素在下层 */
+}
+
+/* 左侧容器 */
+.user-card-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  z-index: 2; /* ✅ 左侧在中层 */
+  pointer-events: auto; /* ✅ 确保左侧响应点击 */
+}
+
+/* 间隔区域 - 不响应点击 */
+.card-spacer {
+  width: 20rpx;
+  flex-shrink: 0;
+  pointer-events: none; /* ✅ 间隔区域完全不响应 */
+}
+
+/* 推广码包装器 - 新增 */
+.promotion-wrapper {
+  flex-shrink: 0; /* ✅ 确保不被压缩 */
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3; /* ✅ 右侧按钮在最上层 */
+  pointer-events: auto; /* ✅ 确保响应点击 */
+}
+
+/* 头像样式调整 */
+.user-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 30rpx;
+  background-color: #f3f4f6;
+  position: relative;
+  border: 4rpx solid #fff;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  flex-shrink: 0; /* ✅ 防止头像被压缩 */
+  z-index: 3;
+}
+
+.avatar-button {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-button::after {
+  border: none;
+  display: none;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.avatar-edit-icon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(228, 57, 60, 0.8);
+  color: white;
+  font-size: 20rpx;
+  text-align: center;
+  padding: 4rpx 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.user-avatar:hover .avatar-edit-icon {
+  opacity: 1;
+}
+
+.user-info {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 8rpx;
+  border-radius: 8rpx;
+  transition: background-color 0.3s ease;
+}
+
+.user-info:active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.user-name {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-phone {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+.user-id {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.user-role {
+  display: block;
+  font-size: 24rpx;
+  color: #e4393c;
+  background-color: rgba(228, 57, 60, 0.1);
+  padding: 6rpx 16rpx;
+  border-radius: 30rpx;
+  width: fit-content;
+  margin-top: 10rpx;
+}
+
+/* 推广码按钮 - 关键修复 */
+.promotion-code-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 120rpx;
+  height: 140rpx; /* ✅ 增加高度，确保有足够的点击区域 */
+  padding: 12rpx 16rpx;
+  border-radius: 12rpx;
+  transition: all 0.2s ease;
+  flex-shrink: 0; /* ✅ 确保不被压缩 */
+  background-color: transparent; /* ✅ 背景透明 */
+  border: none; /* ✅ 无边框 */
+  cursor: pointer;
+  z-index: 10; /* ✅ 确保在最上层 */
+  position: relative; /* ✅ 重要：相对定位 */
+  pointer-events: auto; /* ✅ 确保响应点击 */
+}
+
+/* 推广码按钮点击反馈 */
+.promotion-code-button:active {
+  transform: scale(0.95);
+  opacity: 0.8;
+  background-color: rgba(228, 57, 60, 0.1);
+  border-radius: 12rpx;
+}
+
+/* 推广码图标 */
+.promotion-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: 8rpx;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* 推广码文本 */
+.promotion-text {
+  font-size: 22rpx;
+  color: #000000;
+  font-weight: 500;
+  text-align: center;
+  display: block;
+}
+
+/* =================== 其他样式 =================== */
+
+/* 佣金区域样式 */
+.commission-section {
+  margin-bottom: 30rpx;
+}
+
+.commission-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  padding-left: 16rpx;
+  position: relative;
+}
+
+.section-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 32rpx;
+  background-color: #e4393c;
+  border-radius: 4rpx;
+}
+
+.detail-link {
+  font-size: 26rpx;
+  color: #e4393c;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.detail-link-icon {
+  margin-left: 4rpx;
+  color: #e4393c;
+}
+
+.commission-card {
+  background: white;
+  border-radius: 16rpx;
+  padding: 0;
+  box-shadow: 0 6rpx 20rpx rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* 顶部余额显示区域 */
+.balance-container {
+  padding: 36rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #e4393c, #ff6b6b);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.balance-container:active {
+  transform: scale(0.98);
+}
+
+.balance-container::after {
+  content: "";
+  position: absolute;
+  right: 20rpx;
+  bottom: -40rpx;
+  width: 160rpx;
+  height: 160rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.available-amount-container {
+  flex: 1;
+}
+
+.available-label {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 8rpx;
+  display: block;
+}
+
+.available-amount-row {
+  display: flex;
+  align-items: baseline;
+}
+
+.currency-symbol {
+  font-size: 32rpx;
+  color: #fff;
+  margin-right: 8rpx;
+  font-weight: 400;
+}
+
+.available-amount {
+  font-size: 52rpx;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 提现按钮包装器 */
+.withdraw-wrapper {
+  padding: 10rpx;
+}
+
+/* 改进的提现按钮样式 */
+.withdraw-button-alt {
+  background: #fff;
+  color: #e4393c;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  padding: 16rpx 40rpx;
+  min-width: 100rpx;
+  width: auto;
+  height: 50rpx;
+  text-align: center;
+  box-shadow: 0 6rpx 12rpx rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.withdraw-button-alt:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  background: #f9f9f9;
+}
+
+/* 底部状态展示区 */
+.status-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 32rpx;
+  background: #fff;
+  position: relative;
+}
+
+.status-divider {
+  width: 1rpx;
+  height: 60rpx;
+  background-color: #eee;
+  align-self: center;
+}
+
+.status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.status-item:active {
+  opacity: 0.7;
+}
+
+.status-value {
+  font-size: 34rpx;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.status-label {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 技师专区 */
+.technician-section {
+  margin-bottom: 30rpx;
+}
+
+.tech-icon {
+  background: rgba(228, 57, 60, 0.1);
+  border-radius: 12rpx;
+}
+
+/* 功能菜单 - 网格布局 */
+.menu-section {
+  margin-bottom: 30rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+}
+
+.menu-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10rpx;
+}
+
+.menu-grid-item {
+  width: 25%;
+  padding: 20rpx 10rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.menu-grid-item:active {
+  transform: scale(0.95);
+}
+
+.grid-icon-wrapper {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(228, 57, 60, 0.1);
+  margin-bottom: 12rpx;
+}
+
+.grid-icon {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.grid-text {
+  font-size: 24rpx;
+  color: #333;
+  text-align: center;
+}
+
+/* 列表菜单样式 */
+.menu-item {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 16rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.menu-item:active {
+  transform: scale(0.98);
+}
+
+.menu-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 24rpx;
+}
+
+.menu-text {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.menu-arrow {
+  font-size: 30rpx;
+  color: #ccc;
+  font-weight: bold;
+}
+
+/* 审核状态标签样式 */
+.audit-status {
+  font-size: 24rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 30rpx;
+  margin-right: 16rpx;
+  white-space: nowrap;
+}
+
+.status-pending {
+  background-color: #fff8e6;
+  color: #f59e0b;
+  border: 1rpx solid #fef3c7;
+}
+
+.status-rejected {
+  background-color: #fee2e2;
+  color: #e4393c;
+  border: 1rpx solid #fecaca;
+}
+
+/* 公众号入口样式 */
+.wechat-official-section {
+  margin-bottom: 30rpx;
+}
+
+.wechat-card {
+  margin-top: 10rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.wechat-card:active {
+  transform: scale(0.98);
+}
+
+.wechat-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 12rpx;
+  background-color: rgba(228, 57, 60, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.qiwei-icon {
+  background-color: rgba(9, 187, 7, 0.1);
+}
+
+.wechat-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.wechat-title {
+  display: block;
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 8rpx;
+}
+
+.wechat-desc {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.wechat-arrow {
+  font-size: 30rpx;
+  color: #ccc;
+  font-weight: bold;
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+
+/* 官方账号组件样式 */
+.official-account-component {
+  margin-bottom: 30rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+/* 用户等级标签样式 */
+.user-tier {
+  display: inline-block;
+  font-size: 24rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 30rpx;
+  margin-top: 8rpx;
+  margin-bottom: 8rpx;
+  color: #fff;
+  font-weight: 500;
+  box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #e4393c, #ff6b6b);
+}
+
+/* 不同等级的颜色样式 */
+.tier-basic {
+  background: linear-gradient(to right, #ff7f7f, #e4393c);
+}
+
+.tier-medium {
+  background: linear-gradient(to right, #ffb347, #ff8c00);
+}
+
+.tier-high {
+  background: linear-gradient(to right, #9d2932, #7a0000);
+}
+
+/* 等级图标容器 */
+.tier-icon-container {
+  margin-left: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+/* 等级图标 */
+.tier-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.15);
+}
+
+/* 企微二维码弹窗样式 */
+.qiwei-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.qiwei-container {
+  background-color: white;
+  width: 80%;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qiwei-qrcode {
+  width: 500rpx;
+  height: 500rpx;
+}
+
+.qiwei-tips {
+  margin-top: 20rpx;
+  color: #666;
+  font-size: 28rpx;
+}

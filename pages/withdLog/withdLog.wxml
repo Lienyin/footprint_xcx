@@ -1,0 +1,61 @@
+<view class="withdLog">
+    <view class="custom-tabs-container">
+    <view class="custom-tabs">
+        <view 
+            class="tab-item {{current == index ? 'active' : ''}}" 
+            wx:for="{{listStatus}}" 
+            wx:key="type"
+            data-index="{{index}}"
+            data-type="{{item.type}}"
+            bindtap="changeStatus">
+            {{item.name}}
+        </view>
+    </view>
+</view>
+    
+    
+    <view class="records-list">
+        <view class="record-item" wx:for="{{log}}" wx:for-index="i" wx:for-item="v" wx:key="i">
+            
+            <view class="record-content">
+                <view class="record-header">
+                    <view class="record-title">提现到微信</view>
+                    <view class="status-badge {{v.status==1?'status-success':v.status==0?'status-pending':'status-failed'}}">
+                        {{v.status==0?'打款中':v.status==1?'提现成功':'提现失败'}}
+                    </view>
+                </view>
+                
+                <view class="record-error" wx:if="{{v.status!=0&&v.status!=1}}">
+                    <view class="error-text">{{v.remark}}</view>
+                </view>
+                
+                <view class="record-time-info">
+                    <view class="time-label">申请时间：<text class="time-value">{{v.createTime}}</text></view>
+                    <view class="time-label" wx:if="{{v.status==1}}">到账时间：<text class="time-value">{{v.updateTime||'--'}}</text></view>
+                </view>
+                
+                <view class="record-amount">
+                    <text class="currency-symbol">¥</text>
+                    <text class="amount-value">{{v.amount}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    
+    
+    <view class="loading-more" wx:if="{{log && log.length > 0}}">
+        <view wx:if="{{loadStatus === 'loading'}}" class="loading-text">
+            <view class="loading-icon"></view>
+            <text>加载中...</text>
+        </view>
+        <view wx:elif="{{loadStatus === 'noMore'}}" class="no-more-text">
+            没有更多数据了
+        </view>
+    </view>
+    
+    
+    <view class="empty-container" wx:if="{{!log||log.length==0}}">
+        <image class="empty-image" mode="aspectFill" src="/images/no-data.png"></image>
+        <view class="empty-text">暂无提现记录</view>
+    </view>
+</view>

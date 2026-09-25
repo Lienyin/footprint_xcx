@@ -1,0 +1,165 @@
+
+<view class="container">
+  
+  <view class="user-card">
+    
+    <view class="user-card-left">
+      <view class="user-avatar">
+        <button open-type="chooseAvatar" bindchooseavatar="onChooseAvatar" class="avatar-button">
+          <image src="{{userDetail.avatar||'/images/chat.png'}}" class="avatar-image" mode="aspectFill" />
+          <view class="avatar-edit-icon">
+            <text>编辑</text>
+          </view>
+        </button>
+      </view>
+      <view class="user-info" bindtap="toSet">
+        <text class="user-name">{{userDetail.nickname}}</text>
+        <text class="user-phone" wx:if="{{userDetail.formattedPhone}}">{{userDetail.formattedPhone}}</text>
+      </view>
+    </view>
+
+    
+    <view class="card-spacer"></view>
+
+    
+    <view class="promotion-wrapper">
+      <view class="promotion-code-button" bindtap="showTechQRCode">
+        <image class="promotion-icon" src="/images/qrcode.png" mode="aspectFit"></image>
+        <text class="promotion-text">推广码</text>
+      </view>
+    </view>
+  </view>
+
+  
+  <view class="commission-section">
+    <view class="commission-header">
+      <view class="section-title">我的佣金</view>
+      <view class="detail-link" bindtap="toBalanceDetail">
+        佣金明细<text class="detail-link-icon">></text>
+      </view>
+    </view>
+
+    <view class="commission-card">
+      
+      <view class="balance-container" bindtap="toWithd">
+        <view class="available-amount-container">
+          <text class="available-label">可提现</text>
+          <view class="available-amount-row">
+            <text class="currency-symbol">¥</text>
+            <text class="available-amount">{{balance.availableBalance || '0.00'}}</text>
+          </view>
+        </view>
+
+        <view class="withdraw-wrapper">
+          <view class="withdraw-button-alt">提现</view>
+        </view>
+      </view>
+
+      
+      <view class="status-container">
+        <view class="status-item" bindtap="toReferralLog">
+          <text class="status-value">¥{{balance.pendingSettlement || '0.00'}}</text>
+          <text class="status-label">待结算</text>
+        </view>
+        <view class="status-divider"></view>
+        <view class="status-item" bindtap="goTxjl">
+          <text class="status-value">¥{{balance.withdrawnAmount || '0.00'}}</text>
+          <text class="status-label">已提现</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="technician-section" wx:if="{{userDetail.identityFlag==2}}">
+    <view class="section-title">技师专区</view>
+    <view class="menu-item" bindtap="toTech">
+      <image class="menu-icon tech-icon" src="/images/rank.png" mode="aspectFit"></image>
+      <text class="menu-text">我要上榜</text>
+      
+      <view class="audit-status {{ userDetail.auditStatus === 0|| userDetail.auditStatus == null ? '' : userDetail.auditStatus === 1 ? 'status-pending' : 'status-rejected' }}">
+        {{userDetail.auditStatus === 0 || userDetail.auditStatus == null ? '' : userDetail.auditStatus === 1 ? '审核中' : '未通过'}}
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+
+  <official-account class="official-account-component"></official-account>
+
+  
+  <view class="menu-section">
+    <view class="section-title">我的服务</view>
+
+    <view class="menu-grid">
+      <view class="menu-grid-item" bindtap="toOrders">
+        <view class="grid-icon-wrapper">
+          <image class="grid-icon" src="/images/user_icon_dd.png" mode="aspectFit"></image>
+        </view>
+        <text class="grid-text">我的订单</text>
+      </view>
+
+      <view class="menu-grid-item" bindtap="toInvitaionActivity">
+        <view class="grid-icon-wrapper">
+          <image class="grid-icon" src="/images/qrcode.png" mode="aspectFit"></image>
+        </view>
+        <text class="grid-text">推广中心</text>
+      </view>
+
+      <view class="menu-grid-item" bindtap="toCoupons">
+        <view class="grid-icon-wrapper">
+          <image class="grid-icon" src="/images/user_icon_sy.png" mode="aspectFit"></image>
+        </view>
+        <text class="grid-text">福利院</text>
+      </view>
+
+      <view class="menu-grid-item" bindtap="toActivity">
+        <view class="grid-icon-wrapper">
+          <image class="grid-icon" src="/images/coupon.png" mode="aspectFit"></image>
+        </view>
+        <text class="grid-text">活动中心</text>
+      </view>
+
+      <view class="menu-grid-item" bindtap="toUsers" wx:if="{{userDetail.identityFlag==3}}">
+        <view class="grid-icon-wrapper">
+          <image class="grid-icon" src="/images/user_icon_td.png" mode="aspectFit"></image>
+        </view>
+        <text class="grid-text">用户管理</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="wechat-official-section">
+    <view class="section-title">联系我们</view>
+
+    <view class="wechat-card">
+      <cell
+        bindstartmessage="startmessage"
+        bindcompletemessage="completemessage"
+        plugid="5f138fb1e4a4e60a76f6a1ffc3e1a6e1"
+        style="flex: 1;"
+      />
+    </view>
+
+    <view class="wechat-card" bindtap="showWechatQRCode">
+      <image class="menu-icon wechat-icon" src="/images/wx.png" mode="aspectFit"></image>
+      <view class="wechat-info">
+        <text class="wechat-title">关注公众号</text>
+        <text class="wechat-desc">获取最新服务资讯和活动</text>
+      </view>
+      <view class="wechat-arrow">
+        <text>></text>
+      </view>
+    </view>
+  </view>
+
+  
+  <view class="qiwei-modal" wx:if="{{showQiWeiModal}}" catchtap="closeQiWeiModal">
+    <view class="qiwei-container" catchtap="preventTap">
+      <image src="https://www.lianzhenkj.com/img/qywx.png" class="qiwei-qrcode" mode="aspectFit" show-menu-by-longpress></image>
+      <view class="qiwei-tips">
+        长按二维码直接识别添加
+      </view>
+    </view>
+  </view>
+</view>
+
+<service class="data-v-71e217db vue-ref"></service>

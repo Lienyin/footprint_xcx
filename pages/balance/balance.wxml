@@ -1,0 +1,43 @@
+
+<view class="container">
+  
+  <view class="balance-card">
+    <view class="balance-title">当前可用余额</view>
+    <view class="balance-amount">¥ {{totalBalance || '0.00'}}</view>
+  </view>
+
+  
+  <view class="balance-list">
+    <block wx:if="{{records.length > 0}}">
+      <view class="balance-item" wx:for="{{records}}" wx:key="logId">
+        <view class="item-left">
+          <view class="item-type">
+            <view class="type-tag {{item.amount > 0 ? 'type-income' : 'type-expense'}}">
+              {{item.typeName}}
+            </view>
+          </view>
+          <view class="item-desc">{{item.remark || '余额变动'}}</view>
+          <view class="item-time">{{item.createTime}}</view>
+        </view>
+        <view class="item-right">
+          <view class="item-amount {{item.amount > 0 ? 'income' : 'expense'}}">
+            {{item.amount > 0 ? '+' : ''}}{{item.amount}}
+          </view>
+          <view class="item-balance">余额: ¥{{item.balance}}</view>
+        </view>
+      </view>
+    </block>
+    
+    
+    <view class="load-more" wx:if="{{hasMore}}">
+      <view class="loading" wx:if="{{isLoading}}">加载中...</view>
+      <view class="load-more-btn" wx:else bindtap="loadMore">加载更多</view>
+    </view>
+    
+    
+    <view class="empty-container" wx:if="{{records.length === 0 && !isLoading}}">
+      <image class="empty-image" src="/images/no-data.png" mode="aspectFit"></image>
+      <view class="empty-text">暂无余额记录</view>
+    </view>
+  </view>
+</view>

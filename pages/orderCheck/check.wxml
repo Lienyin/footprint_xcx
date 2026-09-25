@@ -1,0 +1,192 @@
+<view class="container">
+  <view class='wrap'>
+    <view class="goods-list">
+      <view class="list-title">商品信息</view>
+      <view class="a-goods">
+        <view class="img-box">
+          <view class='image-wrap' wx:for="{{packs}}" wx:if="{{index<5}}" wx:key="id">
+            <image src="{{item.coverImg}}" class="goods-image" mode="aspectFill"></image>
+          </view>
+        </view>
+        <view class='goods-sum'>
+          <view class="text">共{{goodsCount}}件</view>
+        </view>
+      </view>
+    </view>
+    <view class="price-check-wrap">
+      <view class="row-box">
+        <view class="row-label">商品原价</view>
+        <view class="right-text">
+          <view class="color-red">￥{{originalPrice}}</view>
+          
+        </view>
+      </view>
+
+      <view class="memo-box">
+        <view class="row-label">房间号<text style="color: #e4393c; margin-left: 4rpx;">*</text></view>
+        <view class="right-text memo-input">
+          <input type="text" class="memo" placeholder-class="memo-placeholder" model:value="{{room}}" placeholder="请输入正确的房间号，以便快速确认离店" maxlength="16" />
+        </view>
+      </view>
+      
+      
+      <view class="row-box coupon-select" bindtap="showCouponModal">
+        <view class="row-label">优惠券</view>
+        <view class="right-text coupon-info">
+          <view class="coupon-value-container">
+
+            <text wx:if="{{couponDiscountAmount&&couponDiscountAmount!='0.00'}}" class="color-red">￥-{{couponDiscountAmount || '0.00'}}</text>
+            <text wx:elif="{{usableCoupons.length > 0}}" class="coupon-red">{{usableCoupons.length}}张可用</text>
+            <text wx:else class="coupon-hint">暂无可用优惠券</text>
+            <text class="coupon-arrow">></text>
+          </view>
+        </view>
+      </view>
+      <view class="row-box">
+        <view class="row-label">专享优惠</view>
+        <view class="right-text">
+          <view class="color-red">￥-{{baseDiscountAmount}}</view>
+        </view>
+      </view>
+      <view class="row-box" wx:if="{{reservationtAmount>0}}">
+        <view class="row-label">预约抵扣</view>
+        <view class="right-text">
+          <view class="color-red">￥-{{reservationtAmount}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="settle-box">
+    <view class="left-price">
+      <view class="total">实付</view>
+      <view class="pay-money">¥{{price}}</view>
+      <view class="save-section">
+        <view class="save">省</view>
+        <view class="save-money">¥{{savePrice}}</view>
+      </view>
+    </view>
+    <view class="settle-btns-container">
+      <button class="to-share-btn" bindtap='submitOrder' wx:if="{{isShare===1}}">
+        <image class="share-icon" src="/images/share_b.png"></image>
+        <text class="share-text">他人代付</text>
+      </button>
+      <button class="to-pay-btn" bindtap='payOrder'>去支付</button>
+    </view>
+  </view>
+
+  
+  <view class="phone-modal {{showPhoneModal ? 'show' : ''}}" catchtouchmove="true">
+    <view class="modal-mask" bindtap="closePhoneModal"></view>
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">手机号授权说明</text>
+        <view class="modal-close" bindtap="closePhoneModal">×</view>
+      </view>
+
+      <view class="modal-body">
+        <view class="auth-tip">为更好地核实订单，需要获取您的手机号。您的信息仅用于店内订单核实服务，请放心授权。</view>
+
+        <button class="auth-btn {{phoneAuthLoading ? 'loading' : ''}}" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber" disabled="{{phoneAuthLoading}}">
+          <text wx:if="{{!phoneAuthLoading}}">一键授权手机号</text>
+          <text wx:else>授权中...</text>
+        </button>
+
+        <view class="cancel-btn" bindtap="closePhoneModal">取消支付</view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="coupon-modal {{showCouponModal ? 'show' : ''}}" catchtouchmove="true">
+    <view class="modal-mask" bindtap="closeCouponModal"></view>
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">选择优惠券</text>
+        <view class="modal-close" bindtap="closeCouponModal">×</view>
+      </view>
+
+      <view class="coupon-list">
+        
+        <block wx:if="{{usableCoupons.length === 0 && unusableCoupons.length === 0}}">
+          <view class="empty-coupon">暂无可用优惠券</view>
+        </block>
+
+        
+        <block wx:else>
+          
+          <view class="no-use-coupon {{!selectedCoupons.length ? 'selected' : ''}}" bindtap="selectNoCoupon">
+            <text class="no-use-text">不使用优惠券</text>
+            <view class="select-icon {{!selectedCoupons.length ? 'selected' : ''}}"></view>
+          </view>
+
+          
+          <block wx:if="{{usableCoupons.length > 0}}">
+            <view class="section-title">可用优惠券 ({{usableCoupons.length}}张)</view>
+            <block wx:for="{{usableCoupons}}" wx:key="couponUserId">
+              <view class="coupon-item {{item.selected ? 'selected' : ''}} {{item.usable ? '' : 'disabled'}}" bindtap="selectCoupon" data-id="{{item.couponUserId}}" data-stack="{{item.isStack}}">
+                <view class="coupon-item-inner">
+                  <view class="coupon-left">
+                    <view class="coupon-value">
+                      <text wx:if="{{item.couponType === 0 || item.couponType === 2 || item.couponType === 3}}">
+                        <text class="currency-symbol">¥</text>{{item.discountAmount}}
+                      </text>
+                      <text wx:elif="{{item.couponType === 1}}">{{item.discountRate}}<text class="discount-unit">折</text></text>
+                    </view>
+                    <view class="coupon-condition" wx:if="{{item.minAmount > 0}}">满{{item.minAmount}}元可用</view>
+                    <view class="coupon-condition" wx:else>无门槛使用</view>
+                  </view>
+                  <view class="coupon-middle">
+                    <view class="coupon-name">{{item.couponName}}</view>
+                    <view class="coupon-time">{{item.startTime}} - {{item.endTime}}</view>
+                    <view class="coupon-desc" wx:if="{{item.description}}">{{item.description}}</view>
+                    <view class="coupon-tag-container">
+                      <view class="coupon-tag" wx:if="{{item.isGift === 1}}">可赠送</view>
+                      <view class="coupon-tag stack-tag" wx:if="{{item.isStack === 1}}">可叠加使用</view>
+                      <view class="coupon-tag" wx:if="{{item.couponType === 3 && item.isInflated === 1}}">已膨胀</view>
+                    </view>
+                  </view>
+                  <view class="coupon-right">
+                    <view class="select-icon {{item.selected ? 'selected' : ''}}"></view>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </block>
+
+          
+          <block wx:if="{{unusableCoupons.length > 0}}">
+            <view class="section-title unusable">不可用优惠券 ({{unusableCoupons.length}}张)</view>
+            <block wx:for="{{unusableCoupons}}" wx:key="couponUserId">
+              <view class="coupon-item disabled">
+                <view class="coupon-item-inner">
+                  <view class="coupon-left">
+                    <view class="coupon-value">
+                      <text wx:if="{{item.couponType === 0 || item.couponType === 2 || item.couponType === 3}}">
+                        <text class="currency-symbol">¥</text>{{item.discountAmount}}
+                      </text>
+                      <text wx:elif="{{item.couponType === 1}}">{{item.discountRate}}<text class="discount-unit">折</text></text>
+                    </view>
+                    <view class="coupon-condition" wx:if="{{item.minAmount > 0}}">满{{item.minAmount}}元可用</view>
+                    <view class="coupon-condition" wx:else>无门槛使用</view>
+                  </view>
+                  <view class="coupon-middle">
+                    <view class="coupon-name">{{item.couponName}}</view>
+                    <view class="coupon-time">{{item.startTime}} - {{item.endTime}}</view>
+                    <view class="coupon-desc" wx:if="{{item.description}}">{{item.description}}</view>
+                    <view class="coupon-reason">{{item.unusableReason || '不可用'}}</view>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </block>
+        </block>
+      </view>
+
+      <view class="modal-footer">
+        <view class="total-discount" wx:if="{{selectedCoupons.length > 0}}">
+          已选{{selectedCoupons.length}}张，共优惠¥{{totalCouponDiscount}}
+        </view>
+        <button class="confirm-btn" bindtap="confirmCouponSelection">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

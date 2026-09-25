@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "企业微信",
+  "usingComponents": {
+    "cell": "plugin://contactPlugin/cell"
+  }
+}

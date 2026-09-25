@@ -1,0 +1,153 @@
+
+<view class="container">
+  
+  <view class="filter-summary" bindtap="toggleFilterPanel">
+    <view class="summary-left">
+      <text class="summary-text">筛选</text>
+      
+      <view class="filter-count" wx:if="{{getFilterCount() > 0}}">{{getFilterCount()}}</view>
+    </view>
+    
+    
+    <view class="active-filters" wx:if="{{getFilterCount() > 0}}">
+      <view class="filter-tag" wx:if="{{isNewUser === 1}}">新客户</view>
+      <view class="filter-tag" wx:if="{{isOrdered === 1}}">已下单</view>
+      <view class="filter-tag" wx:if="{{isOrdered === 0}}">未下单</view>
+      <view class="filter-tag" wx:if="{{rewardStatus === 0}}">待结算</view>
+      <view class="filter-tag" wx:if="{{rewardStatus === 1}}">已结算</view>
+      <view class="filter-tag" wx:if="{{rewardStatus === 2}}">不符合奖励</view>
+    </view>
+    
+    <view class="summary-icon {{isFilterExpanded ? 'expanded' : ''}}">
+      <view class="arrow"></view>
+    </view>
+  </view>
+
+<view class="filter-container {{isFilterExpanded ? 'expanded' : ''}}" wx:if="{{isFilterExpanded}}">
+  
+  <view class="filter-header">
+    <view class="filter-title">筛选条件</view>
+    <view class="clear-filter" bindtap="clearTempFilters" wx:if="{{tempFilters.isNewUser !== null || tempFilters.isOrdered !== null || tempFilters.rewardStatus !== null}}">
+      清除全部 <text class="clear-icon">×</text>
+    </view>
+  </view>
+  
+  
+  <view class="filter-group">
+    <view class="filter-group-title">客户类型</view>
+    <view class="filter-options">
+      <view class="filter-option {{tempFilters.isNewUser === 1 ? 'active' : ''}}" bindtap="toggleNewUserFilter">
+        <text>新客户</text>
+        <view class="check-icon" wx:if="{{tempFilters.isNewUser === 1}}"></view>
+      </view>
+    </view>
+  </view>
+  
+  
+  <view class="filter-group">
+    <view class="filter-group-title">订单状态</view>
+    <view class="filter-options">
+      <view class="filter-option {{tempFilters.isOrdered === 1 ? 'active' : ''}}" bindtap="toggleOrderedFilter">
+        <text>已下单</text>
+        <view class="check-icon" wx:if="{{tempFilters.isOrdered === 1}}"></view>
+      </view>
+      <view class="filter-option {{tempFilters.isOrdered === 0 ? 'active' : ''}}" bindtap="toggleNotOrderedFilter">
+        <text>未下单</text>
+        <view class="check-icon" wx:if="{{tempFilters.isOrdered === 0}}"></view>
+      </view>
+    </view>
+  </view>
+  
+  
+  <view class="filter-group" wx:if="{{tempFilters.isOrdered === 1 || tempFilters.rewardStatus !== null}}">
+    <view class="filter-group-title">奖励状态</view>
+    <view class="filter-options">
+      <view class="filter-option {{tempFilters.rewardStatus === 0 ? 'active' : ''}}" bindtap="togglePendingFilter">
+        <text>待结算</text>
+        <view class="check-icon" wx:if="{{tempFilters.rewardStatus === 0}}"></view>
+      </view>
+      <view class="filter-option {{tempFilters.rewardStatus === 1 ? 'active' : ''}}" bindtap="toggleSettledFilter">
+        <text>已结算</text>
+        <view class="check-icon" wx:if="{{tempFilters.rewardStatus === 1}}"></view>
+      </view>
+      <view class="filter-option {{tempFilters.rewardStatus === 2 ? 'active' : ''}}" bindtap="toggleFailedFilter">
+        <text>不符合奖励</text>
+        <view class="check-icon" wx:if="{{tempFilters.rewardStatus === 2}}"></view>
+      </view>
+    </view>
+  </view>
+  
+  
+  <view class="filter-actions">
+    <view class="filter-cancel" bindtap="toggleFilterPanel">取消</view>
+    <view class="filter-apply" bindtap="applyFilters">应用筛选</view>
+  </view>
+</view>
+
+  
+  <view class="referral-list">
+    <block wx:if="{{records.length > 0}}">
+      <view class="referral-item" wx:for="{{records}}" wx:key="id">
+        
+        <view class="item-header">
+          <view class="user-name">{{item.userName || '未知用户'}}</view>
+          <view class="item-time">{{item.createTime}}</view>
+        </view>
+        
+        <view class="item-content">
+          <view class="status-info">
+            
+            <view class="status-tags">
+              <view class="status-tag {{item.isNewUser === 1 ? 'status-new' : 'status-not-new'}}">
+                {{item.isNewUser === 1 ? '新客' : '非新客'}}
+              </view>
+              <view class="status-tag {{item.isOrdered === 1 ? 'status-ordered' : 'status-not-ordered'}}">
+                {{item.isOrdered === 1 ? '已下单' : '未下单'}}
+              </view>
+            </view>
+            
+            
+            <view class="order-info" wx:if="{{item.isOrdered === 1 && item.orderId}}">
+              <text class="order-label">订单号: </text>
+              <text class="order-id">{{item.orderId}}</text>
+            </view>
+          </view>
+          
+          
+          <view class="reward-status">
+            <block wx:if="{{item.isOrdered === 1}}">
+              <block wx:if="{{item.rewardStatus === 1}}">
+                <view class="reward-amount">+¥{{item.rewardAmount}}</view>
+                <view class="reward-time">{{item.rewardTime ? formatRewardTime(item.rewardTime) : ''}}</view>
+              </block>
+              <block wx:elif="{{item.rewardStatus === 0}}">
+                <view class="reward-pending">待结算</view>
+              </block>
+              <block wx:else>
+                <view class="reward-failed">不符合奖励</view>
+                <view class="failure-reason" wx:if="{{item.rewardFailureReason}}">{{item.rewardFailureReason}}</view>
+              </block>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+    
+    
+    <view class="load-more" wx:if="{{hasMore && records.length > 0}}">
+      <view class="loading" wx:if="{{isLoading}}">
+        <view class="loading-spinner"></view>
+        <text>加载中...</text>
+      </view>
+      <view class="load-more-btn" wx:else bindtap="loadMore">点击加载更多</view>
+    </view>
+    
+    <view class="empty-container" wx:if="{{records.length === 0 && !isLoading}}">
+      <image class="empty-image" src="/images/no-data.png" mode="aspectFit"></image>
+      <view class="empty-text">暂无{{getEmptyTipText()}}拉新记录</view>
+      <view class="empty-action" bindtap="clearAllFilters" wx:if="{{isNewUser !== null || isOrdered !== null || rewardStatus !== null}}">
+        清除筛选条件
+      </view>
+    </view>
+  </view>
+</view>

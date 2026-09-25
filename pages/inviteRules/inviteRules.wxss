@@ -1,0 +1,174 @@
+.rule.data-v-6c65a7d0 {
+  background: #ff462a;
+  height: calc(100vh - 176rpx);
+}
+.rule .head.data-v-6c65a7d0 {
+  background: url(https://cdn.file.jdds.com/system/shop/shop/static/rules/bg.jpg);
+  background-size: 100% 100%;
+  height: 450rpx;
+  position: relative;
+  width: 100%;
+}
+.rule .head .know.data-v-6c65a7d0 {
+  color: #763d00;
+  font-size: 24rpx;
+  font-weight: 400;
+  left: 74rpx;
+  position: absolute;
+  top: 212rpx;
+}
+.rule .cont.data-v-6c65a7d0 {
+  background: #ff462a;
+  margin-top: -140rpx;
+  padding: 0 28rpx 176rpx;
+}
+.rule .way.data-v-6c65a7d0 {
+  background: url(https://cdn.file.jdds.com/system/shop/shop/static/rules/box1.png);
+  background-size: 100% 100%;
+  height: 246rpx;
+  position: relative;
+  z-index: 999;
+}
+.rule .way-head.data-v-6c65a7d0 {
+  background: url(https://cdn.file.jdds.com/system/shop/shop/static/rules/title.png)
+    100% 100%;
+  background-size: 100% 100%;
+  color: #763d00;
+  font-size: 32rpx;
+  font-weight: 500;
+  height: 116rpx;
+  left: 50%;
+  line-height: 108rpx;
+  margin-left: -170rpx;
+  position: absolute;
+  text-align: center;
+  top: -46rpx;
+  width: 348rpx;
+}
+.rule .way-middle.data-v-6c65a7d0 {
+  align-items: center;
+  justify-content: space-evenly;
+  padding-left: 24rpx;
+  padding-top: 20rpx;
+}
+.rule .way-middle .sigle.data-v-6c65a7d0 {
+  align-items: center;
+  justify-content: center;
+  width: 200rpx;
+}
+.rule .way-middle .sigle .pic.data-v-6c65a7d0 {
+  border-radius: 50rpx;
+  height: 80rpx;
+  margin-bottom: 16rpx;
+  width: 80rpx;
+}
+.rule .way-middle .sigle .b.data-v-6c65a7d0 {
+  color: #8c4c00;
+  font-size: 20rpx;
+  font-weight: 500;
+}
+.rule .way-middle .arrow.data-v-6c65a7d0 {
+  height: 40rpx;
+  margin-top: -40rpx;
+  width: 34rpx;
+}
+.rule .way-middle .arrow .pic1.data-v-6c65a7d0 {
+  height: 100%;
+  width: 100%;
+}
+.rule .money.data-v-6c65a7d0 {
+  background: url(https://cdn.file.jdds.com/system/shop/shop/static/rules/price.png)
+    no-repeat;
+  background-size: cover;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin-top: 14rpx;
+  width: 694rpx;
+}
+.rule .money .l.data-v-6c65a7d0 {
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: 500;
+  text-align: center;
+  width: 55%;
+}
+.rule .money .r.data-v-6c65a7d0 {
+  color: #ff462a;
+  font-size: 40rpx;
+  font-weight: 600;
+  text-align: center;
+  width: 45%;
+}
+.rule .tip.data-v-6c65a7d0 {
+  color: #fff;
+  font-size: 26rpx;
+  font-weight: 400;
+  justify-content: center;
+  margin-bottom: 48rpx;
+  margin-top: 16rpx;
+}.rule .rewardRules.data-v-6c65a7d0 {
+  background: #fff;
+  border: 16rpx solid rgba(255, 153, 59, 0.9);
+  border-radius: 50rpx;
+  box-shadow: inset 3rpx 3rpx 5rpx 0 hsla(0, 0%, 100%, 0.6),
+    inset 0-3rpx 5rpx 0 rgba(255, 153, 59, 0.3);
+  margin-top: 40rpx;
+  position: relative;
+}
+.rule .rewardRules-head.data-v-6c65a7d0 {
+  background: url(https://cdn.file.jdds.com/system/shop/shop/static/rules/title.png)
+    100% 100%;
+  background-size: 100% 100%;
+  color: #763d00;
+  font-size: 32rpx;
+  font-weight: 500;
+  height: 116rpx;
+  left: 50%;
+  line-height: 108rpx;
+  margin-left: -170rpx;
+  position: absolute;
+  text-align: center;
+  top: -60rpx;
+  width: 348rpx;
+}
+.rule .rewardRules .rules.data-v-6c65a7d0 {
+  color: #8c4c00;
+  font-size: 28rpx;
+  font-weight: 400;
+  line-height: 48rpx; /* 增加行高 */
+  padding: 48rpx 36rpx 130rpx;
+}
+
+/* 新增规则项间距样式 */
+.rule .rewardRules .rules.data-v-6c65a7d0 > view {
+  margin-bottom: 20rpx; /* 每个规则项之间的距离 */
+}/* Add this CSS rule to display bullet points */
+.rule .rewardRules .rules.data-v-6c65a7d0 > view::before {
+  content: "•"; /* Bullet point character */
+  display: inline-block;
+  margin-right: 10rpx; /* Space after bullet */
+  color: #8c4c00; /* Match the text color */
+}
+
+/* 移除最后一项的底部间距，避免多余空白 */
+.rule .rewardRules .rules.data-v-6c65a7d0 > view:last-child {
+  margin-bottom: 0;
+}
+.rule .bottom.data-v-6c65a7d0 {
+  align-items: center;
+  background: #fff;
+  bottom: 0;
+  height: 176rpx;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  width: 100%;
+}
+.rule .bottom .share.data-v-6c65a7d0 {
+  background: linear-gradient(270deg, #ffc508, #ffdc49);
+  border-radius: 44rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  width: 599rpx;
+}

@@ -1,0 +1,972 @@
+page {  
+  background-color: #f8f9fa;  
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;  
+}  
+
+.container {  
+  padding: 24rpx;  
+  padding-bottom: 150rpx;  
+}  
+
+/* 状态指示器 */  
+.status-indicator {  
+  display: flex;  
+  align-items: center;  
+  padding: 16rpx 24rpx;  
+  margin-bottom: 20rpx;  
+}  
+
+.status-dot {  
+  width: 12rpx;  
+  height: 12rpx;  
+  border-radius: 50%;  
+  background-color: #ff4d4f;  
+  margin-right: 10rpx;  
+  animation: pulse 2s infinite;  
+}  
+
+@keyframes pulse {  
+  0% { box-shadow: 0 0 0 0 rgba(255, 77, 79, 0.6); }  
+  70% { box-shadow: 0 0 0 6rpx rgba(255, 77, 79, 0); }  
+  100% { box-shadow: 0 0 0 0 rgba(255, 77, 79, 0); }  
+}  
+
+.status-text {  
+  font-size: 28rpx;  
+  color: #ff4d4f;  
+  font-weight: 500;  
+}  
+
+/* 信息卡片通用样式 */  
+.info-card {  
+  background-color: #ffffff;  
+  border-radius: 16rpx;  
+  margin-bottom: 24rpx;  
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);  
+  overflow: hidden;  
+}  
+
+.card-header {  
+  padding: 24rpx 30rpx;  
+  border-bottom: 1rpx solid #f0f0f0;  
+}  
+
+.section-title {  
+  font-size: 30rpx;  
+  font-weight: 500;  
+  color: #333333;  
+}  
+
+/* 商品信息样式 */  
+.product-item {  
+  display: flex;  
+  padding: 24rpx 30rpx;  
+  align-items: center;  
+}  
+
+.product-image {  
+  width: 120rpx;  
+  height: 120rpx;  
+  border-radius: 12rpx;  
+  background-color: #f5f5f5;  
+}  
+
+.product-info {  
+  flex: 1;  
+  margin-left: 24rpx;  
+}  
+
+.product-name {  
+  font-size: 28rpx;  
+  color: #333333;  
+  line-height: 1.4;  
+}  
+
+/* 订单详情列表 */  
+.detail-list {  
+  padding: 0 30rpx;  
+}  
+
+.detail-item {  
+  display: flex;  
+  justify-content: space-between;  
+  padding: 24rpx 0;  
+  border-bottom: 1rpx solid #f5f5f5;  
+}  
+
+.detail-item:last-child {  
+  border-bottom: none;  
+}  
+
+.detail-label {  
+  font-size: 28rpx;  
+  color: #666666;  
+}  
+
+.highlight {  
+  background-color: #fffaf5;  
+}  
+
+.price {  
+  color: #ff4d4f;  
+  font-weight: 500;  
+  font-size: 32rpx;  
+}  
+
+/* 优惠券样式 */  
+.coupon-toggle {  
+  display: flex;  
+  align-items: center;  
+  font-size: 24rpx;  
+  color: #ff4d4f;  
+  padding: 4rpx 10rpx;  
+  border-radius: 20rpx;  
+  background-color: rgba(255, 77, 79, 0.1);  
+}  
+
+.toggle-icon {  
+  width: 12rpx;  
+  height: 12rpx;  
+  border-right: 2rpx solid #ff4d4f;  
+  border-bottom: 2rpx solid #ff4d4f;  
+  margin-left: 6rpx;  
+  transition: transform 0.3s;  
+}  
+
+.toggle-icon.down {  
+  transform: rotate(45deg);  
+}  
+
+.toggle-icon.up {  
+  transform: rotate(-135deg);  
+}  
+
+.coupon-details {  
+  background-color: #fff7f7;  
+  border-top: 1rpx dashed #ffcdd2;  
+  border-bottom: 1rpx dashed #ffcdd2;  
+}  
+
+.coupon-list {  
+  padding: 16rpx 30rpx;  
+}  
+
+.coupon-item {  
+  display: flex;  
+  justify-content: space-between;  
+  align-items: center;  
+  padding: 12rpx 0;  
+  border-bottom: 1rpx dashed #ffcdd2;  
+}  
+
+.coupon-item:last-child {  
+  border-bottom: none;  
+}  
+
+.coupon-name {  
+  font-size: 26rpx;  
+  color: #333333;  
+}  
+
+.coupon-discount {  
+  font-size: 26rpx;  
+  color: #ff4d4f;  
+  font-weight: 500;  
+}  
+
+/* 优惠金额样式 */  
+.discount-item {  
+  background-color: #fff7f7;  
+}  
+
+.detail-value-container {  
+  display: flex;  
+  align-items: center;  
+}  
+
+.discount-value {  
+  color: #ff4d4f;  
+  margin-right: 10rpx;  
+}  
+
+/* 取消订单按钮 */  
+.cancel-order-container {  
+  display: flex;  
+  justify-content: flex-end;  
+  padding: 20rpx 30rpx 30rpx;  
+}  
+
+.cancel-order-text {  
+  color: #999999;  
+  font-size: 28rpx;  
+  padding: 10rpx 20rpx;  
+  border-radius: 30rpx;  
+  border: 1rpx solid #e0e0e0;  
+}  
+
+.cancel-order-text:active {  
+  background-color: #f5f5f5;  
+}  
+
+/* 底部操作栏 */  
+.action-bar {  
+  position: fixed;  
+  bottom: 0;  
+  left: 0;  
+  right: 0;  
+  background-color: rgba(255, 255, 255, 0.95);  
+  backdrop-filter: blur(10px);  
+  padding: 20rpx 30rpx;  
+  box-shadow: 0 -2rpx 16rpx rgba(0, 0, 0, 0.08);  
+  z-index: 100;  
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));  
+}  
+
+.action-buttons-container {  
+  display: flex;  
+  justify-content: center;  
+  gap: 20rpx;  
+}  
+
+.action-button {  
+  min-width: 220rpx;  
+  height: 90rpx;  
+  border-radius: 45rpx;  
+  font-size: 28rpx;  
+  margin: 0;  
+  padding: 0;  
+  box-sizing: border-box;  
+  border: none;  
+  transition: transform 0.2s, box-shadow 0.2s;  
+}  
+
+.action-button::after {  
+  border: none;  
+}  
+
+.button-content {  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  height: 100%;  
+}  
+
+.button-icon-slot {  
+  width: 32rpx;  
+  height: 32rpx;  
+  margin-right: 8rpx;  
+}  
+
+.confirm-button {  
+  background: #3a7afe;  
+  color: white;  
+  box-shadow: 0 4rpx 12rpx rgba(58, 122, 254, 0.2);  
+}  
+
+.share-button {  
+  background: #5db85b;  
+  color: white;  
+  box-shadow: 0 4rpx 12rpx rgba(93, 184, 91, 0.2);  
+}  
+
+.pay-button {  
+  background: #ff4d4f;  
+  color: white;  
+  box-shadow: 0 4rpx 12rpx rgba(255, 77, 79, 0.2);  
+}  
+
+.action-button:active {  
+  transform: translateY(2rpx);  
+  box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.15);  
+}  
+
+/* 手机号授权弹窗 */  
+.phone-modal {  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  width: 100%;  
+  height: 100%;  
+  z-index: 1000;  
+  visibility: hidden;  
+  opacity: 0;  
+  transition: all 0.3s ease;  
+}  
+
+.phone-modal.show {  
+  visibility: visible;  
+  opacity: 1;  
+}  
+
+.modal-mask {  
+  position: absolute;  
+  top: 0;  
+  left: 0;  
+  width: 100%;  
+  height: 100%;  
+  background-color: rgba(0, 0, 0, 0.6);  
+}  
+
+.modal-content {  
+  position: absolute;  
+  /* top: 50%;   */
+  left: 50%;  
+  transform: translate(-50%, -50%);  
+  width: 600rpx;  
+  background-color: #fff;  
+  border-radius: 16rpx;  
+  overflow: hidden;  
+}  
+
+.modal-header {  
+  position: relative;  
+  padding: 30rpx 0;  
+  text-align: center;  
+  border-bottom: 1rpx solid #f0f0f0;  
+}  
+
+.modal-title {  
+  font-size: 32rpx;  
+  font-weight: 500;  
+  color: #333;  
+}  
+
+.modal-close {  
+  position: absolute;  
+  right: 30rpx;  
+  top: 25rpx;  
+  font-size: 40rpx;  
+  color: #999;  
+  line-height: 1;  
+}  
+
+.modal-body {  
+  padding: 40rpx 50rpx;  
+}  
+
+.auth-tip {  
+  text-align: center;  
+  font-size: 28rpx;  
+  color: #666;  
+  margin-bottom: 40rpx;  
+}  
+
+.auth-btn {  
+  width: 100%;  
+  height: 88rpx;  
+  background-color: #07c160;  
+  color: #fff;  
+  border-radius: 44rpx;  
+  font-size: 30rpx;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  margin-bottom: 30rpx;  
+  border: none;  
+}  
+
+.auth-btn::after {  
+  border: none;  
+}  
+
+.auth-btn.loading {  
+  opacity: 0.8;  
+}  
+
+.cancel-btn {  
+  text-align: center;  
+  font-size: 28rpx;  
+  color: #999;  
+  padding: 10rpx;  
+}  
+
+/* 订单流程指示器 */  
+.order-flow-container {  
+  display: flex;  
+  justify-content: space-between;  
+  padding: 30rpx 40rpx;  
+  margin-bottom: 20rpx;  
+  background-color: #ffffff;  
+  border-radius: 16rpx;  
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);  
+}  
+
+.flow-step {  
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+  position: relative;  
+  flex: 1;  
+}  
+
+.step-icon {  
+  position: relative;  
+  width: 40rpx;  
+  height: 40rpx;  
+  margin-bottom: 16rpx;  
+}  
+
+.step-dot {  
+  width: 20rpx;  
+  height: 20rpx;  
+  border-radius: 50%;  
+  background-color: #e0e0e0;  
+  position: absolute;  
+  top: 50%;  
+  left: 50%;  
+  transform: translate(-50%, -50%);  
+  z-index: 1;  
+}  
+
+.step-check {  
+  position: absolute;  
+  top: 0;  
+  left: 0;  
+  width: 40rpx;  
+  height: 40rpx;  
+  border-radius: 50%;  
+  background-color: #52c41a;  
+  color: white;  
+  font-size: 24rpx;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  z-index: 2;  
+}  
+
+.step-line {  
+  position: absolute;  
+  top: 20rpx;  
+  right: 50%;  
+  width: 100%;  
+  height: 2rpx;  
+  background-color: #e0e0e0;  
+  z-index: 0;  
+}  
+
+.flow-step:first-child .step-line {  
+  display: none;  
+}  
+
+.step-text {  
+  font-size: 26rpx;  
+  color: #999999;  
+  text-align: center;  
+}  
+
+.flow-step.completed .step-dot {  
+  background-color: #52c41a;  
+}  
+
+.flow-step.completed .step-line {  
+  background-color: #52c41a;  
+}  
+
+.flow-step.completed .step-text {  
+  color: #52c41a;  
+}  
+
+.flow-step.current .step-dot {  
+  background-color: #ff4d4f;  
+  box-shadow: 0 0 0 4rpx rgba(255, 77, 79, 0.2);  
+}  
+
+.flow-step.current .step-text {  
+  color: #ff4d4f;  
+  font-weight: 500;  
+}  
+
+/* 订单类型标识 */  
+.order-type-badge {  
+  display: inline-block;  
+  padding: 6rpx 16rpx;  
+  border-radius: 8rpx;  
+  font-size: 24rpx;  
+  font-weight: 500;  
+  margin-bottom: 16rpx;  
+}  
+
+.order-type-badge.regular {  
+  background-color: #f6ffed;  
+  color: #52c41a;  
+  border: 1rpx solid #b7eb8f;  
+}  
+
+.order-type-badge.reservation {  
+  background-color: #e6f7ff;  
+  color: #1890ff;  
+  border: 1rpx solid #91d5ff;  
+}  
+
+/* 预约信息卡片 */  
+.reservation-info {  
+  padding: 20rpx 30rpx;  
+}  
+
+.reservation-item {  
+  display: flex;  
+  padding: 16rpx 0;  
+  border-bottom: 1rpx solid #f5f5f5;  
+}  
+
+.reservation-item:last-child {  
+  border-bottom: none;  
+}  
+
+.reservation-details {  
+  flex: 1;  
+}  
+
+.reservation-label {  
+  font-size: 28rpx;  
+  color: #666666;  
+  margin-bottom: 6rpx;  
+}  
+
+.reservation-value {  
+  font-size: 28rpx;  
+  color: #333333;  
+  font-weight: 500;  
+}  
+
+/* 时间选择弹窗 */  
+.time-selection-modal {  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  width: 100%;  
+  height: 100%;  
+  z-index: 1000;  
+  visibility: hidden;  
+  opacity: 0;  
+  transition: all 0.3s ease;  
+}  
+
+.time-selection-modal.show {  
+  visibility: visible;  
+  opacity: 1;  
+}  
+
+.time-selection-modal .modal-mask {  
+  position: absolute;  
+  top: 0;  
+  left: 0;  
+  width: 100%;  
+  height: 100%;  
+  background-color: rgba(0, 0, 0, 0.6);  
+}  
+
+.time-selection-modal .modal-content {  
+  position: absolute;  
+  top: 50%;  
+  left: 50%;  
+  transform: translate(-50%, -50%);  
+  width: 600rpx;  
+  background-color: #fff;  
+  border-radius: 16rpx;  
+  overflow: hidden;  
+}  
+
+.time-selection-tip {  
+  text-align: center;  
+  font-size: 28rpx;  
+  color: #666;  
+  margin-bottom: 30rpx;  
+}  
+
+.time-options {  
+  margin-bottom: 40rpx;  
+}  
+
+.time-option {  
+  display: flex;  
+  align-items: center;  
+  padding: 24rpx;  
+  border-radius: 12rpx;  
+  margin-bottom: 20rpx;  
+  border: 1rpx solid #e8e8e8;  
+  transition: all 0.2s ease;  
+}  
+
+.time-option.selected {  
+  background-color: #f0f8ff;  
+  border-color: #1890ff;  
+}  
+
+.time-option-radio {  
+  width: 36rpx;  
+  height: 36rpx;  
+  border-radius: 50%;  
+  border: 1rpx solid #d9d9d9;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  margin-right: 20rpx;  
+}  
+
+.time-option.selected .time-option-radio {  
+  border-color: #1890ff;  
+}  
+
+.radio-inner {  
+  width: 18rpx;  
+  height: 18rpx;  
+  border-radius: 50%;  
+  background-color: #1890ff;  
+}  
+
+.time-option-content {  
+  flex: 1;  
+}  
+
+.time-label {  
+  font-size: 26rpx;  
+  color: #666;  
+  margin-bottom: 8rpx;  
+}  
+
+.time-value {  
+  font-size: 30rpx;  
+  color: #333;  
+  font-weight: 500;  
+}  
+
+.confirm-time-btn {  
+  width: 100%;  
+  height: 88rpx;  
+  background-color: #1890ff;  
+  color: #fff;  
+  border-radius: 44rpx;  
+  font-size: 30rpx;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  border: none;  
+}  
+
+.confirm-time-btn::after {  
+  border: none;  
+}  
+
+.confirm-time-btn:active {  
+  opacity: 0.9;  
+}  
+.refund-button {
+  background: #f59e0b;  
+  color: white;
+  box-shadow: 0 4rpx 12rpx rgba(245, 158, 11, 0.2); 
+}
+/* 拒绝按钮 */  
+.reject-button {  
+  background: #10b981;  
+  color: white;  
+  box-shadow: 0 4rpx 12rpx rgba(255, 120, 117, 0.2);  
+}  
+
+/* 拒绝预约弹窗 */  
+.rejection-modal {  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  width: 100%;  
+  height: 100%;  
+  z-index: 1000;  
+  visibility: hidden;  
+  opacity: 0;  
+  transition: all 0.3s ease;  
+}  
+
+.rejection-modal.show {  
+  visibility: visible;  
+  opacity: 1;  
+}  
+
+.rejection-modal .modal-mask {  
+  position: absolute;  
+  top: 0;  
+  left: 0;  
+  width: 100%;  
+  height: 100%;  
+  background-color: rgba(0, 0, 0, 0.6);  
+}  
+
+.rejection-modal .modal-content {  
+  position: absolute;  
+  bottom: 0;  
+  left: 0;  
+  right: 0;  
+  width: 100%;  
+  background-color: #fff;  
+  border-top-left-radius: 32rpx;  
+  border-top-right-radius: 32rpx;  
+  max-height: 90vh;  
+  overflow-y: auto;  
+  transform: translateY(100%);  
+  transition: transform 0.3s ease;  
+}  
+
+.rejection-modal.show .modal-content {  
+  transform: translateY(0);  
+}  
+
+/* 拒绝选项 */  
+.rejection-options {  
+  margin-bottom: 32rpx;  
+}  
+
+.rejection-option {  
+  display: flex;  
+  align-items: center;  
+  padding: 24rpx;  
+  border-radius: 16rpx;  
+  margin-bottom: 16rpx;  
+  border: 1rpx solid #e8e8e8;  
+  transition: all 0.2s ease;  
+}  
+
+.rejection-option.selected {  
+  background-color: #fff1f0;  
+  border-color: #ff7875;  
+}  
+
+.option-radio {  
+  width: 36rpx;  
+  height: 36rpx;  
+  border-radius: 50%;  
+  border: 1rpx solid #d9d9d9;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  margin-right: 20rpx;  
+}  
+
+.rejection-option.selected .option-radio {  
+  border-color: #ff7875;  
+}  
+
+.option-content {  
+  flex: 1;  
+}  
+
+.option-title {  
+  font-size: 30rpx;  
+  color: #333;  
+  margin-bottom: 8rpx;  
+  font-weight: 500;  
+}  
+
+.option-desc {  
+  font-size: 26rpx;  
+  color: #666;  
+}  
+
+/* 拒绝原因输入 */  
+.reason-input-container {  
+  margin-bottom: 32rpx;  
+}  
+
+.reason-label {  
+  font-size: 28rpx;  
+  font-weight: 500;  
+  color: #333;  
+  display: block;  
+  margin-bottom: 12rpx;  
+}  
+
+.reason-textarea {  
+  width: 100%;  
+  height: 180rpx;  
+  padding: 20rpx;  
+  box-sizing: border-box;  
+  border: 1rpx solid #e8e8e8;  
+  border-radius: 12rpx;  
+  font-size: 28rpx;  
+  color: #333;  
+}  
+
+.text-counter {  
+  text-align: right;  
+  font-size: 24rpx;  
+  color: #999;  
+  margin-top: 8rpx;  
+}  
+
+/* 建议时间选择 */  
+.alternative-time-container {  
+  margin-bottom: 32rpx;  
+}  
+
+.alternative-time-label {  
+  font-size: 28rpx;  
+  font-weight: 500;  
+  color: #333;  
+  display: block;  
+  margin-bottom: 12rpx;  
+}  
+
+.rejection-time-options {  
+  display: flex;  
+  flex-wrap: wrap;  
+  gap: 16rpx;  
+  margin-bottom: 20rpx;  
+}  
+
+.rejection-time-btn {  
+  position: relative;  
+  padding: 16rpx 24rpx;  
+  border: 2rpx solid #e5e7eb;  
+  border-radius: 16rpx;  
+  font-size: 24rpx;  
+}  
+
+.rejection-time-btn.active {  
+  background-color: #ff4d4f;  
+  color: #fff;  
+  border-color: #ff4d4f;  
+}  
+
+.confirm-reject-btn {  
+  width: 100%;  
+  height: 88rpx;  
+  background-color: #ff4d4f;  
+  color: #fff;  
+  border-radius: 44rpx;  
+  font-size: 30rpx;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  border: none;  
+}  
+
+.confirm-reject-btn[disabled] {  
+  background-color: #f5f5f5;  
+  color: #bbb;  
+}  
+/* Phone icon styling */
+.detail-value {
+  font-size: 28rpx;  
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.phone-icon {
+  display: flex;
+  align-items: center;
+  margin-left: 12rpx;
+  padding: 6rpx 8rpx;
+  border-radius: 50%;
+  background-color: #e6f7ff;
+}
+
+.icon-phone {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+/* Add active state for better user feedback */
+.phone-icon:active {
+  background-color: #bae7ff;
+}
+
+/* 房间号输入样式 */
+.room-input-container {
+  margin: 20rpx 0;
+}
+
+.room-label {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.required-mark {
+  color: #ff4d4f;
+  margin-left: 4rpx;
+}
+
+.room-input {
+  width: 100%;
+  height: 80rpx;
+  background-color: #f5f5f5;
+  border-radius: 8rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  border: 1rpx solid #e0e0e0;
+}
+
+.room-input:focus {
+  border-color: #3b82f6;
+  background-color: #fff;
+}/* 确认信息样式 */
+.confirmation-info {
+  background-color: #f8f9fa;
+  border-radius: 8rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.confirmation-item {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 0;
+}
+
+.confirmation-label {
+  font-size: 28rpx;
+  color: #666;
+  width: 130rpx;
+}
+
+.confirmation-value {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+/* 禁用按钮样式 */
+.confirm-time-btn[disabled] {
+  background-color: #cccccc;
+  color: #999999;
+  opacity: 0.8;
+}/* 添加到CSS中 - 取消预约按钮样式 */
+.cancel-button {
+  background-color: #f5f5f5;  /* 灰色背景 */
+  color: #666666;  /* 灰色文字 */
+  border: 1px solid #e0e0e0;
+  box-shadow: none;  /* 移除阴影效果 */
+}
+
+.cancel-button:active {
+  background-color: #e8e8e8;
+  transform: translateY(2rpx);
+}
+
+.cancel-button .button-icon-slot {
+  opacity: 0.6;  /* 使图标看起来更灰色 */
+}
+/* 文本链接样式的取消按钮 */
+.text-cancel-link {
+  color: #999999;  /* 灰色文字 */
+  text-decoration: underline;  /* 下划线 */
+  font-size: 28rpx;
+  padding: 0 20rpx;
+  height: 90rpx;  /* 与其他按钮高度保持一致 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180rpx;  /* 给足够的点击区域 */
+}
+
+.text-cancel-link:active {
+  opacity: 0.7;  /* 点击时轻微变淡提供反馈 */
+}
+
+/* 保持原有的水平布局 */
+.action-buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 20rpx;
+}

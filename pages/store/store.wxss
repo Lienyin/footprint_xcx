@@ -1,0 +1,412 @@
+/* 首页样式 */
+.container {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  padding-bottom: 120rpx;
+}
+
+/* 广告轮播图区域 */
+.banner-container {
+  margin: 32rpx 32rpx 40rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+.banner-swiper {
+  height: 360rpx;
+}
+
+.banner-item {
+  position: relative;
+  height: 100%;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 区块标题样式 */
+.section-title {
+  padding: 0 32rpx;
+  margin: 40rpx 0 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #111827;
+  position: relative;
+  padding-left: 20rpx;
+}
+
+.title-text::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 32rpx;
+  background-color: #ef4444;
+  border-radius: 4rpx;
+}
+
+/* 技师预约区域 */
+.technician-booking-section {
+  background: #ffffff;
+  margin: 32rpx;
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  padding: 24rpx;
+}
+
+/* 标题行 */
+.section-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title-main {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+/* 引导提示 */
+.section-guide {
+  display: flex;
+  align-items: center;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.arrow-icon {
+  width: 24rpx;
+  height: 24rpx;
+  border-top: 2rpx solid #999;
+  border-right: 2rpx solid #999;
+  transform: rotate(45deg);
+  margin-left: 8rpx;
+}
+
+/* 技师轮播区域 */
+.technician-carousel {
+  padding: 10rpx 0;
+}
+
+.technician-scroll {
+  white-space: nowrap;
+}
+
+.technician-list {
+  display: flex;
+  padding: 0;
+}
+
+/* 技师卡片 */
+.technician-item {
+  display: inline-block;
+  width: 150rpx;
+  margin-right: 20rpx;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.technician-avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  margin: 0 auto 10rpx;
+  object-fit: cover;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.technician-name {
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 6rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 店铺列表 */
+.store-list {
+  padding: 0 32rpx;
+}
+
+.store-item {
+  background-color: #fff;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  margin-bottom: 32rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.store-item:active {
+  transform: translateY(-2rpx);
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 店铺基本信息 */
+.store-header {
+  display: flex;
+  margin-bottom: 24rpx;
+}
+
+.store-image-container {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: #f3f4f6;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.store-image {
+  width: 100%;
+  height: 100%;
+}
+
+.store-info {
+  flex: 1;
+  margin-left: 24rpx;
+  min-width: 0;
+}
+
+.store-name {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 12rpx;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.store-rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.stars {
+  display: flex;
+  margin-right: 12rpx;
+  align-items: center;
+}
+
+.star {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 4rpx;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjZjU5ZTBiIiBkPSJNMTIsMTcuNWwtNi4xNSwzLjcyYy0wLjY3LDAuNDEtMS41MS0wLjE0LTEuMzMtMC44N2wxLjYzLTcuMDNsLTUuMTUtNC42MmMtMC42LTAuNTQtMC4yOS0xLjU3LDAuNDktMS42M2w3LjA2LTAuNThsMi42LTYuMTVjMC4zLTAuNzEsMS4zLTAuNzEsMS42LDBsMi42LDYuMTVsNy4wNiwwLjU4YzAuNzgsMC4wNiwxLjA5LDEuMDksMC40OSwxLjYzbC01LjE1LDQuNjJsMS42Myw3LjAzYzAuMTgsMC43My0wLjY2LDEuMjgtMS4zMywwLjg3TDEyLDE3LjV6IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSI0Ii8+PC9zdmc+");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* 技师卡片中的星星调整 */
+.technician-item .store-rating {
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.technician-item .stars {
+  margin-right: 0;
+}
+
+.technician-item .star {
+  width: 20rpx;
+  height: 20rpx;
+}
+
+.rating-text {
+  color: #f59e0b;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.store-location {
+  display: flex;
+  align-items: center;
+  color: #6b7280;
+  font-size: 24rpx;
+}
+
+.location-icon {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 6rpx;
+}
+
+.address {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.distance {
+  margin-left: 16rpx;
+  color: #4b5563;
+  flex-shrink: 0;
+}
+
+/* 标签 */
+.store-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20rpx;
+}
+
+.tag {
+  font-size: 22rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  margin-right: 12rpx;
+  margin-bottom: 8rpx;
+  border: 1rpx solid rgba(239, 68, 68, 0.2);
+}
+
+/* 服务项目 */
+.services {
+  border-top: 1rpx solid rgba(0, 0, 0, 0.05);
+  padding-top: 16rpx;
+}
+
+.service-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12rpx;
+}
+
+.service-price {
+  display: flex;
+  align-items: center;
+}
+
+.current-price {
+  color: #ef4444;
+  font-weight: 600;
+  font-size: 32rpx;
+  margin-right: 12rpx;
+}
+
+.discount-badge {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+  margin-right: 12rpx;
+  border: 1rpx solid rgba(245, 158, 11, 0.2);
+}
+
+.original-price {
+  color: #9ca3af;
+  text-decoration: line-through;
+  font-size: 24rpx;
+}
+
+.service-name {
+  color: #374151;
+  font-size: 26rpx;
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 预约通知滚动区域 */
+.booking-notices {
+  background: rgba(255, 248, 240, 0.9);
+  border-radius: 12rpx;
+  margin: -8rpx 32rpx 24rpx;
+  padding: 8rpx 16rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.05);
+  border: 1rpx solid rgba(245, 158, 11, 0.2);
+}
+
+.notice-icon {
+  font-size: 24rpx;
+  margin-right: 12rpx;
+  color: #f59e0b;
+  flex-shrink: 0;
+}
+
+.notice-swiper {
+  height: 48rpx;
+  flex: 1;
+}
+
+.notice-item {
+  line-height: 48rpx;
+  font-size: 22rpx;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 悬浮按钮容器 */
+.floating-btn-container {
+  position: fixed;
+  right: 32rpx;
+  bottom: 120rpx;
+  z-index: 50;
+}
+
+/* 悬浮按钮 - 优惠券样式 */
+.floating-btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: bounce 2s infinite;
+}
+
+.coupon-image {
+  width: 100rpx;
+  height: 100rpx;
+  margin-bottom: 8rpx;
+}
+
+.floating-btn-text {
+  font-size: 24rpx;
+  color: #ef4444;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10rpx);
+  }
+  60% {
+    transform: translateY(-5rpx);
+  }
+}

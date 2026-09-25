@@ -1,0 +1,320 @@
+/* 横屏适配 */  
+page {  
+  width: 100vw;  
+  height: 100vh;  
+}  
+
+.container {  
+  width: 100%;  
+  height: 100%;  
+  display: flex;  
+  flex-direction: column;  
+  padding: 0; /* 移除container的padding */  
+  overflow: hidden; /* 防止意外滚动 */  
+}  
+
+/* 筛选区域样式 */  
+.filter-section {  
+  display: flex;  
+  padding: 10px;  
+  background-color: #f5f5f5;  
+  border-radius: 0; /* 移除圆角 */  
+  margin-bottom: 0; /* 移除底部间距 */  
+  align-items: center;  
+  position: sticky;  
+  top: 0;  
+  /* z-index: 10;   */
+  box-sizing: border-box; /* 确保padding不影响总宽度 */  
+  width: 100%; /* 明确指定宽度 */  
+  transition: none; /* 禁用过渡效果 */  
+}  
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  transition: all 0.3s ease;
+}
+
+.filter-item text {
+  margin-right: 5px;
+  font-weight: 500;
+  color: #333;
+}
+
+.picker {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: #fff;
+  border-radius: 4px;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.picker:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.picker-icon {
+  margin-left: 5px;
+  width: 16px;
+  height: 16px;
+  transition: all 0.3s ease;
+}
+
+.picker:active .picker-icon {
+  opacity: 0.7;
+}
+  
+  
+
+.search {  
+  flex: 1;  
+  position: relative;  
+}  
+
+.search input {  
+  width: 100%;  
+  padding: 5px 30px 5px 10px;  
+  background-color: #fff;  
+  border-radius: 4px;  
+}  
+
+.search icon {  
+  position: absolute;  
+  right: 8px;  
+  top: 50%;  
+  transform: translateY(-50%);  
+}  
+
+/* 表格样式 */  
+.table-header {  
+  display: flex;  
+  background-color: #e6f4ff;  
+  font-weight: bold;  
+  padding: 8px 0;  
+  position: sticky;  
+  top: 52px; /* 调整为filter-section的确切高度 */  
+  /* z-index: 9;   */
+  box-sizing: border-box;  
+  width: 100%;  
+  transition: none; /* 禁用过渡效果 */  
+}  
+
+.table-body {  
+  flex: 1;  
+  overflow-y: auto;  
+  width: 100%;  
+  box-sizing: border-box;  
+}  
+
+.table-row {  
+  display: flex;  
+  border-bottom: 1px solid #eee;  
+  padding: 8px 0;  
+}  
+
+.table-row:nth-child(even) {  
+  background-color: #f9f9f9;  
+}  
+
+.th, .td {  
+  flex: 1;  
+  text-align: center;  
+  padding: 0 5px;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+}  
+
+/* 弹窗样式 */  .modal {  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  width: 100%;  
+  height: 100%;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  z-index: 1000;  
+}  
+
+.modal-mask {  
+  position: absolute;  
+  top: 0;  
+  left: 0;  
+  width: 100%;  
+  height: 100%;  
+  background-color: rgba(0, 0, 0, 0.5);  
+  animation: fadeIn 0.2s ease-out;  
+}  
+
+.modal-content {  
+  width: 360px; /* 适合横屏的更窄尺寸 */  
+  background-color: #fff;  
+  border-radius: 8px;  
+  overflow: hidden;  
+  position: relative;  
+  z-index: 999;  
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);  
+  animation: slideUp 0.25s ease-out;  
+}  
+
+.modal-header {  
+  padding: 12px 15px;  
+  display: flex;  
+  align-items: center;  
+  justify-content: space-between;  
+  border-bottom: 1px solid #f0f0f0;  
+  background-color: #fafafa;  
+}  
+
+.modal-title {  
+  font-size: 16px;  
+  font-weight: 600;  
+  color: #333;  
+  flex: 1;  
+  text-align: center;  
+}  
+
+.modal-close {  
+  width: 24px;  
+  height: 24px;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  font-size: 18px;  
+  color: #999;  
+  cursor: pointer;  
+  border-radius: 50%;  
+}  
+
+.modal-body {  
+  padding: 15px;  
+}  
+
+.form-row {  
+  display: flex;  
+  flex-direction: row;  
+  gap: 15px;  
+  margin-bottom: 15px;  
+}  
+
+.form-group {  
+  flex: 1;  
+  min-width: 0; /* 确保flex项可以缩小 */  
+}  
+
+.form-label {  
+  display: block;  
+  font-size: 13px;  
+  font-weight: 500;  
+  color: #333;  
+  margin-bottom: 6px;  
+}  
+
+.form-picker, .form-input {  
+  width: 100%;  
+  height: 36px;  
+  padding: 0 10px;  
+  background-color: #f5f7fa;  
+  border-radius: 6px;  
+  border: 1px solid #e8e8e8;  
+  display: flex;  
+  align-items: center;  
+  justify-content: space-between;  
+  font-size: 13px;  
+  color: #333;  
+  transition: all 0.2s;  
+  box-sizing: border-box;  
+}  
+
+.form-picker:active {  
+  background-color: #e9ecf2;  
+}  
+
+.form-input:focus {  
+  border-color: #3a86ff;  
+  background-color: #fff;  
+}  
+
+.picker-icon {  
+  width: 14px;  
+  height: 14px;  
+  opacity: 0.7;  
+}  
+
+.modal-footer {  
+  display: flex;  
+  padding: 10px 15px 15px;  
+  justify-content: center;  
+  gap: 10px;  
+}  
+
+.btn {  
+  flex: 1;  
+  height: 36px;  
+  border-radius: 6px;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  font-size: 14px;  
+  font-weight: 500;  
+  transition: all 0.2s;  
+  border: none;  
+  max-width: 110px;  
+}  
+
+.btn-cancel {  
+  background-color: #f2f2f2;  
+  color: #666;  
+}  
+
+.btn-cancel:active {  
+  background-color: #e6e6e6;  
+}  
+
+.btn-confirm {  
+  background-color: #3a86ff;  
+  color: white;  
+}  
+
+.btn-confirm:active {  
+  background-color: #2d6fd9;  
+}  
+
+/* 动画效果 */  
+@keyframes fadeIn {  
+  from { opacity: 0; }  
+  to { opacity: 1; }  
+}  
+
+@keyframes slideUp {  
+  from { transform: translateY(20px); opacity: 0; }  
+  to { transform: translateY(0); opacity: 1; }  
+}
+/* 加载更多提示样式 */  
+.loading-more {  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  padding: 15px 0;  
+  color: #999;  
+}  
+
+.loading-icon {  
+  width: 20px;  
+  height: 20px;  
+  margin-right: 8px;  
+  border: 2px solid #e6e6e6;  
+  border-top: 2px solid #3498db;  
+  border-radius: 50%;  
+  animation: spin 1s linear infinite;  
+}  
+
+@keyframes spin {  
+  0% { transform: rotate(0deg); }  
+  100% { transform: rotate(360deg); }  
+}

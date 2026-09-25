@@ -1,0 +1,81 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/home/home",
+    "pages/me/me",
+    "pages/order/order",
+    "pages/orderCheck/check",
+    "pages/payResult/payResult",
+    "pages/orderDetail/detail",
+    "pages/set/set",
+    "pages/packageDetail/index",
+    "pages/withd/withd",
+    "pages/withdLog/withdLog",
+    "pages/user/user",
+    "pages/coupon/coupon",
+    "pages/orderPay/pay",
+    "pages/webview/webview",
+    "pages/store/store",
+    "pages/help/help",
+    "pages/helpDetail/detail",
+    "pages/couponDetail/couponDetail",
+    "pages/inviteRules/inviteRules",
+    "pages/tech/tech",
+    "pages/reservation/reservation",
+    "pages/activity-list/activity-list",
+    "pages/referral_BAK/referral",
+    "pages/balance/balance",
+    "pages/referralLog/referralLog",
+    "pages/couponPackage/couponPackage",
+    "pages/weCom/weCom",
+    "pages/referral/referral"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#6e6d6b",
+    "selectedColor": "#ff3456",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/store/store",
+        "iconPath": "images/nav/icon-index-b.png",
+        "selectedIconPath": "images/nav/icon-index-r.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/help/help",
+        "iconPath": "images/nav/icon-search-b.png",
+        "selectedIconPath": "images/nav/icon-search-r.png",
+        "text": "帮助"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "iconPath": "images/nav/icon-center-b.png",
+        "selectedIconPath": "images/nav/icon-center-r.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "plugins": {
+    "contactPlugin": {
+      "version": "1.4.3",
+      "provider": "wx104a1a20c3f81ec2"
+    }
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于获取附近门店"
+    }
+  },
+  "usingComponents": {
+    "service": "/components/service/service",
+    "floating-cart": "/components/floating-cart/floating-cart"
+  }
+}

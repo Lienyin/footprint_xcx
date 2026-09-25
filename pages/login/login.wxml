@@ -1,0 +1,4 @@
+<view class="loading" style="height:100vh">  
+  <image class="img" src="/images/loading.png"></image>  
+  <view class="text">资源加载中……</view>  
+</view>

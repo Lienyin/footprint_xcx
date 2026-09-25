@@ -1,0 +1,93 @@
+<view class="coupon-page">
+  
+  <view class="tab-container">
+    <view class="tab-item {{activeTab === 0 ? 'active' : ''}}" bindtap="switchTab" data-tab="0">
+      未使用 <text class="badge" wx:if="{{unusedCount > 0}}">{{unusedCount}}</text>
+    </view>
+    <view class="tab-item {{activeTab === 1 ? 'active' : ''}}" bindtap="switchTab" data-tab="1">
+      已使用
+    </view>
+    <view class="tab-item {{activeTab === 2 ? 'active' : ''}}" bindtap="switchTab" data-tab="2">
+      已过期
+    </view>
+  </view>
+
+
+  <view class="floating-coupon-btn {{floatingBtnState}}">
+    <view class="floating-btn-content" bindtap="goToCouponCenter">
+      <image src="/images/coupon.png" class="coupon-icon"></image>
+      <view class="btn-text">领券中心</view>
+    </view>
+  </view>
+  
+  <view class="coupon-list">
+    <block wx:if="{{coupons.length > 0}}">
+      <view class="coupon-item {{item.status === 2 ? 'expired' : (item.status === 1 ? 'used' : '')}}" wx:for="{{coupons}}" wx:key="couponUserId" data-id="{{item.couponUserId}}">
+
+        
+        <view class="coupon-tag" wx:if="{{item.couponType === 0}}">满减券</view>
+        <view class="coupon-tag discount" wx:elif="{{item.couponType === 1}}">折扣券</view>
+        <view class="coupon-tag free" wx:elif="{{item.couponType === 2}}">无门槛券</view>
+        <view class="coupon-tag inflate" wx:elif="{{item.couponType === 3}}">膨胀券</view>
+
+        
+        <view class="coupon-left">
+          <block wx:if="{{item.couponType === 0 || item.couponType === 2 || item.couponType === 3}}">
+            <text class="currency">¥</text>
+            <text class="amount">{{item.isInflated === 1 ? item.inflateAmount : item.discountAmount}}</text>
+          </block>
+          <block wx:elif="{{item.couponType === 1}}">
+            <text class="amount">{{item.discountRate}}</text>
+            <text class="discount-unit">折</text>
+          </block>
+
+          
+          <view class="condition" wx:if="{{(item.couponType === 0||item.couponType === 1)&&item.minAmount}}">
+            满{{item.minAmount}}元可用
+          </view>
+          <view class="condition" wx:elif="{{item.couponType === 2}}">
+            无使用门槛
+          </view>
+          <view class="condition" wx:elif="{{item.couponType === 3 && item.isInflated === 0}}">
+            可膨胀至{{item.maxInflation}}元
+          </view>
+          <view class="condition" wx:elif="{{item.couponType === 3 && item.isInflated === 1}}">
+            满{{item.minAmount}}元可用
+          </view>
+        </view>
+
+        
+        <view class="coupon-right">
+          <view class="coupon-name">{{item.couponName}}</view>
+          <view class="coupon-time">{{item.useStartTime}} - {{item.useEndTime}}</view>
+
+          
+          <view class="coupon-desc-container" wx:if="{{item.description}}">
+            <view class="coupon-desc {{item.showFullDesc ? 'expanded' : ''}}">{{item.description}}</view>
+            <view class="expand-btn" wx:if="{{item.description.length > 30}}" catchtap="toggleDescExpand" data-index="{{index}}">
+              {{item.showFullDesc ? '︿' : '﹀'}}
+            </view>
+          </view>
+
+          
+          <view class="inflate-btn" wx:if="{{item.couponType === 3 && item.isInflated === 0 && item.status === 0}}" catchtap="inflateCoupon" data-id="{{item.couponUserId}}">
+            去膨胀
+          </view>
+        </view>
+
+        
+        <button class="gift-tag" wx:if="{{item.isGift === 1 && item.status === 0}}" open-type="share" data-coupon="{{item}}" bindtap="setShareCoupon">
+          <image src="/images/coupon.png"></image>
+          <text class="gift-text">赠送</text>
+        </button>
+      </view>
+    </block>
+
+    
+    <view class="empty-state" wx:else>
+      <image src="/images/no-data.png"></image>
+      <text>暂无优惠券~</text>
+    </view>
+  </view>
+
+</view>

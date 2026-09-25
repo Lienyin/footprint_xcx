@@ -1,0 +1,517 @@
+/* pages/restaurant/index.wxss */
+.container {
+  background-color: #f6f6f6;
+  min-height: 100vh;
+}
+
+/* 餐厅信息区域 - 固定在顶部 */
+.restaurant-info {
+  padding: 20rpx;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.restaurant-title {
+  display: flex;
+  align-items: center;
+}
+
+.restaurant-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+
+.name {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.arrow-down {
+  margin-left: 8rpx;
+  display: flex;
+  align-items: center;
+}
+
+.arrow-icon {
+  font-size: 20rpx;
+  color: #666;
+}
+
+.restaurant-address {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+
+/* "我的"入口按钮 */
+.my-btn {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  display: flex;
+  align-items: center;
+  padding: 10rpx 20rpx;
+  background-color: #f8f8f8;
+  color: #333;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.my-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 6rpx;
+}
+
+/* 店铺选择器 */
+.shop-selector-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shop-selector {
+  width: 90%;
+  max-height: 70vh;
+  background-color: #fff;
+  border-radius: 12rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.15);
+}
+
+.shop-list-header {
+  padding: 24rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+
+.close-btn {
+  position: absolute;
+  right: 24rpx;
+  top: 24rpx;
+  font-size: 40rpx;
+  color: #999;
+}
+
+.shop-list {
+  max-height: calc(70vh - 100rpx);
+  overflow-y: auto;
+}
+
+.shop-item {
+  padding: 24rpx;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shop-item.active {
+  background-color: #f9f9f9;
+}
+
+.shop-info {
+  flex: 1;
+}
+
+.shop-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6rpx;
+}
+
+.shop-address {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.select-icon {
+  font-size: 36rpx;
+  color: #e4393c;
+  font-weight: bold;
+}
+
+/* 菜单区域 */
+.menu-container {
+  display: flex;
+  position: fixed;
+  top: 120rpx;
+  /* 为固定的餐厅信息区域留出空间 */
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.menu-categories-container {
+  width: 160rpx;
+  height: 100%;
+}
+
+.menu-categories {
+  width: 100%;
+  background-color: #f6f6f6;
+  height: 100%;
+}
+
+.category-item {
+  padding: 30rpx 10rpx;
+  text-align: center;
+  font-size: 26rpx;
+  position: relative;
+}
+
+.category-item.active {
+  background-color: #fff;
+  border-left: 4rpx solid #e4393c;
+}
+
+.category-tag {
+  position: absolute;
+  top: 5rpx;
+  right: 5rpx;
+  font-size: 20rpx;
+  padding: 2rpx 6rpx;
+  background-color: #e4393c;
+  color: white;
+  border-radius: 4rpx;
+}
+
+.menu-products-container {
+  flex: 1;
+  height: 100%;
+}
+
+.menu-products {
+  background-color: #fff;
+  padding: 0 20rpx;
+  padding-bottom: 180rpx;
+  /* 增加底部内边距，为购物车留出空间 */
+  height: 100%;
+  box-sizing: border-box;
+  /* 确保内边距不影响整体高度计算 */
+}
+
+.category-title {
+  padding: 20rpx 0;
+  font-size: 30rpx;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+}
+
+.category-desc {
+  font-size: 24rpx;
+  color: #999;
+  font-weight: normal;
+  margin-left: 10rpx;
+}
+
+.product-section {
+  padding: 20rpx 0;
+}
+
+.section-title {
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 广告banner */
+.ad-banner {
+  margin-top: 20rpx;
+  width: 100%;
+  height: 200rpx;
+}
+
+.ad-banner image {
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+}
+
+/* 商品项样式 */
+.product-item {
+  display: flex;
+  width: 100%;
+  background: #fff;
+  padding: 20rpx;
+  box-sizing: border-box;
+  margin-bottom: 10rpx;
+  position: relative;
+}
+
+.share-btn-mini {
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  width: 48rpx;
+  height: 48rpx;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  padding: 0;
+  margin: 0;
+  border: none;
+  line-height: 1;
+}
+
+.share-btn-mini::after {
+  border: none;
+  /* 移除button默认边框 */
+}
+
+.share-btn-mini image {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.product-image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.product-detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-name {
+  font-size: 30rpx;
+  /* font-weight: bold; */
+  margin-bottom: 10rpx;
+}
+
+.product-desc {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.product-price-container {
+  display: flex;
+  align-items: flex-end;
+  max-width: 340rpx;
+  /* 限制容器最大宽度，确保按钮不会太靠右 */
+}
+
+.price-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 15rpx;
+  /* 让价格和按钮之间有固定间距 */
+}
+
+.product-price {
+  color: #e4393c;
+  font-size: 28rpx;
+  display: flex;
+  align-items: baseline;
+}
+
+.price-symbol {
+  font-size: 24rpx;
+}
+
+.price-integer {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.price-decimal {
+  font-size: 28rpx;
+}
+
+.discount-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 4rpx;
+}
+
+.original-price {
+  font-size: 24rpx;
+  color: #999;
+  text-decoration: line-through;
+  margin-right: 10rpx;
+}
+
+.discount {
+  font-size: 20rpx;
+  color: #e4393c;
+  border: 1px solid #e4393c;
+  padding: 2rpx 8rpx;
+  border-radius: 4rpx;
+}
+/* wxss 文件 */
+.add-btn {
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 46rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #fff;
+  background-color: #e4393c;
+  border: 1rpx solid #e4393c; /* 红色边框 */
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.num-group {
+  display: flex;
+  align-items: center;
+}
+
+.minus-btn {
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 46rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #e4393c; /* 文字颜色设为红色 */
+  background-color: #fff; /* 背景颜色设为白色 */
+  border: 1rpx solid #e4393c; /* 红色边框 */
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.num-text {
+  margin: 0 10rpx;
+}
+/* 新增：按钮安全区域 */  
+.button-safe-area {  
+  padding: 15rpx 10rpx; /* 增加上下左右的点击范围 */  
+  margin: -15rpx -10rpx; /* 负边距抵消padding，不影响布局 */  
+  display: flex;  
+  align-items: center;  
+  justify-content: flex-end; /* 保持按钮右对齐 */  
+}  /* 数量编辑弹窗样式 */
+.num-editor-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.num-editor-container {
+  width: 600rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+
+.num-editor-title {
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 30rpx;
+}
+
+.num-editor-input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+}
+
+.num-adjust-btn {
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 76rpx;
+  text-align: center;
+  font-size: 40rpx;
+  color: #333;
+  background-color: #f5f5f5;
+  border: 1rpx solid #ddd;
+  border-radius: 8rpx;
+}
+
+.num-editor-input {
+  flex: 1;
+  height: 80rpx;
+  text-align: center;
+  font-size: 36rpx;
+  margin: 0 20rpx;
+  background-color: #f9f9f9;
+  border: 1rpx solid #ddd;
+  border-radius: 8rpx;
+}
+
+.num-editor-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.num-editor-btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 30rpx;
+  border-radius: 8rpx;
+}
+
+.num-editor-btn.cancel {
+  background-color: #f5f5f5;
+  color: #666;
+  margin-right: 15rpx;
+}
+
+.num-editor-btn.confirm {
+  background-color: #e4393c;
+  color: #fff;
+  margin-left: 15rpx;
+}
+
+/* 使数量文字显示为可点击状态 */
+.num-text {
+  margin: 0 10rpx;
+  min-width: 40rpx;
+  text-align: center;
+  position: relative;
+}
+
+.num-text::after {
+  content: '';
+  position: absolute;
+  bottom: -4rpx;
+  left: 0;
+  width: 100%;
+  height: 1rpx;
+  background-color: #999;
+}

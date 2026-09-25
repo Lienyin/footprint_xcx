@@ -1,0 +1,39 @@
+<view class="rule data-v-6c65a7d0">
+    <view class="head data-v-6c65a7d0">
+        <view class="know data-v-6c65a7d0">了解规则更好获得奖励</view>
+    </view>
+    <view class="cont data-v-6c65a7d0">
+        <view class="way flex data-v-6c65a7d0">
+            <view class="way-head data-v-6c65a7d0">操作方式</view>
+            <view class="way-middle flex data-v-6c65a7d0">
+                <view class="sigle flex flex_col data-v-6c65a7d0">
+                    <image class="pic data-v-6c65a7d0" src="/images/share_i.png"></image>
+                    <view class="b data-v-6c65a7d0">分享链接</view>
+                </view>
+                <view class="arrow data-v-6c65a7d0">
+                    <image class="pic1 data-v-6c65a7d0" src="/images/arrow.png"></image>
+                </view>
+                <view class="sigle flex flex_col data-v-6c65a7d0">
+                    <image class="pic data-v-6c65a7d0" src="/images/pay.png"></image>
+                    <view class="b data-v-6c65a7d0">好友注册</view>
+                </view>
+                <view class="arrow data-v-6c65a7d0">
+                    <image class="pic1 data-v-6c65a7d0" src="/images/arrow.png"></image>
+                </view>
+                <view class="sigle flex flex_col data-v-6c65a7d0">
+                    <image class="pic data-v-6c65a7d0" src="/images/money.png"></image>
+                    <view class="b data-v-6c65a7d0">获得奖励</view>
+                </view>
+            </view>
+        </view>
+        <view class="rewardRules data-v-6c65a7d0">
+            <view class="rewardRules-head data-v-6c65a7d0">奖励规则</view>
+            <view class="rules data-v-6c65a7d0">
+              <view wx:for="{{rules}}" wx:key="*this">{{item}}</view>
+            </view>
+        </view>
+    </view>
+    <button  open-type='share' class="bottom flex data-v-6c65a7d0" >
+        <view class="share data-v-6c65a7d0">立即分享获取福利</view>
+    </button>
+</view>

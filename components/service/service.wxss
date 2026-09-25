@@ -1,0 +1,90 @@
+.shipei.data-v-7f27f920 {
+  padding-bottom: env(safe-area-inset-bottom);
+  position: fixed;
+  right: 20rpx;
+  z-index: 980;
+}
+.shipei .icon.data-v-7f27f920 {
+  align-items: center;
+  background-color: hsla(0, 0%, 100%, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 0 4px #ccc;
+  font-size: 18rpx;
+  height: 80rpx;
+  justify-content: center;
+  width: 80rpx;
+}
+.home_out.data-v-7f27f920 {
+  bottom: 400rpx !important;
+}
+.home_out .sy.data-v-7f27f920 {
+  height: 28rpx;
+  width: 28rpx;
+}
+.kf_out.data-v-7f27f920 {
+  bottom: 300rpx !important;
+  z-index: 981;
+}
+.data-v-7f27f920 .u-fade-enter-active,
+.data-v-7f27f920 .u-fade-leave-active {
+  bottom: 200rpx !important;
+  height: 80rpx !important;
+  padding-bottom: env(safe-area-inset-bottom) !important;
+  right: 20rpx !important;
+  width: 80rpx !important;
+  z-index: 982 !important;
+}
+.data-v-7f27f920 .u-fade-enter-active .u-back-top,
+.data-v-7f27f920 .u-fade-leave-active .u-back-top {
+  background-color: #fff !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 4px #ccc !important;
+}
+.data-v-7f27f920 .u-fade-enter-active .u-back-top .u-icon__icon,
+.data-v-7f27f920 .u-fade-leave-active .u-back-top .u-icon__icon {
+  color: #000 !important;
+  font-size: 30rpx !important;
+}
+.data-v-7f27f920 .u-fade-enter-active .u-back-top .u-back-top__text,
+.data-v-7f27f920 .u-fade-leave-active .u-back-top .u-back-top__text {
+  font-size: 18rpx !important;
+}.customer-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.customer-container {
+  background-color: white;
+  width: 80%;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.customer-qrcode {
+  width: 500rpx;
+  height: 500rpx;
+}
+
+.customer-tips {
+  margin-top: 20rpx;
+  color: #666;
+  font-size: 28rpx;
+}
+
+.save-btn {
+  margin-top: 30rpx;
+  background-color: #07c160;
+  color: white;
+  width: 100%;
+}

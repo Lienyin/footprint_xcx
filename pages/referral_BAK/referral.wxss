@@ -1,0 +1,711 @@
+/* pages/referral/details.wxss */
+/* 整体容器 */
+.activity-container {
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  padding-bottom: 40rpx;
+}
+
+/* 顶部banner */
+.activity-banner {
+  width: 100%;
+}
+
+.banner-image {
+  width: 100%;
+}
+
+/* 我的邀请卡片 */
+.my-invite-card {
+  margin: -30rpx 30rpx 30rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 6rpx 12rpx rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1;
+}
+
+/* 卡片标题和规则按钮一行的容器 */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.card-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+/* 规则按钮样式 */
+.rules-btn {
+  font-size: 26rpx;
+  color: #e4393c;
+  padding: 6rpx 20rpx;
+  border-radius: 30rpx;
+}
+
+.rules-btn:active {
+  opacity: 0.8;
+}
+
+.invite-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+}
+
+.stat-item {
+  text-align: center;
+  width: 30%;
+  position: relative;
+}
+
+/* 添加点击效果 */
+.stat-item:active {
+  opacity: 0.8;
+}
+
+.stat-value-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-value {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #e4393c;
+  margin-bottom: 10rpx;
+}
+
+.stat-label {
+  font-size: 26rpx;
+  color: #666;
+}
+
+/* 档位和收益区域 - 调整宽度与累计奖励一致 */
+.tier-earnings-section {
+  padding: 0 0 32rpx;
+  display: flex;
+  gap: 16rpx;
+}
+
+.tier-card,
+.earnings-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx 16rpx;
+  border: 1rpx solid #f0f0f0;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.02);
+}
+
+.tier-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.tier-label {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.tier-badge {
+  background: #e3f2fd;
+  color: #1976d2;
+  font-size: 22rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 12rpx;
+  font-weight: 500;
+}
+
+/* 根据主题色调整以下样式 */
+.tier-badge.tier-basic {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.tier-badge.tier-medium {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.tier-badge.tier-high {
+  background: #fbe9e7;
+  color: #d84315;
+}
+
+.tier-reward {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 10rpx;
+}
+
+.tier-next {
+  font-size: 20rpx;
+  color: #999;
+  text-align: center;
+  display: block;
+}
+
+.earnings-card {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.earnings-item {
+  flex: 1;
+  text-align: center;
+}
+
+.earnings-divider {
+  width: 1rpx;
+  height: 60rpx;
+  background: #f0f0f0;
+}
+
+.earnings-label {
+  display: block;
+  font-size: 22rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.earnings-value {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.earnings-value.accent {
+  color: #ff6b35;
+}
+
+/* 里程碑样式 - 改为白色背景 */
+.milestone-section {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 30rpx;
+}
+
+.milestone-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.milestone-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.milestone-count-container {
+  display: flex;
+  align-items: center;
+}
+
+.milestone-count {
+  font-size: 22rpx;
+  color: #666;
+}
+
+.info-icon {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  background-color: rgba(153, 153, 153, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20rpx;
+  color: #999;
+  margin-left: 8rpx;
+}
+
+/* 针对不同场景的特殊处理 */
+.stat-item .info-icon {
+  position: absolute;
+  top: -5rpx;
+  right: 25%;
+}
+
+.milestone-progress-container {
+  position: relative;
+  margin: 50rpx 0 70rpx;
+  height: 16rpx;
+}
+
+.milestone-track {
+  position: relative;
+  height: 16rpx;
+  background-color: #e6e6e6;
+  border-radius: 8rpx;
+}
+
+.milestone-progress {
+  position: absolute;
+  height: 16rpx;
+  background: linear-gradient(to right, #e4393c, #ff6b6b);
+  border-radius: 8rpx;
+  transition: width 0.5s ease;
+}
+
+.milestone-point {
+  position: absolute;
+  top: -6rpx;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+  width: 120rpx;
+}
+
+.point-marker {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 4rpx solid #ccc;
+  margin-bottom: 8rpx;
+  z-index: 1;
+}
+
+.milestone-point.achieved .point-marker {
+  border-color: #e4393c;
+  background-color: #e4393c;
+  box-shadow: 0 0 10rpx rgba(228, 57, 60, 0.5);
+}
+
+.point-label {
+  font-size: 20rpx;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-align: center;
+}
+
+.point-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+}
+
+.reward-label {
+  font-size: 24rpx;
+  color: #e4393c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-align: center;
+}
+
+.milestone-point.achieved .point-label,
+.milestone-point.achieved .reward-label {
+  font-weight: 500;
+  color: #e4393c;
+}
+
+.milestone-next {
+  margin-top: 60rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx dashed rgba(228, 57, 60, 0.2);
+}
+
+.next-milestone-info {
+  font-size: 22rpx;
+  color: #666;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.invite-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 30rpx;
+}
+
+/* 推广码按钮样式 */
+.btn-get-code {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  background: linear-gradient(to right, #e4393c, #ff6b6b);
+  color: #fff;
+  box-shadow: 0 4rpx 8rpx rgba(228, 57, 60, 0.3);
+}
+
+/* 免责声明 */
+.disclaimer {
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+  padding: 30rpx 0;
+}
+
+/* 弹窗样式 */
+.popup-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+}
+
+.popup-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  max-width: 650rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  z-index: 101;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.15);
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  box-sizing: border-box;
+}
+
+.popup-title {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.close-icon {
+  font-size: 36rpx;
+  color: #999;
+  line-height: 1;
+  padding: 10rpx;
+  margin: -10rpx;
+}
+
+.popup-body {
+  padding: 24rpx;
+  overflow-y: auto;
+}
+
+.popup-body text {
+  display: block;
+  margin-bottom: 12rpx;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+}
+
+.popup-notice {
+  color: #e4393c;
+  margin-top: 10rpx;
+}
+
+/* 二维码弹窗 */
+.qrcode-popup {
+  width: 70%;
+}
+
+.qrcode-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 24rpx;
+}
+
+.qrcode-image {
+  width: 400rpx;
+  height: 400rpx;
+  margin-bottom: 20rpx;
+}
+
+.qrcode-tip {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.qrcode-desc {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 30rpx;
+}
+
+.btn-share-code {
+  width: 80%;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  background: linear-gradient(to right, #e4393c, #ff6b6b);
+  color: #fff;
+  box-shadow: 0 4rpx 8rpx rgba(228, 57, 60, 0.3);
+}
+
+/* 规则弹窗 */
+.rules-popup {
+  max-height: 85vh;
+  width: 90%;
+}
+
+.rules-body {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 30rpx;
+}
+
+.rule-item {
+  margin-bottom: 30rpx;
+}
+
+.rule-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16rpx;
+  position: relative;
+  padding-left: 20rpx;
+}
+
+.rule-title:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8rpx;
+  width: 6rpx;
+  height: 24rpx;
+  background-color: #e4393c;
+  border-radius: 3rpx;
+}
+
+.rule-text {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+}
+
+.rule-text text {
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.rule-section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #e4393c;
+  margin: 24rpx 0 12rpx;
+  padding-left: 16rpx;
+  position: relative;
+}
+
+.rule-section-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6rpx;
+  height: 24rpx;
+  background-color: #e4393c;
+  border-radius: 3rpx;
+}
+
+.rule-notice {
+  margin-top: 30rpx;
+  padding: 16rpx;
+  background-color: rgba(228, 57, 60, 0.05);
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  color: #e4393c;
+  line-height: 1.6;
+}
+
+/* 规则表格样式 */
+.rules-table {
+  border: 1px solid #eee;
+  border-radius: 8rpx;
+  margin: 16rpx 0 24rpx;
+  overflow: hidden;
+}
+
+.rules-table-header {
+  display: flex;
+  background-color: rgba(228, 57, 60, 0.08);
+  font-weight: 600;
+}
+
+.rules-table-row {
+  display: flex;
+  border-top: 1px solid #eee;
+}
+
+.rules-table-cell {
+  flex: 1;
+  padding: 16rpx 12rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #666;
+  border-right: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rules-table-cell:last-child {
+  border-right: none;
+}
+
+/* 调整收益标签和问号容器 */
+.earnings-label-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16rpx;
+  /* 增加底部间距 */
+}
+
+/* 小尺寸问号图标，适用于紧凑空间 */
+.info-icon.small {
+  position: static;
+  width: 24rpx;
+  height: 24rpx;
+  font-size: 16rpx;
+  margin-left: 6rpx;
+  flex-shrink: 0;
+}
+
+/* 调整收益项内容垂直布局 */
+.earnings-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* 增加垂直方向的空间分布 */
+  height: 80rpx;
+  /* 设置一个固定高度，增加整体间距 */
+}
+
+/* 重新调整收益值样式，增加上边距 */
+.earnings-value {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-top: 4rpx;
+  /* 增加与标签的距离 */
+}
+
+.earnings-value.accent {
+  color: #ff6b35;
+}
+
+/* 重新调整收益标签间距 */
+.earnings-label {
+  font-size: 22rpx;
+  color: #666;
+  margin-bottom: 0;
+  /* 移除原有的底部边距 */
+}
+
+.leaderboard-section {
+  margin: 30rpx 30rpx 0;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.03);
+}
+
+.leaderboard-header {
+  margin-bottom: 20rpx;
+}
+
+.leaderboard-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.leaderboard-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 26rpx;
+  color: #666;
+  min-height: 48rpx;
+  border-bottom: 1px solid #f5f5f5;
+  padding-bottom: 8rpx;
+}
+
+.leaderboard-item:last-child {
+  border-bottom: none;
+}
+
+.rank-number {
+  width: 60rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.top-rank .rank-number {
+  color: #e4393c;
+}
+
+.leaderboard-name {
+  flex: 1;
+  margin-left: 8rpx;
+  margin-right: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.leaderboard-score {
+  min-width: 88rpx;
+  text-align: right;
+  color: #ff6b35;
+  font-weight: 600;
+}/* 在您的 WXSS 文件中添加 */
+.loading-placeholder {
+  text-align: center;
+  padding: 20rpx;
+  color: #999;
+  font-size: 28rpx;
+}

@@ -1,0 +1,40 @@
+
+<view class="page">
+  
+  <view class="activity-list">
+    <block wx:for="{{activities}}" wx:key="bannerId">
+      <view class="activity-card" bindtap="goToDetail" data-id="{{item.bannerId}}">
+        
+        <view class="activity-image-container">
+          <image src="{{item.imageUrl}}" mode="aspectFill" class="activity-image"></image>
+          <view class="activity-status {{item.status}}">
+            {{item.status === 'ongoing' ? '进行中' : item.status === 'upcoming' ? '即将开始' : '已结束'}}
+          </view>
+        </view>
+
+        
+        <view class="activity-content">
+          <view class="activity-title">{{item.bannerTitle}}</view>
+
+          <view class="activity-info">
+            <view class="activity-date">
+              <block wx:if="{{item.startTime || item.endTime}}">
+                {{item.startDate}} - {{item.endDate}}
+              </block>
+              <block wx:else>
+                长期有效
+              </block>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  
+  <view class="empty-state" wx:if="{{activities.length === 0}}">
+    <image src="/images/no-data.png" mode="aspectFit" class="empty-image"></image>
+    <view class="empty-text">暂无活动</view>
+    <view class="empty-subtext">近期将会上线更多优惠活动，敬请期待</view>
+  </view>
+</view>

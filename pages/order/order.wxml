@@ -1,0 +1,109 @@
+<view class="orderBox data-v-a4015d10">
+  <view class="head data-v-a4015d10">
+    <view class="searchBox flex flex_row data-v-a4015d10">
+      <block>
+        <view wx:if="{{identityFlag!=0}}" class="optionBtn data-v-a4015d10">
+          <picker bindchange="onPlatChange" value="{{searchForm.platIndex}}" range="{{columnsPlat[0]}}" range-key="name">
+            <view class="picker">
+              <text>{{searchForm.platName}}</text>
+              <image src="/images/down.png" class="picker-icon" mode="aspectFit" wx:if="{{searchForm.platName=='全门店'}}"></image>
+              <image src="/images/down.png" class="icon-close" wx:else style="width: 20rpx; height: 20rpx;"></image>
+            </view>
+          </picker>
+        </view>
+        <view class="optionBtn data-v-a4015d10">
+          <picker bindchange="onStatusChange" value="{{searchForm.statusIndex}}" range="{{columnsType[0]}}" range-key="name">
+            <view class="picker">
+              <text>{{searchForm.statusName}}</text>
+              <image src="/images/down.png" class="picker-icon" mode="aspectFit" wx:if="{{searchForm.statusName=='订单状态'}}"></image>
+              <image src="/images/down.png" class="icon-close" wx:else style="width: 20rpx; height: 20rpx;"></image>
+            </view>
+          </picker>
+        </view>
+        
+      <view wx:if="{{identityFlag==0}}" class="clearBtn data-v-a4015d10" bind:tap="clearOrders">  
+        <image src="/images/trash.png" style="width: 28rpx; height: 28rpx; margin-right: 8rpx;"></image>  
+        <text>清除订单</text>  
+      </view>  
+      </block>
+    </view>
+  </view>
+  <view class="{{['ul','data-v-a4015d10',!showTeamOrder?'no_team':'']}}" wx:if="{{current===0}}">  
+    <view class="li-wrapper data-v-a4015d10"   
+      wx:for="{{list}}"   
+      wx:key="id"  
+      bindtouchstart="touchStart"   
+      bindtouchmove="touchMove"  
+      data-index="{{index}}">  
+  
+    
+  <view class="li-content data-v-a4015d10 {{item.isTouchMove ? 'touch-move-active' : ''}}">  
+    <view class="li data-v-a4015d10" catch:tap="toDetail" data-pack="{{item}}">  
+        
+      <view class="li-top data-v-a4015d10">  
+        <view class="l data-v-a4015d10">
+          
+          <text wx:if="{{item.orderType==1}}" class="order-type-tag data-v-a4015d10 {{item.orderType === 1 ? 'reservation' : 'regular'}}">{{item.orderType === 1 ? '预约' : '订单'}}</text>
+          订单编号：<text class="data-v-a4015d10">{{item.orderNo}}</text>  
+        </view>  
+        <view class="r infoText data-v-a4015d10">{{item.orderStatusName}}</view>  
+      </view>  
+      <view class="li-bom data-v-a4015d10">  
+        <view class="l data-v-a4015d10">  
+          
+          <image class="picImg data-v-a4015d10" src="{{item.coverImg}}" lazy-load="true" mode="aspectFill"></image>
+        </view>  
+        <view class="r data-v-a4015d10">  
+          <view class="r2_ data-v-a4015d10">  
+            <block wx:if="{{item.storeName}}">{{'门店：'+item.storeName}}</block>  
+          </view>  
+          <view class="r2_ data-v-a4015d10">  
+            <block wx:if="{{item.remark}}">{{'技师：'+item.remark+'；'}}</block>
+            <block wx:if="{{item.room}}">{{'房间：'+item.room}}</block>  
+          </view>  
+          
+          
+          <block wx:if="{{item.orderType === 1}}">
+            <view class="r2_ data-v-a4015d10">
+              {{'预约时间：'+item.finalReservationTime}}
+            </view>
+            <view class="r2_ data-v-a4015d10">
+              {{'预约人数：'+item.peopleCount+'人'}}
+            </view>
+          </block>
+          
+          
+          <block wx:if="{{item.orderType === 0 && item.packageName}}">
+            <view class="r2_ data-v-a4015d10">
+              {{'套餐：'+item.packageName}}
+            </view>
+          </block>
+          
+          <view class="r2_ data-v-a4015d10">  
+            <block wx:if="{{item.phoneNumber}}">{{'付款手机：'+item.phoneNumber}}</block>  
+          </view>  
+          <view class="r2 data-v-a4015d10">  
+            <block>{{'创建时间：'+item.createTime}}</block>  
+          </view>  
+          <view class="r3 quan flex flex_row data-v-a4015d10" wx:if="{{item.payAmount>0}}">  
+            <view class="price data-v-a4015d10">￥<text class="data-v-a4015d10">{{item.payAmount}}</text>  
+            </view>  
+          </view>  
+        </view>  
+      </view>  
+    </view>  
+  </view>  
+  
+    
+  <view class="delete-btn data-v-a4015d10" catchtap="deleteOrder" data-item="{{item}}">  
+    删除  
+  </view>  
+</view>
+</view>
+  
+  <view class="loadmore data-v-a4015d10" wx:if="{{showLoading}}">
+    <view class="loadmore-line"></view>
+    <text class="loadmore-text">{{loadStatus === 'loading' ? '加载中...' : '没有更多了'}}</text>
+    <view class="loadmore-line"></view>
+  </view>
+</view>

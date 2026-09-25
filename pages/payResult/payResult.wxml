@@ -1,0 +1,147 @@
+<view class="container">
+  
+  <view wx:if="{{status != 1}}" class="result-card">
+    <view class='icon-container'>
+      <image src="/images/pay-success.png" class="result-icon"></image>
+    </view>
+    <view class='result-content'>
+      <view class="result-title">付款成功</view>
+      <view class="result-subtitle">订单已提交，商家确认中</view>
+
+      <view class="order-process">
+        <view class="process-step active">
+          <view class="step-main">
+            <view class="step-icon">
+              <view class="step-circle">✓</view>
+            </view>
+            <view class="step-text">支付成功</view>
+          </view>
+          
+        </view>
+        <view class="process-connector active-connector"></view>
+
+        <view class="process-step current">
+          <view class="step-main">
+            <view class="step-icon">
+              <view class="step-circle">2</view>
+            </view>
+            <view class="step-text">商家确认</view>
+          </view>
+          
+        </view>
+        <view class="process-connector"></view>
+
+        <view class="process-step">
+          <view class="step-main">
+            <view class="step-icon">
+              <view class="step-circle">3</view>
+            </view>
+            <view class="step-text">完成离店</view>
+          </view>
+          
+        </view>
+      </view>
+    </view>
+
+    <view class="action-container">
+      <button class="secondary-outline-button" bindtap="toOrderListPage">
+        查看我的订单
+      </button>
+    </view>
+  </view>
+  
+  <view wx:elif="{{status == 3}}" class="result-card">
+    <view class='icon-container'>
+      <image src="/images/pay-success.png" class="result-icon"></image>
+    </view>
+    <view class='result-content'>
+      <view class="result-title">预约已提交</view>
+      <view class="result-subtitle">商家确认中，请留意消息通知</view>
+
+      <view class="order-process">
+        <view class="process-step current">
+          <view class="step-main">
+            <view class="step-icon">
+              <view class="step-circle">✓</view>
+            </view>
+            <view class="step-text">商家确认</view>
+          </view>
+          
+        </view>
+        <view class="process-connector active-connector"></view>
+
+        <view class="process-step">
+          <view class="step-main">
+            <view class="step-icon">
+              <view class="step-circle">2</view>
+            </view>
+            <view class="step-text">到店服务</view>
+          </view>
+          
+        </view>
+      </view>
+    </view>
+
+    <view class="action-container">
+      <button class="secondary-outline-button" bindtap="toOrderListPage">
+        查看我的订单
+      </button>
+    </view>
+  </view>
+
+  <view wx:else class="result-card">
+    <view class='icon-container'>
+      <image src="/images/pay-success.png" class="result-icon"></image>
+    </view>
+    <view class='result-content'>
+      <view class="result-subtitle">需支付</view>
+      <view class="price-text">¥{{price}}</view>
+    </view>
+    <view class="action-container">
+      <button class="primary-button share-button" open-type='share'>
+        <text class="button-text">发给微信好友</text>
+      </button>
+    </view>
+  </view>
+
+  
+  <view class="promotion-cards-wrapper" >
+    
+    <view class="service-card">
+      <view class="text-section">
+        <view class="modal-title">恭喜！升级会员</view>
+        <view class="modal-description">获企微专属券 · 专属折扣 · 一对一服务</view>
+      </view>
+      
+      <view class="qrcode-section">
+        <image 
+          src="https://www.lianzhenkj.com/img/qywx.png" 
+          class="modal-qrcode" 
+          show-menu-by-longpress
+          bindtap="saveQrcode"
+        ></image>
+        <view class="qrcode-tip">长按识别</view>
+      </view>
+    </view>
+    
+    
+    <view class="coupon-entry-enhanced" bindtap="goToOfficialAccount" wx:if="{{activity&&activity.description}}">
+      <view class="coupon-inner-enhanced">
+        <view class="coupon-content">
+          <view class="coupon-title-row">
+            <text class="coupon-title-enhanced">{{activity.title}}</text>
+            <text class="coupon-value">{{activity.subTitle}}</text>
+          </view>
+          <view class="coupon-benefits">
+            <view class="benefit-item" wx:for="{{activity.description}}">
+              <text class="benefit-dot">•</text>
+              <text class="benefit-text">{{item}}</text>
+            </view>
+          </view>
+        </view>
+        
+      </view>
+    </view>
+
+  </view>
+</view>

@@ -1,0 +1,149 @@
+<view class="container">
+  
+  <view class="filter-section">
+    <view class="filter-item">
+      <text>角色：</text>
+      <picker bindchange="onRoleChange" value="{{roleIndex}}" range="{{roles}}" range-key="name">
+        <view class="picker">
+          <text>{{roles[roleIndex].name}}</text>
+          <image src="/images/down.png" class="picker-icon" mode="aspectFit"></image>
+        </view>
+      </picker>
+    </view>
+    <view class="filter-item" wx:if="{{roles[roleIndex].id === 1 || roles[roleIndex].id === 2}}">
+      <text>门店：</text>
+      <picker bindchange="onStoreChange" value="{{storeIndex}}" range="{{stores}}" range-key="storeName">
+        <view class="picker">
+          <text>{{stores[storeIndex].storeName}}</text>
+          <image src="/images/down.png" class="picker-icon" mode="aspectFit"></image>
+        </view>
+      </picker>
+    </view>
+    <view class="filter-item search">
+      <input type="text" placeholder="搜索手机/昵称" bindblur="onSearchInput" value="{{searchText}}" />
+      <icon type="search" size="18"></icon>
+    </view>
+  </view>
+
+  
+  <view class="table-header" wx:if="{{roles[roleIndex].id === -1}}">
+    <view class="th">昵称</view>
+    <view class="th">手机</view>
+    <view class="th">角色</view>
+    <view class="th">操作</view>
+  </view>
+
+  
+  <view class="table-header" wx:else>
+    <view class="th">昵称</view>
+    <view class="th">手机</view>
+    <view class="th" wx:if="{{roles[roleIndex].id === 1 || roles[roleIndex].id === 2}}">门店</view>
+    <view class="th" wx:if="{{roles[roleIndex].id === 2}}">编号</view>
+    <view class="th" wx:if="{{roles[roleIndex].id === 0}}">累计消费金额</view>
+    <view class="th" wx:if="{{roles[roleIndex].id === 1 || roles[roleIndex].id === 2}}">累计提成</view>
+    <view class="th" wx:if="{{roles[roleIndex].id !== 3}}">累计订单</view>
+    <view class="th" wx:if="{{roles[roleIndex].id === 0}}">邀请人</view>
+    <view class="th" wx:if="{{roles[roleIndex].id === 1 || roles[roleIndex].id === 2}}">累计邀请人</view>
+    <view class="th">操作</view>
+  </view>
+
+  
+  <scroll-view scroll-y="true" class="table-body"bindscrolltolower="loadMore"   
+  lower-threshold="50"   wx:if="{{roles[roleIndex].id === -1}}">
+
+    <view wx:for="{{userList}}" wx:key="id" class="table-row">
+      <view class="td">{{item.nickname}}</view>
+      <view class="td">{{item.phoneNumber?item.phoneNumber:''}}</view>
+      <view class="td">{{item.roleName}}</view>
+      <view class="td">
+        <button size="mini" type="primary" bindtap="showRoleChangeModal" data-id="{{item.userId}}">修改</button>
+      </view>
+    </view>
+    
+  <view class="loading-more" wx:if="{{loadStatus=='loading'}}">  
+    <view class="loading-icon"></view>  
+    <text>加载中...</text>  
+  </view>  
+  </scroll-view>
+
+  
+  <scroll-view scroll-y="true" class="table-body"bindscrolltolower="loadMore"   
+  lower-threshold="50"   wx:else>
+    <view wx:for="{{userList}}" wx:key="id" class="table-row">
+      <view class="td">{{item.nickname}}</view>
+      <view class="td">{{item.phoneNumber?item.phoneNumber:''}}</view>
+      <view class="td" wx:if="{{roles[roleIndex].id === 1 || roles[roleIndex].id === 2}}">{{item.storeName}}</view>
+      <view class="td" wx:if="{{roles[roleIndex].id === 2}}">{{item.technicianCode?item.technicianCode:''}}</view>
+      <view class="td" wx:if="{{roles[roleIndex].id === 0}}">¥{{item.totalPayAmount}}</view>
+      <view class="td" wx:if="{{roles[roleIndex].id === 1 || roles[roleIndex].id === 2}}">¥{{item.totalCommission}}</view>
+      <view class="td" wx:if="{{roles[roleIndex].id !== 3}}">{{item.totalOrderCount}}</view>
+      <view class="td" wx:if="{{roles[roleIndex].id === 0}}">{{item.referrerNickname?item.referrerNickname:''}}</view>
+      <view class="td" wx:if="{{roles[roleIndex].id === 1 || roles[roleIndex].id === 2}}">{{item.totalReferrerCount}}</view>
+      <view class="td">
+        <button size="mini" type="primary" bindtap="showRoleChangeModal" data-id="{{item.userId}}">修改</button>
+      </view>
+    </view>
+  <view class="loading-more" wx:if="{{isLoading}}">  
+    <view class="loading-icon"></view>  
+    <text>加载中...</text>  
+  </view>  
+  </scroll-view>
+
+<view class="modal" wx:if="{{showRoleModal}}">  
+  <view class="modal-mask" bindtap="hideRoleModal"></view>  
+  <view class="modal-content">  
+    <view class="modal-header">  
+      <text class="modal-title">修改用户信息</text>  
+      <view class="modal-close" bindtap="hideRoleModal">×</view>  
+    </view>  
+    
+    <view class="modal-body">  
+      <view class="form-row">  
+        <view class="form-group">  
+          <text class="form-label">用户角色</text>  
+          <picker bindchange="onModalRoleChange" value="{{modalRoleIndex}}" range="{{rolesForModal}}" range-key="name">  
+            <view class="form-picker">  
+              <text>{{rolesForModal[modalRoleIndex].name}}</text>  
+              <image src="/images/down.png" class="picker-icon" mode="aspectFit"></image>  
+            </view>  
+          </picker>  
+        </view>  
+        
+        <view class="form-group" wx:if="{{rolesForModal[modalRoleIndex].id === 1 || rolesForModal[modalRoleIndex].id === 2}}">  
+          <text class="form-label">所属门店</text>  
+          <picker bindchange="onModalStoreChange" value="{{modalStoreIndex}}" range="{{storesForModal}}" range-key="storeName">  
+            <view class="form-picker">  
+              <text>{{storesForModal[modalStoreIndex].storeName}}</text>  
+              <image src="/images/down.png" class="picker-icon" mode="aspectFit"></image>  
+            </view>  
+          </picker>  
+        </view>  
+      </view>
+      
+      <view class="form-row" wx:if="{{rolesForModal[modalRoleIndex].id === 1 || rolesForModal[modalRoleIndex].id === 2}}">
+        <view class="form-group">
+          <text class="form-label">提成比例</text>
+          <picker bindchange="onCommissionRateChange" value="{{commissionRateIndex}}" range="{{commissionRates}}">
+            <view class="form-picker">
+              <text>{{commissionRates[commissionRateIndex]}}</text>
+              <image src="/images/down.png" class="picker-icon" mode="aspectFit"></image>
+            </view>
+          </picker>
+        </view>
+      </view>
+      
+      <view class="form-row" wx:if="{{rolesForModal[modalRoleIndex].id === 2}}">  
+        <view class="form-group">  
+          <text class="form-label">技师编号</text>  
+          <input class="form-input" type="text" placeholder="请输入技师编号" bindinput="onTechCodeInput" value="{{technicianCode}}" />  
+        </view>  
+      </view>  
+    </view>  
+    
+    <view class="modal-footer">  
+      <button class="btn btn-cancel" bindtap="hideRoleModal">取消</button>  
+      <button class="btn btn-confirm" bindtap="confirmRoleChange">确认</button>  
+    </view>  
+  </view>  
+</view>
+</view>

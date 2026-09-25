@@ -1,0 +1,47 @@
+<view class="set data-v-3175590c">  
+  <view class="item flex flex_row data-v-3175590c">  
+    <view class="left data-v-3175590c">用户昵称</view>  
+    <input type="nickname" bindchange="setNickname" style="text-align: right;" class="right data-v-3175590c" model:value="{{nickname}}" placeholder="请输入昵称" />  
+  </view>  
+  <view class="item flex flex_row data-v-3175590c" wx:if="{{customerDetail.identityFlag==2}}">  
+    <view class="left data-v-3175590c">技师编号</view>  
+    <input type="text" bindchange="setTechnicianCode" style="text-align: right;" class="right data-v-3175590c" model:value="{{technicianCode}}" placeholder="请输入技师编号" />  
+  </view>  
+  <view bind:tap="setPhone" class="item flex flex_row data-v-3175590c">  
+    <view class="left data-v-3175590c">手机号设置</view>  
+    <view class="right flex data-v-3175590c">  
+      <text class="status data-v-3175590c">{{customerDetail.phoneNumber?customerDetail.phoneNumber:'未绑定'}}</text>  
+<text 
+  class="arrow-icon data-v-3175590c" 
+  wx:if="{{!customerDetail.phoneNumber}}"
+>></text> 
+    </view>  
+  </view>  
+
+    
+  <view class="phone-modal {{showPhone ? 'show' : ''}}" catchtouchmove="true">  
+    <view class="modal-mask" bindtap="closePhone"></view>  
+    <view class="modal-content">  
+      <view class="modal-header">  
+        <text class="modal-title">授权手机号</text>  
+        <view class="modal-close" bindtap="closePhone">×</view>  
+      </view>  
+      
+      <view class="modal-body">  
+        <view class="auth-tip">请授权您的手机号，仅用于收银确认订单信息</view>  
+        
+        <button   
+          class="auth-btn {{phoneAuthLoading ? 'loading' : ''}}"  
+          open-type="getPhoneNumber"  
+          bindgetphonenumber="onGetPhoneNumber"  
+          disabled="{{phoneAuthLoading}}"  
+        >  
+          <text wx:if="{{!phoneAuthLoading}}">微信授权</text>  
+          <text wx:else>授权中...</text>  
+        </button>  
+        
+        <view class="cancel-btn" bindtap="closePhone">暂不授权</view>  
+      </view>  
+    </view>  
+  </view>  
+</view>

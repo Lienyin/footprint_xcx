@@ -1,0 +1,144 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(#940813, #940813);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 背景图 */
+.bg {
+  width: 100%;
+  display: block;
+}
+
+/* 战报 */
+.report-card {
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 18rpx;
+  background: linear-gradient(#fff4dc, #f7d6a0);
+  padding: 24rpx;
+}
+
+/* 标题 */
+.report-title {
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #6C190c;
+  margin-bottom: 20rpx;
+}
+
+/* 数据网格 */
+.report-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.report-item {
+  width: 50%;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+/* 数值字体 */
+.report-item .num {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #6C190c;
+}
+
+/* 标签字体 - 优化：更大 + 黑色 */
+.report-item .label {
+  font-size: 28rpx;
+  color: #000000;
+  margin-top: 6rpx;
+  font-weight: 500;
+}
+
+/* 底部按钮 */
+.footer {
+  background: #940813;
+  padding: 40rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+/* 按钮样式 - 金黄色 + 强烈发光效果 */
+.share-btn {
+  background: linear-gradient(135deg, #FAF1C6 0%, #E7C077 50%, #F5E6A8 100%);
+  color: #6C190c;
+  font-size: 50rpx;
+  font-weight: bold;
+  border-radius: 100rpx;
+  width: 100%;
+  padding: 10rpx 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    /* 外层发光 */
+    0 0 10rpx rgba(231, 192, 119, 0.8),
+    0 0 20rpx rgba(231, 192, 119, 0.6),
+    0 0 30rpx rgba(231, 192, 119, 0.4),
+    0 0 40rpx rgba(250, 241, 198, 0.3),
+    /* 内侧高光 */
+    inset 0 2rpx 4rpx rgba(255, 255, 255, 0.9),
+    inset 0 -2rpx 4rpx rgba(199, 164, 80, 0.3),
+    /* 底部阴影 */
+    0 8rpx 20rpx rgba(0, 0, 0, 0.2);
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* 按钮反光条 */
+.share-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  animation: shine 2.5s ease-in-out infinite;
+  border-radius: 100rpx;
+}
+/* 按钮脉冲发光动画 */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 
+      0 0 10rpx rgba(231, 192, 119, 0.8),
+      0 0 20rpx rgba(231, 192, 119, 0.6),
+      0 0 30rpx rgba(231, 192, 119, 0.4),
+      0 0 40rpx rgba(250, 241, 198, 0.3),
+      inset 0 2rpx 4rpx rgba(255, 255, 255, 0.9),
+      inset 0 -2rpx 4rpx rgba(199, 164, 80, 0.3),
+      0 8rpx 20rpx rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 0 15rpx rgba(231, 192, 119, 1),
+      0 0 30rpx rgba(231, 192, 119, 0.8),
+      0 0 45rpx rgba(231, 192, 119, 0.6),
+      0 0 60rpx rgba(250, 241, 198, 0.4),
+      inset 0 2rpx 4rpx rgba(255, 255, 255, 0.9),
+      inset 0 -2rpx 4rpx rgba(199, 164, 80, 0.3),
+      0 8rpx 20rpx rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* 反光条动画 */
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}

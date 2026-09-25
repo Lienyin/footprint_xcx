@@ -1,0 +1,511 @@
+page {  
+  height: 100%;  
+  background: #f8f9fa;  
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;  
+}  
+
+.container {  
+  padding: 30rpx;  
+  box-sizing: border-box;  
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+  justify-content: flex-start;  
+  padding-top: 8vh;  
+  min-height: 100vh;
+  padding-bottom: 50rpx;
+}  
+
+.result-card {  
+  width: 100%;  
+  background: #fff;  
+  border-radius: 24rpx;  
+  padding: 60rpx 40rpx;  
+  box-shadow: 0 8rpx 24rpx rgba(0,0,0,0.05);  
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+  animation: fadeIn 0.5s ease forwards;
+}  
+
+.icon-container {  
+  margin-bottom: 30rpx;  
+}  
+
+.result-icon {  
+  width: 120rpx;  
+  height: 120rpx;  
+}  
+
+.result-content {  
+  width: 100%;  
+  margin-bottom: 40rpx;  
+  text-align: center;  
+}  
+
+.result-title {  
+  font-size: 40rpx;  
+  color: #333333;  
+  font-weight: 600;  
+  margin-bottom: 16rpx;  
+}  
+
+.result-subtitle {  
+  font-size: 32rpx;  
+  color: #666666;  
+  line-height: 1.5;  
+}  
+
+/* 订单流程指示器样式 */  
+.order-process {  
+  display: flex;  
+  justify-content: space-between;  
+  align-items: flex-start;  
+  width: 100%;  
+  margin-top: 40rpx;  
+  padding: 0 10rpx;  
+  height: 160rpx;  
+}  
+
+.process-step {  
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+  width: 200rpx;  
+  position: relative;  
+  z-index: 2;  
+}  
+
+.step-main {  
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+  height: 80rpx;  
+}  
+
+.step-icon {  
+  margin-bottom: 12rpx;  
+}  
+
+.step-circle {  
+  width: 44rpx;  
+  height: 44rpx;  
+  border-radius: 50%;  
+  background-color: #f0f0f0;  
+  color: #999;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  font-size: 24rpx;  
+  font-weight: bold;  
+}  
+
+.process-step.active .step-circle {  
+  background-color: #ff4d4f;  
+  color: white;  
+}  
+
+.process-step.current .step-circle {  
+  background-color: #ff7875;  
+  color: white;  
+  animation: pulse 2s infinite;  
+}  
+
+.step-text {  
+  font-size: 24rpx;  
+  color: #999;  
+  text-align: center;  
+}  
+
+.process-step.active .step-text {  
+  color: #ff4d4f;  
+  font-weight: 500;  
+}  
+
+.process-step.current .step-text {  
+  color: #ff9500;  
+  font-weight: 500;  
+}  
+
+.process-connector {  
+  height: 2rpx;  
+  background-color: #f0f0f0;  
+  flex-grow: 1;  
+  margin: 0 4rpx;  
+  position: relative;  
+  top: 20rpx;  
+  z-index: 1;  
+}  
+
+.active-connector {  
+  background-color: #ff4d4f;  
+}  
+
+.price-text {  
+  font-size: 56rpx;  
+  color: #ff4d4f;  
+  font-weight: 600;  
+  margin-top: 16rpx;  
+}  
+
+.action-container {  
+  width: 100%;  
+  margin-top: 10rpx;  
+}  
+
+.secondary-outline-button {  
+  background: transparent;  
+  color: #999999;  
+  font-size: 28rpx;  
+  height: 80rpx;  
+  line-height: 80rpx;  
+  width: 100%;  
+  border: none;  
+  border-radius: 50rpx;  
+  transition: all 0.3s ease;  
+  margin-bottom: 20rpx;  
+}  
+
+.secondary-outline-button::after {  
+  border: none;  
+  display: none;  
+}  
+
+.secondary-outline-button:active {  
+  background-color: rgba(0, 0, 0, 0.05);  
+}
+
+.primary-button {  
+  background: linear-gradient(135deg, #ff4d4f, #ff7875);  
+  color: white;  
+  border-radius: 50rpx;  
+  font-size: 32rpx;  
+  font-weight: 500;  
+  height: 88rpx;  
+  line-height: 88rpx;  
+  width: 100%;  
+  margin-bottom: 24rpx;  
+  box-shadow: 0 8rpx 16rpx rgba(255, 77, 79, 0.25);  
+  transition: all 0.3s ease;  
+  border: none;  
+}  
+
+.primary-button:active {  
+  transform: translateY(2rpx);  
+  box-shadow: 0 4rpx 8rpx rgba(255, 77, 79, 0.25);  
+}  
+
+.share-button {  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+}  
+
+.button-text {  
+  display: inline-block;  
+}  
+
+/* 动画效果 */  
+@keyframes fadeIn {  
+  from {  
+    opacity: 0;  
+    transform: translateY(20rpx);  
+  }  
+  to {  
+    opacity: 1;  
+    transform: translateY(0);  
+  }  
+}  
+
+@keyframes pulse {  
+  0% {  
+    transform: scale(1);  
+  }  
+  50% {  
+    transform: scale(1.03);  
+  }  
+  100% {  
+    transform: scale(1);  
+  }  
+}  
+
+@keyframes shine {  
+  0% {  
+    background-position: -100% 0;  
+  }  
+  100% {  
+    background-position: 200% 0;  
+  }  
+}  
+
+/* ========== 推广卡片容器 ========== */
+.promotion-cards-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  margin-top: 24rpx;
+}
+
+/* ========== 优惠券卡片优化（紧凑版） ========== */
+.coupon-entry-enhanced {
+  width: 100%;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 6rpx 16rpx rgba(255, 107, 53, 0.1);
+  background: #fff;
+  animation: fadeIn 0.8s ease forwards;
+  transition: all 0.3s ease;
+}
+
+.coupon-entry-enhanced:active {
+  box-shadow: 0 4rpx 12rpx rgba(255, 107, 53, 0.15);
+  transform: translateY(2rpx);
+}
+
+.coupon-inner-enhanced {
+  padding: 20rpx 16rpx;
+  background: linear-gradient(135deg, #fff9f5 0%, #fff 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.coupon-content {
+  margin-bottom: 16rpx;
+}
+
+.coupon-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.coupon-title-enhanced {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  flex: 1;
+}
+
+.coupon-value {
+  font-size: 24rpx;
+  color: #ff5252;
+  font-weight: 600;
+  margin-left: 8rpx;
+  white-space: nowrap;
+}
+
+.coupon-benefits {
+  background: rgba(255, 149, 0, 0.05);
+  border-left: 3rpx solid #ff9500;
+  border-radius: 8rpx;
+  padding: 12rpx 12rpx;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 6rpx;
+  font-size: 22rpx;
+  color: #666;
+  line-height: 1.4;
+}
+
+.benefit-item:last-child {
+  margin-bottom: 0;
+}
+
+.benefit-dot {
+  color: #ff9500;
+  font-size: 24rpx;
+  margin-right: 6rpx;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.benefit-text {
+  font-size: 22rpx;
+  color: #666;
+}
+
+.follow-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.follow-btn {
+  background: linear-gradient(135deg, #ff9500, #ff5252);
+  border-radius: 50rpx;
+  padding: 14rpx 0;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 6rpx 16rpx rgba(255, 149, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.follow-btn:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 4rpx 12rpx rgba(255, 149, 0, 0.15);
+}
+
+.follow-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+  background-size: 200% 100%;
+  animation: shine 2s infinite;
+  pointer-events: none;
+}
+
+.follow-text {
+  color: #fff;
+  font-size: 26rpx;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========== 会员升级卡片优化 ========== */
+.service-card {
+  width: 100%;
+  background: linear-gradient(135deg, #ffffff 0%, #fff9f5 100%);
+  border-radius: 16rpx;
+  border: 1rpx solid rgba(255, 149, 0, 0.1);
+  overflow: hidden;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.06);
+  padding: 24rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeIn 0.6s ease 0.1s forwards;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.text-section {
+  width: 55%;
+  padding-right: 16rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-title {
+  font-size: 30rpx;
+  color: #ff4d4f;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.modal-description {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1.5;
+  margin-bottom: 12rpx;
+}
+
+.member-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff9500, #ff5252);
+  border-radius: 20rpx;
+  padding: 6rpx 14rpx;
+  width: fit-content;
+}
+
+.member-badge text {
+  color: #fff;
+  font-size: 20rpx;
+  font-weight: 500;
+}
+
+.qrcode-section {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-qrcode {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 12rpx;
+  border: 2rpx solid rgba(255, 149, 0, 0.15);
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+  margin-bottom: 12rpx;
+  transition: all 0.3s ease;
+}
+
+.modal-qrcode:active {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.1);
+}
+
+.qrcode-tip {
+  font-size: 20rpx;
+  color: #999;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* 响应式优化 */
+@media (max-width: 375px) {
+  .coupon-title-enhanced {
+    font-size: 26rpx;
+  }
+  
+  .coupon-value {
+    font-size: 22rpx;
+  }
+  
+  .text-section {
+    width: 50%;
+  }
+  
+  .qrcode-section {
+    width: 50%;
+  }
+  
+  .modal-qrcode {
+    width: 140rpx;
+    height: 140rpx;
+  }
+}
+
+/* 响应式小屏幕 */
+@media (max-width: 320px) {
+  .service-card {
+    flex-direction: column;
+    gap: 16rpx;
+  }
+  
+  .text-section {
+    width: 100%;
+    padding-right: 0;
+  }
+  
+  .qrcode-section {
+    width: 100%;
+  }
+  
+  .coupon-title-enhanced {
+    font-size: 24rpx;
+  }
+  
+  .coupon-benefits {
+    padding: 10rpx 10rpx;
+  }
+  
+  .benefit-text {
+    font-size: 20rpx;
+  }
+}

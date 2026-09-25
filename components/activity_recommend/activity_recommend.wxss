@@ -1,0 +1,174 @@
+/* 遮罩层 */
+.popup-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  backdrop-filter: blur(3px);
+}
+
+/* 弹窗内容 - 纯白背景 */
+.popup-content {
+  width: 85%;
+  max-width: 650rpx;
+  border-radius: 20rpx;
+  padding: 50rpx 40rpx 40rpx;
+  box-sizing: border-box;
+  color: #333;
+  position: relative;
+  animation: fadeInUp 0.4s ease;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.15);
+  background: #FFFFFF;
+  border: none;
+}
+/* 修改标题样式，支持换行符 */
+.popup-title {
+  text-align: center;
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-bottom: 30rpx;
+  color: #e4393c;
+  padding: 0 20rpx;
+  line-height: 1.5;
+  white-space: pre-line; /* 添加此属性处理换行符 */
+}
+
+.popup-text {
+  text-align: center;
+  font-size: 28rpx;
+  color: #555;
+  margin-bottom: 36rpx;
+  line-height: 1.6;
+  padding: 0 10rpx;
+}
+
+/* 奖励区域 - 简洁边框 */
+.popup-rewards {
+  margin-bottom: 40rpx;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 20rpx 25rpx;
+  border-left: 4rpx solid #e4393c;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 奖励项 */
+.reward-item {
+  font-size: 28rpx;
+  color: #444;
+  margin-bottom: 18rpx;
+  padding-left: 10rpx;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+.reward-item:last-child {
+  margin-bottom: 0;
+}
+
+.reward-item::before {
+  content: "•";
+  font-size: 36rpx;
+  line-height: 1;
+  margin-right: 10rpx;
+  position: relative;
+  top: -5rpx;
+  color: #e4393c;
+}
+
+/* 按钮样式 - 红色主色调 */
+.popup-btn {
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #fff;
+  border-radius: 45rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  letter-spacing: 2rpx;
+  padding: 0;
+  box-shadow: 0 8rpx 16rpx rgba(228, 57, 60, 0.2);
+  transition: all 0.3s ease;
+  border: none;
+  background: #e4393c;
+  position: relative;
+  overflow: hidden;
+}
+
+.popup-btn::after {
+  border: none;
+}
+
+/* 按钮点击效果 */
+.btn-hover {
+  opacity: 0.9;
+  transform: translateY(2rpx);
+  box-shadow: 0 4rpx 8rpx rgba(228, 57, 60, 0.15);
+}
+
+/* 关闭按钮 */
+.popup-close {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+  color: #999;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.popup-close:active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 动效 */
+@keyframes fadeInUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(40rpx); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* 添加按钮闪光效果 */
+.popup-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(
+    to right, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  20%, 100% {
+    left: 150%;
+  }
+}

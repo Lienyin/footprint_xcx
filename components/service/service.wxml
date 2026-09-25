@@ -1,0 +1,35 @@
+
+<button 
+  style="line-height:1.5" 
+  bindtap="showCustomerQrCode"
+>
+  <view class="data-v-7f27f920">
+    <view class="kf_out shipei data-v-7f27f920">
+      <view class="icon flex flex_col data-v-7f27f920">
+        <view class="t-icon iconkefu _i data-v-7f27f920"></view>客服
+      </view>
+    </view>
+  </view>
+</button>
+
+
+<view 
+  class="customer-modal" 
+  wx:if="{{showCustomerModal}}" 
+  catchtap="closeCustomerModal"
+>
+  <view 
+    class="customer-container" 
+    catchtap="preventTap"
+  >
+    <image 
+      class="customer-qrcode" 
+      src="{{customerQrCode}}" 
+        show-menu-by-longpress
+      mode="aspectFit"
+    ></image>
+    <view class="customer-tips">
+      长按识别二维码，添加客服
+    </view>
+  </view>
+</view>

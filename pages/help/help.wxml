@@ -1,0 +1,83 @@
+<view class="help-container">
+  <!-- 搜索框 -->
+  <view class="search-wrapper">
+    <view class="search-box">
+      <image class="search-icon" src="/images/positioning.png"></image>
+      <input
+        class="search-input"
+        value="{{searchKeyword}}"
+        placeholder="搜索问题，例如「如何下单」"
+        placeholder-class="search-placeholder"
+        confirm-type="search"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchConfirm"
+      />
+      <view wx:if="{{searchKeyword}}" class="clear-btn" bindtap="clearSearch">
+        <text class="clear-icon">×</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷分类 -->
+  <view class="category-section">
+    <view class="category-grid">
+      <view
+        class="category-item"
+        wx:for="{{categories}}"
+        wx:key="id"
+        data-category="{{item}}"
+        bindtap="onCategoryTap"
+      >
+        <view class="category-icon-wrapper" style="background: {{item.bgColor}}">
+          <text class="category-emoji">{{item.emoji}}</text>
+        </view>
+        <text class="category-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 常见问题 -->
+  <view class="faq-section" wx:if="{{faqList.length > 0}}">
+    <view class="section-title">常见问题</view>
+    <view class="faq-list">
+      <view
+        class="faq-item"
+        wx:for="{{faqList}}"
+        wx:key="id"
+        data-faq="{{item}}"
+        bindtap="onFaqTap"
+      >
+        <view class="faq-header">
+          <text class="faq-number">{{index + 1}}.</text>
+          <text class="faq-title">{{item.title}}</text>
+        </view>
+        <view class="faq-content">{{item.content}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部提示和在线咨询 -->
+  <view class="bottom-section">
+    <view class="bottom-hint-row">
+      <text class="hint-text"></text>
+      <view class="online-btn" bindtap="openServiceModal">
+        <text class="online-btn-text">在线咨询</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 客服弹窗 -->
+  <view class="service-modal" wx:if="{{showServiceModal}}" bindtap="closeServiceModal">
+    <view class="service-container" catchtap="preventTap">
+      <image
+        class="service-qrcode"
+        src="{{customerQrCode}}"
+        mode="aspectFit"
+        show-menu-by-longpress="{{true}}"
+      ></image>
+      <view class="service-tips">
+        长按识别二维码，添加客服
+      </view>
+    </view>
+  </view>
+</view>

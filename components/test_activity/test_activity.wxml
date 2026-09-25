@@ -1,0 +1,12 @@
+<view class="center-wrap" aria-label="center-image-container" wx:if="{{ visible }}">
+  <view class="mask" bindtap="onMaskTap"></view>
+  <image
+    src="{{ src }}"
+    mode="aspectFit"
+    style="width: {{ imageWidth }}px; height: {{ imageHeight }}px;"
+    class="{{ animate ? 'center-image-animate' : 'center-image-noanimate' }}"
+    bindtap="onImageTap"
+    binderror="onImgError"
+  />
+  <view class="close-btn" bindtap="onCloseTap">×</view>
+</view>

@@ -1,0 +1,22 @@
+
+<view class="container">
+  <view class="header">
+    <image class="banner" src="/images/coupon-banner.png" mode="aspectFill"></image>
+  </view>
+
+  <view class="content">
+    <view class="title">
+      立即添加企业微信，获取专属福利！
+    </view>
+
+    <view class="qrcode-section">
+      <image class="qrcode" src="https://www.lianzhenkj.com/img/qywx.png" mode="aspectFit" show-menu-by-longpress></image>
+      <view class="qrcode-tips">
+        长按识别，轻松添加
+      </view>
+    </view>
+
+    
+  </view>
+
+</view>

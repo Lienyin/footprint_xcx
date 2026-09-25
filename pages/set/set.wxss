@@ -1,0 +1,138 @@
+page {  
+  background: #f5f7fa !important;  
+}  
+.set.data-v-3175590c {  
+  background: #fff;  
+}  
+.set .item.data-v-3175590c {  
+  align-items: center;  
+  border-bottom: 1px solid #e8e8e8;  
+  font-size: 28rpx;  
+  height: 100rpx;  
+  justify-content: space-between;  
+  padding: 0 24rpx;  
+}  
+.set .item.first.data-v-3175590c {  
+  border-bottom: 16rpx solid #f5f7fa;  
+}  
+.set .item .left.data-v-3175590c {  
+  color: #222;  
+  font-weight: 500;  
+}  
+.set .item .right.data-v-3175590c {  
+  color: #999;  
+}  
+.set .item .right ._img.data-v-3175590c {  
+  border-radius: 50%;  
+  height: 80rpx;  
+  width: 80rpx;  
+}  
+.set .item .right .status.data-v-3175590c {  
+  margin-right: 6rpx;  
+}  
+
+/* 新的手机号授权弹窗样式 */  
+.phone-modal {  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  width: 100%;  
+  height: 100%;  
+  z-index: 10070;  
+  visibility: hidden;  
+  opacity: 0;  
+  transition: all 0.3s ease;  
+}  
+
+.phone-modal.show {  
+  visibility: visible;  
+  opacity: 1;  
+}  
+
+.modal-mask {  
+  position: absolute;  
+  top: 0;  
+  left: 0;  
+  width: 100%;  
+  height: 100%;  
+  background-color: rgba(0, 0, 0, 0.5);  
+}  
+
+.modal-content {  
+  position: absolute;  
+  top: 50%;  
+  left: 50%;  
+  transform: translate(-50%, -50%);  
+  width: 600rpx;  
+  background-color: #fff;  
+  border-radius: 16rpx;  
+  overflow: hidden;  
+}  
+
+.modal-header {  
+  position: relative;  
+  padding: 30rpx 0;  
+  text-align: center;  
+  border-bottom: 1rpx solid #f0f0f0;  
+}  
+
+.modal-title {  
+  font-size: 32rpx;  
+  font-weight: 500;  
+  color: #333;  
+}  
+
+.modal-close {  
+  position: absolute;  
+  right: 30rpx;  
+  top: 25rpx;  
+  font-size: 40rpx;  
+  color: #999;  
+  line-height: 1;  
+}  
+
+.modal-body {  
+  padding: 40rpx 50rpx;  
+}  
+
+.auth-tip {  
+  text-align: center;  
+  font-size: 28rpx;  
+  color: #666;  
+  margin-bottom: 40rpx;  
+}  
+
+.auth-btn {  
+  width: 100%;  
+  height: 88rpx;  
+  background-color: #ffC508;  
+  background: linear-gradient(270deg, #ffdc49, #ffc508);  
+  color: #222;  
+  border-radius: 44rpx;  
+  font-size: 30rpx;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  margin-bottom: 30rpx;  
+  border: none;  
+}  
+
+.auth-btn::after {  
+  border: none;  
+}  
+
+.auth-btn.loading {  
+  opacity: 0.8;  
+}  
+
+.cancel-btn {  
+  text-align: center;  
+  font-size: 28rpx;  
+  color: #999;  
+  padding: 10rpx;  
+}
+.arrow-icon {
+  color: #999;
+  font-size: 26rpx;
+  font-weight: bold; /* 加粗以模拟图标 */
+}

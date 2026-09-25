@@ -1,0 +1,741 @@
+
+/* 预约页面样式 */
+.container {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  padding-bottom: 120rpx;
+}
+
+/* 店铺信息 */
+.store-info {
+  background-color: #fff;
+  padding: 32rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.store-image {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 16rpx;
+  margin-right: 24rpx;
+}
+
+.store-details {
+  flex: 1;
+}
+
+.store-name {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 8rpx;
+}
+
+.store-address {
+  display: block;
+  font-size: 28rpx;
+  color: #6b7280;
+}
+
+/* 区域样式 */
+.section {
+  background-color: #fff;
+  margin-bottom: 16rpx;
+  padding: 32rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 24rpx;
+}
+
+.section-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.swipe-indicator {
+  display: flex;
+  align-items: center;
+}
+
+.swipe-text {
+  font-size: 24rpx;
+  color: #6b7280;
+}
+
+.swipe-animation {
+  width: 40rpx;
+  height: 16rpx;
+  margin-left: 8rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.swipe-animation:after {
+  content: "";
+  position: absolute;
+  width: 16rpx;
+  height: 16rpx;
+  border-right: 3rpx solid #6b7280;
+  border-bottom: 3rpx solid #6b7280;
+  transform: rotate(-45deg);
+  right: 12rpx;
+  animation: swipeRight 1.5s infinite;
+}
+
+@keyframes swipeRight {
+  0%, 100% {
+    right: 12rpx;
+    opacity: 0;
+  }
+  50% {
+    right: 0;
+    opacity: 1;
+  }
+}
+
+.technician-scroll {
+  white-space: nowrap;
+  padding: 8rpx 0;
+  /* 添加阴影提示可以滚动 */
+  background: linear-gradient(to right, transparent 90%, rgba(0,0,0,0.05) 100%);
+}
+
+.technician-item {
+  display: inline-block;
+  width: 120rpx;
+  text-align: center;
+  margin-right: 32rpx;
+  padding: 16rpx;
+  border-radius: 16rpx;
+  border: 2rpx solid transparent;
+}
+
+.technician-item:last-child {
+  margin-right: 64rpx; /* 增加最后一个元素的右边距，提示有更多内容 */
+}
+
+.technician-item.selected {
+  border-color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.technician-avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  margin-bottom: 8rpx;
+}
+
+.technician-name {
+  display: block;
+  font-size: 24rpx;
+  color: #111827;
+  margin-bottom: 4rpx;
+}
+
+.technician-detail {
+  background-color: #fff;
+  padding: 32rpx;
+  margin-bottom: 16rpx;
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.detail-name {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #111827;
+  margin-right: 24rpx;
+}
+
+.detail-id {
+  font-size: 28rpx;
+  color: #6b7280;
+}
+
+.detail-speciality {
+  display: block;
+  font-size: 28rpx;
+  color: #374151;
+  line-height: 1.5;
+  margin-bottom: 24rpx;
+}
+.photos-container {
+  margin: 32rpx 0;
+  border-radius: 16rpx;
+  background-color: #fff;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.photos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx;
+  border-bottom: 1rpx solid #f3f4f6;
+}
+
+.photos-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #111827;
+}
+
+.photos-count {
+  font-size: 26rpx;
+  color: #6b7280;
+  background-color: #f3f4f6;
+  padding: 4rpx 12rpx;
+  border-radius: 16rpx;
+}
+
+.photos-display {
+  position: relative;
+  width: 100%;
+}
+
+/* 套餐选择 */
+.package-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx;
+  border-radius: 16rpx;
+  border: 2rpx solid #e5e7eb;
+  margin-bottom: 16rpx;
+}
+
+.package-item.selected {
+  border-color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.package-info {
+  flex: 1;
+}
+
+.package-name {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 8rpx;
+}
+
+.package-desc {
+  display: block;
+  font-size: 28rpx;
+  color: #6b7280;
+}
+
+.package-price {
+  text-align: right;
+}
+
+.current-price {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #ef4444;
+}
+
+.original-price {
+  display: block;
+  font-size: 24rpx;
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+
+/* 预约规则 */
+.rules {
+  padding: 24rpx;
+  background-color: #f9fafb;
+  border-radius: 16rpx;
+}
+
+.rule-item {
+  display: block;
+  font-size: 28rpx;
+  color: #374151;
+  line-height: 1.6;
+  margin-bottom: 8rpx;
+}
+
+/* 预约信息确认 */
+.booking-summary {
+  background-color: #fff;
+  padding: 32rpx;
+  margin-bottom: 16rpx;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.summary-item:last-child {
+  margin-bottom: 0;
+}
+
+.summary-label {
+  font-size: 28rpx;
+  color: #6b7280;
+}
+
+.summary-value {
+  font-size: 28rpx;
+  color: #111827;
+}
+
+.summary-value.price {
+  color: #ef4444;
+  font-weight: 500;
+}
+
+/* 确认预约按钮 */
+.booking-btn {
+  position: fixed;
+  bottom: 32rpx;
+  left: 32rpx;
+  right: 32rpx;
+  height: 88rpx;
+  background-color: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 16rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+/* 图片预览弹窗 */
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.9);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-swiper {
+  width: 100%;
+  height: 60vh;
+}
+
+.modal-image {
+  width: 100%;
+  height: 100%;
+}
+
+.modal-close {
+  position: absolute;
+  top: 64rpx;
+  right: 32rpx;
+  width: 64rpx;
+  height: 64rpx;
+  background-color: rgba(255,255,255,0.2);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+}
+
+.image-counter {
+  position: absolute;
+  bottom: 64rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 28rpx;
+}
+.booking-popup {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  height: 100vh;
+}
+
+.popup-container {
+  width: 100%;
+  background-color: #fff;
+  border-top-left-radius: 32rpx;
+  border-top-right-radius: 32rpx;
+  padding: 32rpx;
+  position: relative;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.popup-title {
+  font-size: 36rpx;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 32rpx;
+}
+
+.popup-close {
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+  font-size: 48rpx;
+  color: #999;
+}
+
+.select-label {
+  display: block;
+  font-size: 32rpx;
+  margin-bottom: 16rpx;
+}
+
+.people-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.people-btn {
+  width: 80rpx;
+  height: 80rpx;
+  border: 2rpx solid #e5e7eb;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+}
+
+.people-btn.active {
+  background-color: #ef4444;
+  color: #fff;
+  border-color: #ef4444;
+}
+
+.time-scroll {
+  white-space: nowrap;
+  width: 100%;
+}
+
+
+.confirm-booking-btn {
+  width: 100%;
+  background-color: #ef4444;
+  color: #fff;
+  margin-top: 32rpx;
+}
+
+.confirm-booking-btn:disabled {
+  background-color: #e5e7eb;
+  color: #9ca3af;
+}.detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.technician-extra-info {
+  font-size: 28rpx;
+  color: #6b7280;
+}
+
+.work-years {
+  margin-left: 16rpx;
+}.speciality-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 16rpx;
+}
+
+.tag {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  font-size: 24rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 16rpx;
+  margin-right: 8rpx;
+  margin-bottom: 8rpx;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}.time-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}.time-btn {
+  position: relative;
+  padding: 16rpx 32rpx;
+  border: 2rpx solid #e5e7eb;
+  border-radius: 16rpx;
+  font-size: 24rpx;
+}
+
+.time-tag {
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  font-size: 20rpx;
+  padding: 2rpx 8rpx;
+  border-radius: 16rpx;
+  color: white;
+}
+
+.time-tag.primary {
+  background-color: #10b981; /* 绿色 */
+}
+
+.time-tag.backup {
+  background-color: #6366f1; /* 靛蓝色 */
+}
+
+.time-btn.active {
+  background-color: #ef4444;
+  color: #fff;
+  border-color: #ef4444;
+}
+
+/* 照片网格布局 */
+.photos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  padding: 16rpx;
+}
+
+.photo-item {
+  width: calc(33% - 11rpx); /* 3列布局，考虑gap */
+  aspect-ratio: 1/1;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.photo-item image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}/* Scroll container with arrows */
+.scroll-container {
+  position: relative;
+  width: 100%;
+}
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60rpx;
+  height: 60rpx;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.scroll-arrow:active {
+  background-color: rgba(245, 245, 245, 0.9);
+}
+
+.scroll-arrow-left {
+  left: 8rpx;
+}
+
+.scroll-arrow-right {
+  right: 8rpx;
+}
+
+/* Custom arrow styles */
+.custom-arrow {
+  position: relative;
+  width: 10rpx;
+  height: 10rpx;
+  border-style: solid;
+  border-color: #333;
+}
+
+.custom-arrow-left {
+  border-width: 0 0 2rpx 2rpx;
+  transform: rotate(45deg);
+  margin-left: 6rpx; /* Slight adjustment to center */
+}
+
+.custom-arrow-right {
+  border-width: 2rpx 2rpx 0 0;
+  transform: rotate(45deg);
+  margin-right: 6rpx; /* Slight adjustment to center */
+}/* Arrow visibility animations */
+.arrows-visible {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.arrows-hidden {
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}.store-address-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.location-icon-image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+}
+
+.technician-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: #f59e0b;
+  margin-top: 4rpx;
+}
+
+.star-icon {
+  width: 20rpx;
+  height: 20rpx;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjZjU5ZTBiIiBkPSJNMTIsMTcuNWwtNi4xNSwzLjcyYy0wLjY3LDAuNDEtMS41MS0wLjE0LTEuMzMtMC44N2wxLjYzLTcuMDNsLTUuMTUtNC42MmMtMC42LTAuNTQtMC4yOS0xLjU3LDAuNDktMS42M2w3LjA2LTAuNThsMi42LTYuMTVjMC4zLTAuNzEsMS4zLTAuNzEsMS42LDBsMi42LDYuMTVsNy4wNiwwLjU4YzAuNzgsMC4wNiwxLjA5LDEuMDksMC40OSwxLjYzbC01LjE1LDQuNjJsMS42Myw3LjAzYzAuMTgsMC43My0wLjY2LDEuMjgtMS4zMywwLjg3TDEyLDE3LjV6IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSI0Ii8+PC9zdmc+");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin-right: 4rpx;
+}
+/* 手机号授权弹窗样式 - 更新版 */
+.phone-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.phone-modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  position: relative;
+  padding: 30rpx 0;
+  text-align: center;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.modal-close {
+  position: absolute;
+  right: 30rpx;
+  top: 25rpx;
+  font-size: 40rpx;
+  color: #999;
+  line-height: 1;
+}
+
+.modal-body {
+  padding: 40rpx 50rpx;
+}
+
+.auth-tip {
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 40rpx;
+  line-height: 1.5;
+}
+
+.auth-btn {
+  width: 100%;
+  height: 88rpx;
+  background-color: #e4393c;
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30rpx;
+  border: none;
+  box-shadow: 0 4rpx 8rpx rgba(228, 57, 60, 0.2);
+}
+
+.auth-btn::after {
+  border: none;
+}
+
+.auth-btn.loading {
+  opacity: 0.8;
+}
+
+.cancel-btn {
+  text-align: center;
+  font-size: 28rpx;
+  color: #999;
+  padding: 10rpx;
+}
+
+/* 适配 iPhone X 等设备的底部安全区域 */
+.safe-bottom-area {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 响应式调整 */
+@media screen and (min-width: 768px) {
+  .modal-content {
+    width: 650rpx;
+  }
+}

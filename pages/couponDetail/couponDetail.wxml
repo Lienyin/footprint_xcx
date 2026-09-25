@@ -1,0 +1,81 @@
+<view class="coupon-detail-page">  
+    
+  <view class="coupon-card">  
+      
+    <view class="coupon-tag {{couponTypeClass}}">{{couponTypeText}}</view>  
+
+      
+    <view class="coupon-content">  
+        
+      <view class="amount-section">  
+        <block wx:if="{{coupon.couponType === 0 || coupon.couponType === 2 || coupon.couponType === 3}}">  
+          <text class="currency">¥</text>  
+          <text class="amount">{{coupon.isInflated === 1 ? coupon.inflateAmount : coupon.discountAmount}}</text>  
+        </block>  
+        <block wx:elif="{{coupon.couponType === 1}}">  
+          <text class="amount">{{coupon.discountRate}}</text>  
+          <text class="discount-unit">折</text>  
+        </block>  
+      </view>  
+
+        
+      <view class="coupon-name">{{coupon.couponName}}</view>  
+
+        
+      <view class="condition-row">  
+        <text class="condition-label">使用条件：</text>  
+        <text class="condition-value" wx:if="{{coupon.minAmount&& coupon.minAmount>0}}">满{{coupon.minAmount}}元可用</text>  
+        <text class="condition-value" wx:else>无使用门槛</text>  
+      </view>  
+
+        
+      <view class="time-row">  
+        <text class="time-label">有效期：</text>  
+        <text class="time-value">{{coupon.useStartTime}} - {{coupon.useEndTime}}</text>  
+      </view>  
+
+        
+      <view class="scope-row">  
+        <text class="scope-label">适用商品：</text>  
+        <text class="scope-value">全部商品</text>  
+      </view>  
+
+        
+      <view class="desc-row" wx:if="{{coupon.description}}">  
+        <text class="desc-label">优惠说明：</text>  
+        <view class="desc-container">  
+          <text class="desc-value {{showFullDesc ? 'expanded' : ''}}">{{coupon.description}}</text>  
+          <view class="expand-btn" wx:if="{{coupon.description.length > 30}}" catchtap="toggleDescExpand">  
+            {{showFullDesc ?  '︿' : '﹀'}}  
+          </view>  
+        </view>  
+      </view>  
+
+        
+      <button class="claim-btn" bindtap="claimCoupon" >立即领取</button>  
+    </view>  
+  </view>  
+
+    
+  <view class="usage-notes">  
+    <view class="section-title">使用须知</view>  
+    <view class="notes-content">  
+      <view class="note-item">  
+        <text>1. 本优惠券仅限在有效期内使用；</text>  
+        <text>2. 使用时请在结算页面选择优惠券；</text>  
+        <text>3. 优惠券不可兑换现金，不设找零；</text>  
+        <text>4. 如有疑问，请联系客服。</text>  
+      </view>  
+    </view>  
+  </view>  
+  
+    
+  <view class="success-popup" wx:if="{{showSuccessPopup}}">  
+    <view class="popup-content">  
+      <view class="success-icon">✓</view>  
+      <view class="popup-title">领取成功</view>  
+      <view class="popup-desc">优惠券已存入您的账户</view>  
+      <button class="popup-btn" bindtap="closeSuccessPopup">我知道了</button>  
+    </view>  
+  </view>  
+</view>

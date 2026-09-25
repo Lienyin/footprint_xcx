@@ -1,0 +1,34 @@
+<view class="page">
+  
+  <image class="bg" src="https://www.lianzhenkj.com/img/fJSWI7D71h.jpeg" mode="aspectFit" style="height:{{bgHeight}}px;"
+  lazy-load="true"/>
+
+  
+  <view class="report-card" style="margin-top:{{reportMarginTop}}px;">
+    
+    <view class="report-title">本月推荐战报</view>
+    <view class="report-grid">
+      <view class="report-item">
+        <view class="label">已邀请好友数</view>
+        <view class="num">{{stats.invited}}</view>
+      </view>
+      <view class="report-item">
+        <view class="label">待结算金额</view>
+        <view class="num">¥{{stats.pending}}</view>
+      </view>
+      <view class="report-item">
+        <view class="label">已到账金额</view>
+        <view class="num">¥{{stats.received}}</view>
+      </view>
+      <view class="report-item">
+        <view class="label">分享次数</view>
+        <view class="num">{{stats.shareCount}}</view>
+      </view>
+    </view>
+  </view>
+
+  
+  <view class="footer">
+    <button class="share-btn" open-type="share">发红包给朋友</button>
+  </view>
+</view>
