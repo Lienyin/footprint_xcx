@@ -144,9 +144,11 @@ const getShareInviteConfig = function () {
   let userInfo = wx.getStorageSync('userInfo') || {};
   const userId = userInfo.userId || '';
   const shareTitles = [
-    "本来不想点，结果真给了个足浴买单红包",
-    "我刚领了个足浴买单红包，挺好用的，顺手也发你一个",
-    "新年福利，足浴/按摩买单可直接用",
+    "新用户领现金红包 58元",
+    "我在足惠多赚佣金 你也可以",
+    "朋友都用这个省钱",
+	"专属福利 首单58元现金抵用",
+	"仅限今天 新用户领58元",
   ];
   const randomIndex = Math.floor(Math.random() * shareTitles.length);
   const title = shareTitles[randomIndex];

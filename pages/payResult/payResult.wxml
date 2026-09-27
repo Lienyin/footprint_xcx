@@ -1,6 +1,6 @@
 <view class="container">
   
-  <view wx:if="{{status != 1}}" class="result-card">
+  <view wx:if="{{status == 1}}" class="result-card">
     <view class='icon-container'>
       <image src="/images/pay-success.png" class="result-icon"></image>
     </view>
@@ -94,12 +94,16 @@
       <image src="/images/pay-success.png" class="result-icon"></image>
     </view>
     <view class='result-content'>
+      <view class="result-title">订单已提交</view>
       <view class="result-subtitle">需支付</view>
       <view class="price-text">¥{{price}}</view>
     </view>
     <view class="action-container">
       <button class="primary-button share-button" open-type='share'>
         <text class="button-text">发给微信好友</text>
+      </button>
+      <button class="secondary-outline-button" style="margin-top: 20rpx;" bindtap="toOrderListPage">
+        查看我的订单
       </button>
     </view>
   </view>

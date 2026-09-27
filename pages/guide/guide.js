@@ -37,6 +37,16 @@ Page({
     ]
   },
 
+  onLoad: function () {
+    // 防止通过微信"回首页"按钮 reLaunch 到此页时重复展示引导
+    const hasSeenGuide = wx.getStorageSync('hasSeenGuide');
+    if (hasSeenGuide) {
+      wx.reLaunch({
+        url: '/pages/login/login'
+      });
+    }
+  },
+
   onSwiperChange(e) {
     this.setData({
       current: e.detail.current

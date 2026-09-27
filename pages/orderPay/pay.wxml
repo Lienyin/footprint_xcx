@@ -71,27 +71,6 @@
   </view>
 
   
-  <view class="phone-modal {{showPhoneModal ? 'show' : ''}}" catchtouchmove="true">
-    <view class="modal-mask" bindtap="closePhoneModal"></view>
-    <view class="modal-content">
-      <view class="modal-header">
-        <text class="modal-title">手机号授权说明</text>
-        <view class="modal-close" bindtap="closePhoneModal">×</view>
-      </view>
-
-      <view class="modal-body">
-        <view class="auth-tip">为更好地核实订单，需要获取您的手机号。您的信息仅用于店内订单核实服务，请放心授权。</view>
-
-        <button class="auth-btn {{phoneAuthLoading ? 'loading' : ''}}" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber" disabled="{{phoneAuthLoading}}">
-          <text wx:if="{{!phoneAuthLoading}}">一键授权手机号</text>
-          <text wx:else>授权中...</text>
-        </button>
-
-        <view class="cancel-btn" bindtap="closePhoneModal">取消支付</view>
-      </view>
-    </view>
-  </view>
-  
   <view class="coupon-modal {{showCouponModal ? 'show' : ''}}" catchtouchmove="true">
     <view class="modal-mask" bindtap="closeCouponModal"></view>
     <view class="modal-content">

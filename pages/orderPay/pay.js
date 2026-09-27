@@ -8,9 +8,6 @@ Page({
     pack: {},
     technicianCode: '',
     room: '',
-    phoneNumber: '',
-    isPhoneNumber: 0,
-    identityFlag: 0,
     originalPrice: 0.00, //订单总价  
     price: 0.00, //实际需要支付的总价  
     savePrice: 0.00,
@@ -26,8 +23,6 @@ Page({
       },
     ],
     payMethod: 1,
-    showPhoneModal: false,  // 控制手机号授权弹窗  
-    phoneAuthLoading: false, // 授权加载状态  
     showCouponModal: false,
     couponTabActive: 'usable',
     bestCoupon: null, // 最佳优惠券  
@@ -98,11 +93,9 @@ Page({
 
   onShow: function () {
     let userInfo = wx.getStorageSync('userInfo') || {};
-    let isPhoneNumber = wx.getStorageSync('isPhoneNumber') || 0;
 
     this.setData({
-      identityFlag: userInfo.identityFlag || 0,
-      isPhoneNumber: isPhoneNumber
+      identityFlag: userInfo.identityFlag || 0
     });
   },
 
@@ -401,63 +394,12 @@ selectCoupon: function (e) {
       showCouponModal: false
     });
   },
-  closePhoneModal() {
-    this.setData({
-      showPhoneModal: false
-    });
-  },
-  onGetPhoneNumber(e) {
-    if (e.detail.errMsg !== "getPhoneNumber:ok") {
-      return;
-    }
-
-    this.setData({
-      phoneAuthLoading: true
-    });
-
-    util.request(api.GetAndUpdPhoneNumber, {
-      code: e.detail.code
-    }, 'POST').then(res => {
-      if (res.code === 200) {
-        wx.setStorageSync('isPhoneNumber', 1);
-
-        this.setData({
-          isPhoneNumber: 1,
-          showPhoneModal: false,
-          phoneAuthLoading: false
-        });
-        this.continueOrderProcess();
-      } else {
-        this.setData({
-          phoneAuthLoading: false
-        });
-        util.showErrorToast(res.msg || '获取手机号失败');
-      }
-    }).catch(err => {
-      console.error('获取手机号错误:', err);
-      this.setData({
-        phoneAuthLoading: false
-      });
-      util.showErrorToast('获取手机号失败');
-    });
-  },
-  continueOrderProcess() {
-  },
-
   checkOrder: function () {
     if (!this.data.pack.room) {
       util.showErrorToast('请填写房间号');
       return Promise.resolve(0);
     }
-    if (this.data.isPhoneNumber == 1) {
-        
-      return Promise.resolve(1);
-    } else {
-      this.setData({
-        showPhoneModal: true
-      });
-      return Promise.resolve(0);
-    }
+    return Promise.resolve(1);
   },
   handleWxPay: function (payData) {
     return new Promise((resolve, reject) => {

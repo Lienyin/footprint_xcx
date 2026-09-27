@@ -22,6 +22,14 @@ Page({
       packageId: options.packageId || 0,
       route: options.route || 0
     });
+
+    // 首次进入小程序，先显示引导页
+    const hasSeenGuide = wx.getStorageSync('hasSeenGuide');
+    if (!hasSeenGuide) {
+      wx.reLaunch({
+        url: '/pages/guide/guide'
+      });
+    }
   },
 
   onShow: function () {

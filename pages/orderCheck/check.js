@@ -551,6 +551,7 @@ Page({
       const couponUserIds = that.data.selectedCoupons.map(coupon => coupon.couponUserId);
 
       util.request(api.OrderSubmit + storeId, {
+        payMethod: 'wxpay',
         room: that.data.room,
         packageInfos: that.data.packageInfos,
         technicianCode: that.data.technicianCode,
