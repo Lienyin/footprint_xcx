@@ -147,8 +147,8 @@ const getShareInviteConfig = function () {
     "新用户领现金红包 58元",
     "我在足惠多赚佣金 你也可以",
     "朋友都用这个省钱",
-	"专属福利 首单58元现金抵用",
-	"仅限今天 新用户领58元",
+	  "专属福利 首单58元现金抵用",
+	  "仅限今天 新用户领58元",
   ];
   const randomIndex = Math.floor(Math.random() * shareTitles.length);
   const title = shareTitles[randomIndex];
