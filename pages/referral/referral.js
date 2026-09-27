@@ -4,97 +4,75 @@ const api = require('../../config/api.js');
 
 Page({
   data: {
-    stats: {
-      invited: 0,           // 累计邀请数 (totalAllTimeCount)
-      pending: '0',         // 待结算金额 (pendingSettlement)
-      received: '0',        // 已结算金额 (settledAmount)
-      shareCount: 0         // 分享人数 (newUserCount)
-    },
-    bgHeight: 0,
-    reportMarginTop: 20,
-    statsLoaded: false,
-    loadingError: false
+    totalCommission: '0.00',
+    customerCount: 0,
+    availableAmount: '0.00'
   },
 
   onLoad() {
-    this.calculateBgHeight();
-    this.fetchUserStats();
+    this.loadBalanceData();
   },
 
-  /**
-   * 计算背景图实际高度（适配屏幕宽度）
-   */
-  calculateBgHeight: function() {
-    const sysInfo = wx.getSystemInfoSync();
-    const screenWidth = sysInfo.windowWidth;
-    const designWidth = 1500;
-    const designBgHeight = 1573;
-    const bgHeight = screenWidth * (designBgHeight / designWidth);
-    
-    this.setData({ bgHeight });
-  },
-
-  /**
-   * 获取用户统计数据
-   */
-  fetchUserStats: function() {
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
+  onPullDownRefresh() {
+    this.loadBalanceData().finally(() => {
+      wx.stopPullDownRefresh();
     });
+  },
 
-    util.request(api.UserBalance).then(res => {
-      wx.hideLoading();
-      
-      if (res.code === 200 && res.data) {
-        this.updateStats(res.data);
+  loadBalanceData() {
+    return util.request(api.UserBalance, {}).then((res) => {
+      if (res.code === 200) {
+        const data = res.data;
+        // 累计佣金 = 已提现金额 + 可提现金额
+        const totalCommission = (parseFloat(data.withdrawnAmount || 0) + parseFloat(data.availableBalance || 0)).toFixed(2);
+        const customerCount = data.totalAllTimeCount || 0;
+        const availableAmount = parseFloat(data.availableBalance || 0).toFixed(2);
+
+        this.setData({
+          totalCommission,
+          customerCount,
+          availableAmount
+        });
+      }
+    }).catch((error) => {
+      console.error('加载余额数据失败', error);
+    });
+  },
+
+  showPromoCode() {
+    util.request(api.UserQrcode, {}).then((res) => {
+      if (res.code === 200 && res.data.qrcode) {
+        wx.previewImage({
+          urls: [res.data.qrcode]
+        });
+      } else if (res.code === 400) {
+        wx.showModal({
+          title: '提示',
+          content: '未设置推广编号，是否前往设置？',
+          success(result) {
+            if (result.confirm) {
+              wx.navigateTo({
+                url: '/pages/set/set'
+              });
+            }
+          }
+        });
       } else {
         wx.showToast({
-          title: res.msg || '获取数据失败',
+          title: res.msg || '获取二维码失败',
           icon: 'none'
         });
-        this.setData({ loadingError: true });
       }
-    }).catch(err => {
-      wx.hideLoading();
-      console.error('获取统计数据失败', err);
+    }).catch((error) => {
+      console.error('获取二维码失败', error);
       wx.showToast({
-        title: '获取数据失败，请重试',
+        title: '获取二维码失败，请重试',
         icon: 'none'
       });
-      this.setData({ loadingError: true });
     });
   },
 
-  /**
-   * 更新统计数据映射
-   */
-  updateStats: function(data) {
-    const stats = {
-      invited: data.totalAllTimeCount || 0,          // 累计邀请数
-      pending: (data.pendingSettlement || 0).toFixed(2),  // 待结算金额，保留两位小数
-      received: (data.availableBalance+data.pendingSettlement || 0).toFixed(2),     // 已结算金额，保留两位小数
-      shareCount: data.newUserCount || 0             // 分享人数
-    };
-
-    this.setData({
-      stats: stats,
-      statsLoaded: true,
-      loadingError: false
-    });
-  },
-  onShareAppMessage: function () {
+  onShareAppMessage() {
     return util.getShareInviteConfig();
-  },
-
-  /**
-   * 下拉刷新
-   */
-  onPullDownRefresh: function() {
-    this.fetchUserStats().then(() => {
-      wx.stopPullDownRefresh();
-    }).catch(() => {
-      wx.stopPullDownRefresh();
-    });
   }
 });

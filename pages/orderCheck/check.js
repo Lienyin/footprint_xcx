@@ -446,15 +446,16 @@ Page({
       util.showErrorToast('请填写房间号');
       return Promise.resolve(0);
     }
-    if (this.data.isPhoneNumber == 1) {
-
-      return Promise.resolve(1);
-    } else {
-      this.setData({
-        showPhoneModal: true
-      });
-      return Promise.resolve(0);
-    }
+    // 暂时跳过手机号授权检查
+    // if (this.data.isPhoneNumber == 1) {
+    //   return Promise.resolve(1);
+    // } else {
+    //   this.setData({
+    //     showPhoneModal: true
+    //   });
+    //   return Promise.resolve(0);
+    // }
+    return Promise.resolve(1);
   },
   handleWxPay: function (payData) {
     return new Promise((resolve, reject) => {

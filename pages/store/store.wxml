@@ -100,5 +100,5 @@
       <view class="floating-btn-text">推荐赚50元</view>
     </view>
   </view>
-  <test_activity src="/images/hb.png" scale="{{ 0.55 }}" animate="{{ true }}" imageNavUrl="/pages/referral/referral" closeOnMask="{{ true }}" visible="{{ showActivityModal }}" bind:close="handleModalClose" bind:imageTap="handleRecommendAction" />
+  <!-- <test_activity src="/images/hb.png" scale="{{ 0.55 }}" animate="{{ true }}" imageNavUrl="/pages/referral/referral" closeOnMask="{{ true }}" visible="{{ showActivityModal }}" bind:close="handleModalClose" bind:imageTap="handleRecommendAction" /> -->
 </view>

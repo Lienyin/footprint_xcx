@@ -1,0 +1,51 @@
+<view class="guide-container">
+  <!-- 背景图片轮播 -->
+  <swiper 
+    class="guide-swiper" 
+    autoplay="{{false}}" 
+    circular="{{true}}"
+    current="{{current}}"
+    bindchange="onSwiperChange"
+  >
+    <swiper-item wx:for="{{guideImages}}" wx:key="index">
+      <image 
+        src="{{item}}" 
+        class="guide-image" 
+        mode="aspectFill"
+      ></image>
+    </swiper-item>
+  </swiper>
+  
+  <!-- 对话框 -->
+  <view 
+    class="dialog-box position-{{current + 1}}"
+  >
+    <!-- 步骤指示器 -->
+    <view class="step-indicator">{{current + 1}}/{{guideSteps.length}}</view>
+    
+    <!-- 标题 -->
+    <view class="dialog-title">{{guideSteps[current].title}}</view>
+    
+    <!-- 内容 -->
+    <view class="dialog-content">{{guideSteps[current].content}}</view>
+    
+    <!-- 按钮区域 -->
+    <view class="button-area">
+      <view class="skip-btn" bindtap="finishGuide">跳过</view>
+      <button 
+        wx:if="{{current === guideSteps.length - 1}}" 
+        class="next-btn primary"
+        bindtap="finishGuide"
+      >
+        立即体验
+      </button>
+      <button 
+        wx:else
+        class="next-btn"
+        bindtap="nextStep"
+      >
+        下一步
+      </button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,41 @@
+.rule {
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
+
+.cont {
+  padding: 30rpx;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.card-head {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.card-body {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.8;
+}
+
+.card-body view {
+  margin-bottom: 10rpx;
+}
+
+.card-body view:last-child {
+  margin-bottom: 0;
+}
+
+.em {
+  color: #ff6b6b;
+  font-weight: bold;
+}

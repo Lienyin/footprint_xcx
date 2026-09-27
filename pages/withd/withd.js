@@ -120,5 +120,10 @@ Page({
     wx.navigateTo({
       url: '/pages/withdLog/withdLog'
     })
+  },
+  goToWithdRules() {
+    wx.navigateTo({
+      url: '/pages/withdRules/withdRules'
+    })
   }
 })

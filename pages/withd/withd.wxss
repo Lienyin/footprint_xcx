@@ -116,10 +116,16 @@
   opacity: 0.5;
 }
 
+.logbtn-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40rpx;
+}
+
 .logbtn {
   color: #666;
   font-size: 28rpx;
-  margin-top: 40rpx;
+  flex: 1;
   text-align: center;
   display: flex;
   justify-content: center;

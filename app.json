@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/guide/guide",
     "pages/login/login",
     "pages/home/home",
     "pages/me/me",
@@ -28,7 +29,8 @@
     "pages/referralLog/referralLog",
     "pages/couponPackage/couponPackage",
     "pages/weCom/weCom",
-    "pages/referral/referral"
+    "pages/referral/referral",
+    "pages/withdRules/withdRules"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

@@ -1,0 +1,28 @@
+<view class="rule">
+  <view class="cont">
+    <view class="card">
+      <view class="card-head">可提现额度</view>
+      <view class="card-body">
+        <view>用户当前可提现金额以页面实际显示为准。</view>
+      </view>
+    </view>
+    <view class="card">
+      <view class="card-head">提现时间</view>
+      <view class="card-body">
+        <view>申请时间：<text class="em">全天 24 小时</text>均可提交申请。</view>
+      </view>
+    </view>
+    <view class="card">
+      <view class="card-head">到账时间</view>
+      <view class="card-body">
+        <view>提现成功，<text class="em">即时到达</text>您的微信零钱。</view>
+      </view>
+    </view>
+    <view class="card">
+      <view class="card-head">手续费说明</view>
+      <view class="card-body">
+        <view>本平台 <text class="em">不收取任何提现手续费。</text></view>
+      </view>
+    </view>
+  </view>
+</view>
